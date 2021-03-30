@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\kaspe\\.nuget\\packages\\": {}
+    "C:\\Users\\Torben\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj",
+      "projectUniqueName": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj",
       "projectName": "3_semester_projekt",
-      "projectPath": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj",
-      "packagesPath": "C:\\Users\\kaspe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\obj\\",
+      "projectPath": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj",
+      "packagesPath": "C:\\Users\\Torben\\.nuget\\packages\\",
+      "outputPath": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\kaspe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Torben\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

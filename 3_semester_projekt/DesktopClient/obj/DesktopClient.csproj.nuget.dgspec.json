@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj": {}
+    "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\DesktopClient\\DesktopClient.csproj": {}
   },
   "projects": {
-    "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj": {
+    "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\DesktopClient\\DesktopClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj",
-        "projectName": "3_semester_projekt",
-        "projectPath": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj",
+        "projectUniqueName": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\DesktopClient\\DesktopClient.csproj",
+        "projectName": "DesktopClient",
+        "projectPath": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\DesktopClient\\DesktopClient.csproj",
         "packagesPath": "C:\\Users\\Torben\\.nuget\\packages\\",
-        "outputPath": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\obj\\",
+        "outputPath": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\DesktopClient\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Torben\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -50,11 +50,11 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WindowsForms": {
+              "privateAssets": "none"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"

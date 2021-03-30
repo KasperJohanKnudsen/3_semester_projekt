@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj",
-      "projectName": "3_semester_projekt",
-      "projectPath": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj",
+      "projectUniqueName": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\WebClient\\WebClient.csproj",
+      "projectName": "WebClient",
+      "projectPath": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\WebClient\\WebClient.csproj",
       "packagesPath": "C:\\Users\\Torben\\.nuget\\packages\\",
-      "outputPath": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\obj\\",
+      "outputPath": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\WebClient\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Torben\\AppData\\Roaming\\NuGet\\NuGet.Config",

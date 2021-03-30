@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 //Hello from torben
+//hej fra marco :)
 
 namespace _3_semester_projekt {
     public class Program {

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Marco\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj": {}
+    "C:\\Users\\Mads\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Marco\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj": {
+    "C:\\Users\\Mads\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Marco\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj",
+        "projectUniqueName": "C:\\Users\\Mads\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj",
         "projectName": "3_semester_projekt",
-        "projectPath": "C:\\Users\\Marco\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj",
-        "packagesPath": "C:\\Users\\Marco\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Marco\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\obj\\",
+        "projectPath": "C:\\Users\\Mads\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt.csproj",
+        "packagesPath": "C:\\Users\\Mads\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mads\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\3_semester_projekt\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Marco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mads\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,7 +57,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

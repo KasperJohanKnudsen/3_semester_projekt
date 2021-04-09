@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Fqn1wMHIVeo8Xp4iBpACVkfFE1mtf+mDcApm+AwQtumARB/5OTDnq876VmddS1TIDlkV53qIxdgfCS2QMdpugw==",
+  "dgSpecHash": "XPAncQUWivgmUzFmcNh3OwUfqhBObJy9SvWkYEU8G/EIHEeN6Pq+Oy7i+Wk2MNZjNWZKV3nI2Ozq/yBoogiFYw==",
   "success": true,
   "projectFilePath": "D:\\Skole\\eclipse\\MiniProjektPersistensGruppe4\\3_semester_projekt\\3_semester_projekt\\DesktopClient\\DesktopClient.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Torben\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

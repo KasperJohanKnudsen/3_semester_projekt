@@ -1,0 +1,17 @@
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\bin\Debug\netcoreapp3.1\DesktopClient.exe
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\bin\Debug\netcoreapp3.1\DesktopClient.deps.json
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\bin\Debug\netcoreapp3.1\DesktopClient.runtimeconfig.json
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\bin\Debug\netcoreapp3.1\DesktopClient.runtimeconfig.dev.json
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\bin\Debug\netcoreapp3.1\DesktopClient.dll
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\bin\Debug\netcoreapp3.1\DesktopClient.pdb
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.csprojAssemblyReference.cache
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.Form1.resources
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.csproj.GenerateResource.cache
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.AssemblyInfoInputs.cache
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.AssemblyInfo.cs
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.csproj.CoreCompileInputs.cache
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.csproj.CopyComplete
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.dll
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.pdb
+D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.genruntimeconfig.cache

@@ -7,3 +7,12 @@ D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_proj
 D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\CinemaData\obj\Debug\netcoreapp3.1\CinemaData.csproj.CoreCompileInputs.cache
 D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\CinemaData\obj\Debug\netcoreapp3.1\CinemaData.dll
 D:\Skole\eclipse\MiniProjektPersistensGruppe4\3_semester_projekt\3_semester_projekt\CinemaData\obj\Debug\netcoreapp3.1\CinemaData.pdb
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaData\bin\Debug\netcoreapp3.1\CinemaData.deps.json
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaData\bin\Debug\netcoreapp3.1\CinemaData.dll
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaData\bin\Debug\netcoreapp3.1\CinemaData.pdb
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaData\obj\Debug\netcoreapp3.1\CinemaData.csprojAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaData\obj\Debug\netcoreapp3.1\CinemaData.AssemblyInfoInputs.cache
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaData\obj\Debug\netcoreapp3.1\CinemaData.AssemblyInfo.cs
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaData\obj\Debug\netcoreapp3.1\CinemaData.csproj.CoreCompileInputs.cache
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaData\obj\Debug\netcoreapp3.1\CinemaData.dll
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaData\obj\Debug\netcoreapp3.1\CinemaData.pdb

@@ -7,14 +7,14 @@ using System.Text;
 
 namespace CinemaData.DatabaseLayer
 {
-    public class BookingDatabaseAccess : IBookingAccess
+    public class BookingDatabaseAccess : ICRUD<Booking>
     {
         readonly string _connectionString;
 
         // Using iconfiguration to get hold of a connectionstring
         public BookingDatabaseAccess(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("BookingConnection");
+            _connectionString = configuration.GetConnectionString("CinemaConnection");
         }
 
         // For booking data test project
@@ -23,17 +23,13 @@ namespace CinemaData.DatabaseLayer
             _connectionString = inConnectionString;
         }
 
-        // To Create a booking we NEED a userId AND a roomId, these cannot be null
-        // AND the room that we are booking needs to be updated with a userId and a Occupied set to true
-        // Though this is probably gonna be coordinated in the controller
-        // MAYBE we do not need to get the values from the room and user, when we create, because when we create we just enter which user and which room using their ID
-        public int CreateBooking(Booking aBooking)
+        public int Create(Booking aBooking)
         {
             // I think we use -1 because then we are sure that it is not from the database if it returns that
             int insertedId = -1;
 
 
-            string insertString = "insert into Booking(userId, roomId, name) OUTPUT INSERTED.ID values (@userId, @roomId, @name)";
+            string insertString = "insert into Booking(UserID, ShowingId, Price, SeatsBooked, SeatBookingID) OUTPUT INSERTED.BookingID values (@UserID, @ShowingID, @Price, @SeatsBooked, @SeatBookingId)";
 
             using (SqlConnection con = new SqlConnection(_connectionString))
             //Create the command with a sql script
@@ -42,15 +38,19 @@ namespace CinemaData.DatabaseLayer
 
                 // Prepare SQL
                 // Prepares a parameters inside the database to receive a property from the class
-                SqlParameter userIdParam = new SqlParameter("@userId", aBooking.UserId);
-                SqlParameter roomIdParam = new SqlParameter("@roomId", aBooking.RoomId);
-                SqlParameter nameParam = new SqlParameter("@name", aBooking.Name);
+                SqlParameter userIdParam = new SqlParameter("@UserID", aBooking.UserId);
+                SqlParameter showingIdParam = new SqlParameter("@ShowingID", aBooking.ShowingId);
+                SqlParameter priceParam = new SqlParameter("@Price", aBooking.Price);
+                SqlParameter seatsBookedParam = new SqlParameter("@SeatsBooked", aBooking.SeatsBooked);
+                SqlParameter seatBookingIdParam = new SqlParameter("@SeatBookingID", aBooking.SeatBookingId);
 
 
                 //Adds the above parameter to a Command
                 CreateCommand.Parameters.Add(userIdParam);
-                CreateCommand.Parameters.Add(roomIdParam);
-                CreateCommand.Parameters.Add(nameParam);
+                CreateCommand.Parameters.Add(showingIdParam);
+                CreateCommand.Parameters.Add(priceParam);
+                CreateCommand.Parameters.Add(seatsBookedParam);
+                CreateCommand.Parameters.Add(seatBookingIdParam);
 
 
                 // Opens the connection
@@ -62,12 +62,13 @@ namespace CinemaData.DatabaseLayer
             return insertedId;
         }
 
-        public bool DeleteBookingById(int id)
+        public bool Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Booking> GetBookingAll()
+
+        public IEnumerable<Booking> GetAll()
         {
             // To get all users we need to create a liste to put them into
             List<Booking> foundBookings;
@@ -75,7 +76,7 @@ namespace CinemaData.DatabaseLayer
             Booking readBooking;
 
 
-            string queryString = "select ID, userId, roomId, name from Booking";
+            string queryString = "select BookingID, UserID, ShowingID, Price, SeatsBooked, SeatBookingID from Booking";
             using (SqlConnection con = new SqlConnection(_connectionString))
             using (SqlCommand readCommand = new SqlCommand(queryString, con))
             {
@@ -87,23 +88,23 @@ namespace CinemaData.DatabaseLayer
 
                 while (productReader.Read())
                 {
-                    readBooking = GetBookingFromReader(productReader);
+                    readBooking = GetFromReader(productReader);
                     foundBookings.Add(readBooking);
                 }
             }
             return foundBookings;
         }
 
-        public Booking GetBookingById(int findId)
+        public Booking GetById(int findId)
         {
             Booking foundBooking = null;
             //
-            string queryString = "select ID, userId, roomId, name from Booking where ID = @ID";
+            string queryString = "select BookingID, UserID, ShowingID, Price, SeatsBooked, SeatBookingID from Booking where BookingID = @BookingID";
             using (SqlConnection con = new SqlConnection(_connectionString))
             using (SqlCommand readCommand = new SqlCommand(queryString, con))
             {
                 // Put the Id parameter into the command so that we know which room to read
-                SqlParameter idParam = new SqlParameter("@ID", findId);
+                SqlParameter idParam = new SqlParameter("@BookingID", findId);
                 readCommand.Parameters.Add(idParam);
 
                 con.Open();
@@ -115,7 +116,7 @@ namespace CinemaData.DatabaseLayer
                 {
                     while (productReader.Read())
                     {
-                        foundBooking = GetBookingFromReader(productReader);
+                        foundBooking = GetFromReader(productReader);
 
                     }
                 }
@@ -123,27 +124,33 @@ namespace CinemaData.DatabaseLayer
             return foundBooking;
         }
 
-        public bool UpdateBooking(Booking bookingToUpdate)
-        {
-            throw new NotImplementedException();
-        }
-
-        private Booking GetBookingFromReader(SqlDataReader productReader)
+        public Booking GetFromReader(SqlDataReader productReader)
         {
             Booking foundBooking;
+
             int tempId;
             int tempUserId;
-            int tempRoomId;
-            string tempName;
+            int tempShowingId;
+            decimal tempPrice;
+            string tempSeatsBooked;
+            int tempSeatBookingId;
 
-            tempId = productReader.GetInt32(productReader.GetOrdinal("ID"));
-            tempUserId = productReader.GetInt32(productReader.GetOrdinal("userId"));
-            tempRoomId = productReader.GetInt32(productReader.GetOrdinal("roomId"));
-            tempName = productReader.GetString(productReader.GetOrdinal("name"));
+
+            tempId = productReader.GetInt32(productReader.GetOrdinal("BookingID"));
+            tempUserId = productReader.GetInt32(productReader.GetOrdinal("UserID"));
+            tempShowingId = productReader.GetInt32(productReader.GetOrdinal("ShowingID"));
+            tempPrice = productReader.GetDecimal(productReader.GetOrdinal("Price"));
+            tempSeatsBooked = productReader.GetString(productReader.GetOrdinal("SeatsBooked"));
+            tempSeatBookingId = productReader.GetInt32(productReader.GetOrdinal("SeatBookingID"));
 
             //Build the booking with the values from the database
-            foundBooking = new Booking(tempId, tempUserId, tempRoomId, tempName);
+            foundBooking = new Booking(tempId, tempUserId, tempShowingId, tempPrice, tempSeatsBooked, tempSeatBookingId);
             return foundBooking;
+        }
+
+        public bool Update(Booking entity)
+        {
+            throw new NotImplementedException();
         }
 
     }

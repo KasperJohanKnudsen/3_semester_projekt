@@ -8,9 +8,12 @@ namespace CinemaData.ModelLayer
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public int RoomId { get; set; }
-        public string Name { get; set; }
-
+        public int ShowingId { get; set; }
+        public decimal Price { get; set; }
+        public string SeatsBooked { get; set; }
+        public int SeatBookingId { get; set; }
+        
+        /*
         public bool IsBookingEmpty
         {
             get
@@ -25,17 +28,32 @@ namespace CinemaData.ModelLayer
                 }
             }
         }
+        */
 
         public Booking() { }
-        public Booking(string name)
+        public Booking(decimal price, string seatsBooked)
         {
-            Name = name;
+            Price = price;
+            SeatsBooked = seatsBooked;
         }
-        public Booking(int id, int userId, int roomId, string name) : this(name)
+        public Booking(int userId, int showingId, decimal price, string seatsBooked, int seatbookingId) : this(price, seatsBooked)
+        {
+
+            UserId = userId;
+            ShowingId = showingId;
+            Price = price;
+            SeatsBooked = seatsBooked;
+            SeatBookingId = seatbookingId;
+        }
+
+        public Booking(int id, int userId, int showingId, decimal price, string seatsBooked, int seatbookingId) : this(price, seatsBooked)
         {
             Id = id;
             UserId = userId;
-            RoomId = roomId;
+            ShowingId = showingId;
+            Price = price;
+            SeatsBooked = seatsBooked;
+            SeatBookingId = seatbookingId;
         }
     }
 }

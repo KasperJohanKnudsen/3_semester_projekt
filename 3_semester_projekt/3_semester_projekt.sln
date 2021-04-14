@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaService", "CinemaService\CinemaService.csproj", "{254B6C27-8C8F-4CDC-BAF1-BD4265CFA09D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaService", "CinemaService\CinemaService.csproj", "{254B6C27-8C8F-4CDC-BAF1-BD4265CFA09D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaData", "CinemaData\CinemaData.csproj", "{F66D6BE1-0A32-4B92-8389-7E44C815C4CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaData", "CinemaData\CinemaData.csproj", "{F66D6BE1-0A32-4B92-8389-7E44C815C4CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopClient", "DesktopClient\DesktopClient.csproj", "{5B0BFB9E-4AC8-4BDE-AD24-6141EE3F45B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesktopClient", "DesktopClient\DesktopClient.csproj", "{5B0BFB9E-4AC8-4BDE-AD24-6141EE3F45B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "WebClient\WebClient.csproj", "{9AAB1F14-1B15-4464-918E-6F29F6840C03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebClient", "WebClient\WebClient.csproj", "{9AAB1F14-1B15-4464-918E-6F29F6840C03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaDataTest", "CinemaDataTest\CinemaDataTest.csproj", "{0A28F4D7-01FB-4BC8-958E-A75061A4843B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{9AAB1F14-1B15-4464-918E-6F29F6840C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AAB1F14-1B15-4464-918E-6F29F6840C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AAB1F14-1B15-4464-918E-6F29F6840C03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A28F4D7-01FB-4BC8-958E-A75061A4843B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A28F4D7-01FB-4BC8-958E-A75061A4843B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A28F4D7-01FB-4BC8-958E-A75061A4843B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A28F4D7-01FB-4BC8-958E-A75061A4843B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

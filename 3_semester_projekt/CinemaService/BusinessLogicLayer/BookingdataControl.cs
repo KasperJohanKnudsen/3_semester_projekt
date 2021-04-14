@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using CinemaData.ModelLayer;
 using CinemaData.DatabaseLayer;
 using Microsoft.Extensions.Configuration;
+using CinemaService.BusinessLogicLayer;
 
 namespace CinemaService.BusinesslogicLayer
 {
-    public class BookingdataControl : IBookingData
+    public class BookingdataControl : IDataControl<Booking>
     {
 
-        IBookingAccess _bookingAccess;
+        ICRUD<Booking> _bookingAccess;
         public BookingdataControl(IConfiguration inConfiguration)
         {
             _bookingAccess = new BookingDatabaseAccess(inConfiguration);
@@ -19,7 +20,7 @@ namespace CinemaService.BusinesslogicLayer
             int insertedId;
             try
             {
-                insertedId = _bookingAccess.CreateBooking(newBooking);
+                insertedId = _bookingAccess.Create(newBooking);
             }
             catch
             {
@@ -38,7 +39,7 @@ namespace CinemaService.BusinesslogicLayer
             Booking foundBooking;
             try
             {
-                foundBooking = _bookingAccess.GetBookingById(idToMatch);
+                foundBooking = _bookingAccess.GetById(idToMatch);
             }
             catch
             {
@@ -47,23 +48,25 @@ namespace CinemaService.BusinesslogicLayer
             return foundBooking;
         }
 
-        public List<Booking> Get()
+        public bool Put(Booking entityToUpdate)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+        public IEnumerable<Booking> Get()
         {
             List<Booking> foundBookings;
             try
             {
-                foundBookings = _bookingAccess.GetBookingAll();
+                foundBookings = (List<Booking>)_bookingAccess.GetAll();
             }
             catch
             {
                 foundBookings = null;
             }
             return foundBookings;
-        }
-
-        public bool Put(Booking bookingToUpdate)
-        {
-            throw new NotImplementedException();
         }
     }
 }

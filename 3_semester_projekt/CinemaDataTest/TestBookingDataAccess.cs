@@ -14,24 +14,36 @@ namespace CinemaDataTest
         public void TestCreateBooking()
         {
             //Arrange
-            Booking insertBooking = new Booking(1, 1, 100.0m, 2, 1);
+            User user = _userAccess.GetById(1);
+            Showing showing = _showingAccess.GetById(1);
+            SeatBooking seatBooking = _seatBookingAccess.GetById(1);
+            string seatsBooked = "Row: " + seatBooking.RowNo.ToString() + " SeatNumber: " +seatBooking.SeatNo.ToString();
+            decimal price = 200.0m;
+ 
+            Booking insertBooking = new Booking(user.UserId, showing.ID, price, seatsBooked, seatBooking.ID);
 
 
             //Act
-            _bookingAccess.CreateBooking(insertBooking);
+            _bookingAccess.Create(insertBooking);
 
             //Assert
             
         }
 
         private readonly ITestOutputHelper extraOutput;
-        readonly private IBookingAccess _bookingAccess;
+        readonly private ICRUD<Booking> _bookingAccess;
+        readonly private ICRUD<User> _userAccess;
+        readonly private ICRUD<Showing> _showingAccess;
+        readonly private ICRUD<SeatBooking> _seatBookingAccess;
         readonly string _connectionString = "Server=localhost; Integrated " + "Security=true; Database=CinemaCenter";
 
         public TestBookingDataAccess(ITestOutputHelper output)
         {
             this.extraOutput = output;
             _bookingAccess = new BookingDatabaseAccess(_connectionString);
+            _userAccess = new UserDatabaseAccess(_connectionString);
+            _showingAccess = new ShowingDatabaseAccess(_connectionString);
+            _seatBookingAccess = new SeatBookingDatabaseAccess(_connectionString);
         }
             
     }

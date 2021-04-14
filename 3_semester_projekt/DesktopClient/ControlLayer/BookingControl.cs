@@ -25,9 +25,9 @@ namespace DesktopClient.ControlLayer
             
         }
 
-        public async Task<int> SaveBooking(string name)
+        public async Task<int> SaveBooking(decimal price, string seatsBooked)
         {
-            Booking newBooking = new Booking(name);
+            Booking newBooking = new Booking(price, seatsBooked);
             int insertedId = await _bAccess.SaveBooking(newBooking);
             return insertedId;
         }

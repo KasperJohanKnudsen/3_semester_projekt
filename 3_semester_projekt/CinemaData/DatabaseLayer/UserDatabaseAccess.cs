@@ -136,26 +136,6 @@ namespace CinemaData.DatabaseLayer
         {
             throw new NotImplementedException();
         }
-        /*
-        private User GetUserFromReader(SqlDataReader productReader)
-        {
-
-            User foundUser;
-            
-            int tempId;
-            int tempPhoneNumber;
-
-
-            tempId = productReader.GetInt32(productReader.GetOrdinal("UserID"));
-            tempPhoneNumber = productReader.GetInt32(productReader.GetOrdinal("PhoneNumber"));
-
-
-            //Build the booking with the values from the database
-            foundUser = new User(tempId, tempPhoneNumber);
-            return foundUser;
-            
-
-        }
-        */
+ 
     }
 }

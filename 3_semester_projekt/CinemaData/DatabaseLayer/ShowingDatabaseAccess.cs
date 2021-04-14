@@ -40,7 +40,7 @@ namespace CinemaData.DatabaseLayer
         {
             Showing foundShowing = null;
             //
-            string queryString = "select MovieID, TheaterID, StartTime, Date, SeatBookingID from Showing where ShowingID = @ShowingID";
+            string queryString = "select ShowingID, MovieID, TheaterID, StartTime, Date, SeatBookingID from Showing where ShowingID = @ShowingID";
             using (SqlConnection con = new SqlConnection(_connectionString))
             using (SqlCommand readCommand = new SqlCommand(queryString, con))
             {
@@ -83,7 +83,7 @@ namespace CinemaData.DatabaseLayer
             int tempSeatBookingId;
 
 
-            tempId = productReader.GetInt32(productReader.GetOrdinal("UserID"));
+            tempId = productReader.GetInt32(productReader.GetOrdinal("ShowingID"));
             tempMovieId = productReader.GetInt32(productReader.GetOrdinal("MovieID"));
             tempTheaterId = productReader.GetInt32(productReader.GetOrdinal("TheaterID"));
             tempStartTime = productReader.GetDateTime(productReader.GetOrdinal("StartTime"));

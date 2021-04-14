@@ -14,7 +14,7 @@ namespace CinemaService.ModelConversion
             Booking aBooking = null;
             if (inDto != null)
             {
-                aBooking = new Booking(inDto.Name);
+                aBooking = new Booking(inDto.Price, inDto.SeatsBooked);
             }
             return aBooking;
         }

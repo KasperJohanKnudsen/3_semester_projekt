@@ -29,8 +29,9 @@ namespace CinemaService.ModelConversion
             BookingdataReadDto aBookingReadDto = null;
             if (inBooking != null)
             {
-                aBookingReadDto = new BookingdataReadDto(inBooking.Name);
-                aBookingReadDto.Name = $"{inBooking.Name}";
+                aBookingReadDto = new BookingdataReadDto(inBooking.Price, inBooking.SeatsBooked);
+                aBookingReadDto.BookingOrder = $"{inBooking.Price} {inBooking.SeatsBooked}";
+                
             }
             return aBookingReadDto;
         }

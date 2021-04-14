@@ -27,7 +27,7 @@ namespace CinemaService.Controllers
         {
             ActionResult<List<BookingdataReadDto>> foundReturn;
             // retrieve and convert data
-            List<Booking> foundBookings = _bControl.Get();
+            List<Booking> foundBookings = (List<Booking>)_bControl.Get();
             List<BookingdataReadDto> foundDts = ModelConversion.BookingdataReadDtoConvert.FromBookingCollection(foundBookings);
             // evaluate
             if (foundDts != null)

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CinemaData.DatabaseLayer
 {
-    interface ICRUD<T>
+    public interface ICRUD<T>
     {
         T GetById(int id);
         IEnumerable<T> GetAll();

@@ -6,17 +6,20 @@ namespace DesktopClient.ModelLayer
 {
     public class Booking
     {
-        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public string SeatsBooked { get; set; }
+        public string BookingOrder { get; set; }
 
         public Booking() { }
-        public Booking(string name)
+        public Booking(decimal price, string seatsBooked)
         {
-            Name = name;
+            Price = price;
+            SeatsBooked = seatsBooked;
         }
-
+ 
         public override string ToString()
         {
-            string bText = Name;
+            string bText = BookingOrder;
             
             return bText;
         }

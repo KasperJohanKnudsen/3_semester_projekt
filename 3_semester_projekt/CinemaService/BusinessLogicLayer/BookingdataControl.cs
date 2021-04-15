@@ -20,6 +20,10 @@ namespace CinemaService.BusinesslogicLayer
             int insertedId;
             try
             {
+                // Assignments below needs to be removed when hardcoding them can be avoided
+                newBooking.UserId = 1;
+                newBooking.ShowingId = 1;
+                newBooking.SeatBookingId = 1;
                 insertedId = _bookingAccess.Create(newBooking);
             }
             catch

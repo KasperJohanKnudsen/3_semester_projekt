@@ -33,7 +33,29 @@ namespace CinemaData.DatabaseLayer
 
         public IEnumerable<Showing> GetAll()
         {
-            throw new NotImplementedException();
+
+            List<Showing> foundShowings;
+            // Create a new object user that we build from the database
+            Showing readShowing;
+
+
+            string queryString = "select ShowingID, MovieID, TheaterID, StartTime, Date, SeatBookingID from Showing";
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            using (SqlCommand readCommand = new SqlCommand(queryString, con))
+            {
+                con.Open();
+                // SQLDatareader reads data from the database
+                SqlDataReader productReader = readCommand.ExecuteReader();
+                // Initialize the list
+                foundShowings = new List<Showing>();
+
+                while (productReader.Read())
+                {
+                    readShowing = GetFromReader(productReader);
+                    foundShowings.Add(readShowing);
+                }
+            }
+            return foundShowings;
         }
 
         public Showing GetById(int findId)

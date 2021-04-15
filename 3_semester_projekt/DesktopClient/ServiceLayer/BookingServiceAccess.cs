@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using DesktopClient.ModelLayer;
 using Newtonsoft.Json;
+using System.Web.Helpers;
+using System.Net;
 
 namespace DesktopClient.ServiceLayer
 {
@@ -12,6 +14,8 @@ namespace DesktopClient.ServiceLayer
     {
         static readonly string restUrl = "http://localhost:35452/api/bookings";
         readonly HttpClient _httpClient;
+
+        public HttpStatusCode CurrentHttpStatusCode { get; set; }
 
         public BookingServiceAccess()
         {
@@ -69,7 +73,29 @@ namespace DesktopClient.ServiceLayer
 
         public async Task<int> SaveBooking(Booking bookingToSave)
         {
-            return 0;
+            int insertedBookingId;            
+            string useRestUrl = restUrl;
+            var uri = new Uri(string.Format(useRestUrl, string.Empty));
+            //
+            try {                
+                var json = JsonConvert.SerializeObject(bookingToSave);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = null;
+                response = await _httpClient.PostAsync(uri, content);
+                string resultingIdString = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode) 
+                {
+                    Int32.TryParse(resultingIdString, out insertedBookingId);
+                }
+                else {
+                    insertedBookingId = -2;
+                }
+            }
+            catch 
+            {
+                insertedBookingId = -3;
+            }
+            return insertedBookingId;
         }
 
     }

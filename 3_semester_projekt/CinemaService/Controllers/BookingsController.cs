@@ -57,7 +57,7 @@ namespace CinemaService.Controllers
         {
             return null;
         }
-        // URL: api/persons
+        // URL: 
         [HttpPost]
         public ActionResult<int> PostNewBooking(BookingdataCreateDto inBooking)
         {

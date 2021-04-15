@@ -32,3 +32,9 @@ C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\DesktopClient
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.dll
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.pdb
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.genruntimeconfig.cache
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\DesktopClient\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\DesktopClient\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\DesktopClient\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\DesktopClient\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\DesktopClient\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\DesktopClient\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll

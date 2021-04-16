@@ -11,9 +11,15 @@ namespace CinemaService.BusinesslogicLayer
     {
 
         ICRUD<Booking> _bookingAccess;
+        ICRUD<User> _userAccess;
+        ICRUD<Showing> _showingAccess;
+        ICRUD<SeatBooking> _seatBookingAccess;
         public BookingdataControl(IConfiguration inConfiguration)
         {
             _bookingAccess = new BookingDatabaseAccess(inConfiguration);
+            _userAccess = new UserDatabaseAccess(inConfiguration);
+            _showingAccess = new ShowingDatabaseAccess(inConfiguration);
+            _seatBookingAccess = new SeatBookingDatabaseAccess(inConfiguration);
         }
         public int Add(Booking newBooking)
         {
@@ -21,9 +27,11 @@ namespace CinemaService.BusinesslogicLayer
             try
             {
                 // Assignments below needs to be removed when hardcoding them can be avoided
-                newBooking.UserId = 1;
-                newBooking.ShowingId = 1;
-                newBooking.SeatBookingId = 1;
+
+                newBooking.UserId = FindTempId(_userAccess.GetAll());
+                newBooking.ShowingId = FindTempId(_showingAccess.GetAll());
+                newBooking.SeatBookingId = FindTempId(_seatBookingAccess.GetAll());
+
                 insertedId = _bookingAccess.Create(newBooking);
             }
             catch
@@ -71,6 +79,38 @@ namespace CinemaService.BusinesslogicLayer
                 foundBookings = null;
             }
             return foundBookings;
+        }
+
+        private int FindTempId(IEnumerable<User> list)
+        {
+            int tempId = 0;
+            foreach (var obj in list)
+            {
+                return obj.UserId;
+            }
+
+            return tempId;
+        }
+
+        private int FindTempId(IEnumerable<Showing> list)
+        {
+            int tempId = 0;
+            foreach (var obj in list)
+            {
+                return obj.ID;
+            }
+
+            return tempId;
+        }
+        private int FindTempId(IEnumerable<SeatBooking> list)
+        {
+            int tempId = 0;
+            foreach (var obj in list)
+            {
+                return obj.ID;
+            }
+
+            return tempId;
         }
     }
 }

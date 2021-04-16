@@ -1,0 +1,7 @@
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebApplication\obj\Debug\netcoreapp3.1\WebApplication.csprojAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebApplication\obj\Debug\netcoreapp3.1\WebApplication.AssemblyInfoInputs.cache
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebApplication\obj\Debug\netcoreapp3.1\WebApplication.AssemblyInfo.cs
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebApplication\obj\Debug\netcoreapp3.1\WebApplication.csproj.CoreCompileInputs.cache
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebApplication\obj\Debug\netcoreapp3.1\WebApplication.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebApplication\obj\Debug\netcoreapp3.1\WebApplication.RazorAssemblyInfo.cache
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebApplication\obj\Debug\netcoreapp3.1\WebApplication.RazorAssemblyInfo.cs

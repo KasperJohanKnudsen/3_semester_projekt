@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebClient", "WebClient\WebC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaDataTest", "CinemaDataTest\CinemaDataTest.csproj", "{0A28F4D7-01FB-4BC8-958E-A75061A4843B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIAccess", "APIAccess\APIAccess.csproj", "{35357184-863B-4DE9-992C-7E45F977FB6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIAccess", "APIAccess\APIAccess.csproj", "{35357184-863B-4DE9-992C-7E45F977FB6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClientMVC", "WebClientMVC\WebClientMVC.csproj", "{13284305-13AD-47D1-AA70-7AC86E1F35A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClientMVC", "WebApplication\WebClientMVC.csproj", "{7314961B-E221-4A42-A1D8-43088A8A1F71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,10 @@ Global
 		{35357184-863B-4DE9-992C-7E45F977FB6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35357184-863B-4DE9-992C-7E45F977FB6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35357184-863B-4DE9-992C-7E45F977FB6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{13284305-13AD-47D1-AA70-7AC86E1F35A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13284305-13AD-47D1-AA70-7AC86E1F35A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{13284305-13AD-47D1-AA70-7AC86E1F35A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13284305-13AD-47D1-AA70-7AC86E1F35A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7314961B-E221-4A42-A1D8-43088A8A1F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7314961B-E221-4A42-A1D8-43088A8A1F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7314961B-E221-4A42-A1D8-43088A8A1F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7314961B-E221-4A42-A1D8-43088A8A1F71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

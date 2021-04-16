@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "3ob2m0ru6sIrrJewPpgDOtl71ma2qk7lDxn9qFI+U6GvMMhGzCAt1iuY893HwQwYxmfqRc4bUIIfB11eFRGhew==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\WebApplication\\WebClientMVC.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

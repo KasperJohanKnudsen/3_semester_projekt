@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\APIAccess\APIAccess.csproj" />
     <ProjectReference Include="..\CinemaData\CinemaData.csproj" />
   </ItemGroup>
 

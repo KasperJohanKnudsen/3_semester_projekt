@@ -6,6 +6,7 @@ namespace DesktopClient.ModelLayer
 {
     public class Booking
     {
+        public int Id { get; set; }
         public decimal Price { get; set; }
         public string SeatsBooked { get; set; }
         public string BookingOrder { get; set; }

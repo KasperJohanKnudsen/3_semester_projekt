@@ -60,3 +60,5 @@ C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaService
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaService\obj\Debug\netcoreapp3.1\CinemaService.dll
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaService\obj\Debug\netcoreapp3.1\CinemaService.pdb
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaService\obj\Debug\netcoreapp3.1\CinemaService.genruntimeconfig.cache
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaService\bin\Debug\netcoreapp3.1\APIAccess.dll
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaService\bin\Debug\netcoreapp3.1\APIAccess.pdb

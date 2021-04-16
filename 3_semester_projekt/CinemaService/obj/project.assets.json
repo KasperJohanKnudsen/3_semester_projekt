@@ -152,6 +152,16 @@
           }
         }
       },
+      "APIAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/APIAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/APIAccess.dll": {}
+        }
+      },
       "CinemaData/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -524,6 +534,11 @@
         "version.txt"
       ]
     },
+    "APIAccess/1.0.0": {
+      "type": "project",
+      "path": "../APIAccess/APIAccess.csproj",
+      "msbuildProject": "../APIAccess/APIAccess.csproj"
+    },
     "CinemaData/1.0.0": {
       "type": "project",
       "path": "../CinemaData/CinemaData.csproj",
@@ -532,6 +547,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "APIAccess >= 1.0.0",
       "CinemaData >= 1.0.0"
     ]
   },
@@ -562,6 +578,9 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
+            "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\APIAccess\\APIAccess.csproj": {
+              "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\APIAccess\\APIAccess.csproj"
+            },
             "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\CinemaData\\CinemaData.csproj": {
               "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\CinemaData\\CinemaData.csproj"
             }

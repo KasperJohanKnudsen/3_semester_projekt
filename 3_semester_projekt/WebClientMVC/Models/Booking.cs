@@ -11,11 +11,17 @@ namespace WebClientMVC.Models
         public decimal Price { get; set; }
         public string SeatsBooked { get; set; }
         public string BookingOrder { get; set; }
+        public int PhoneNumber { get; set; }
 
         public Booking() { }
         public Booking(decimal price, string seatsBooked)
         {
             Price = price;
+            SeatsBooked = seatsBooked;
+        }
+        public Booking(string seatsBooked, int phoneNumber)
+        {
+            PhoneNumber = phoneNumber;
             SeatsBooked = seatsBooked;
         }
 

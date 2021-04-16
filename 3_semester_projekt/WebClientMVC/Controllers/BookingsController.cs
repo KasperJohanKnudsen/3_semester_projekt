@@ -37,7 +37,7 @@ namespace WebClientMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Booking abooking)
+        public async Task<ActionResult> Create(Booking aBooking)
         {
             try
             {
@@ -45,10 +45,12 @@ namespace WebClientMVC.Controllers
 
 
                 int insertedId = -1;
-                decimal price = 100.0m;
-                string seatsBooked = "Row: 666, Seat 1";
+                //decimal price = 100.0m;
+                //string seatsBooked = "Row: 666, Seat 1";
 
-                insertedId = await _bookingLogic.SaveBooking(price, seatsBooked);
+
+
+                insertedId = await _bookingLogic.SaveBooking(aBooking);
 
                 return RedirectToAction(nameof(Index));
             } catch

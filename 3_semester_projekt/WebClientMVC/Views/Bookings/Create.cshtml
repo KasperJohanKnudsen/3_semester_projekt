@@ -1,5 +1,6 @@
 ﻿@model WebClientMVC.Models.Booking
 
+
 @{
     ViewData["Title"] = "Create";
 }
@@ -13,20 +14,16 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SeatsBooked" class="control-label"></label>
                 <input asp-for="SeatsBooked" class="form-control" />
                 <span asp-validation-for="SeatsBooked" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="BookingOrder" class="control-label"></label>
-                <input asp-for="BookingOrder" class="form-control" />
-                <span asp-validation-for="BookingOrder" class="text-danger"></span>
-            </div>
+          
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -41,3 +38,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+

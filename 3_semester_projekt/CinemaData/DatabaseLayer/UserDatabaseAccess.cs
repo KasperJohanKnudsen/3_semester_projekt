@@ -115,7 +115,7 @@ namespace CinemaData.DatabaseLayer
             return foundUser;
         }
 
-        public User GetFromReader(SqlDataReader productReader)
+        private User GetFromReader(SqlDataReader productReader)
         {
             User foundUser;
 

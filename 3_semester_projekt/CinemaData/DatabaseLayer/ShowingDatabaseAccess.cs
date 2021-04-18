@@ -92,7 +92,7 @@ namespace CinemaData.DatabaseLayer
             throw new NotImplementedException();
         }
 
-        public Showing GetFromReader(SqlDataReader productReader)
+        private Showing GetFromReader(SqlDataReader productReader)
         {
 
             Showing foundShowing;

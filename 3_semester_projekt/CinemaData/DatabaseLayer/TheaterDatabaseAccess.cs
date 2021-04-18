@@ -63,7 +63,7 @@ namespace CinemaData.DatabaseLayer
             return foundTheater;
         }
 
-        public Theater GetFromReader(SqlDataReader productReader)
+        private Theater GetFromReader(SqlDataReader productReader)
         {
             Theater foundTheater;
 

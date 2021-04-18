@@ -20,7 +20,7 @@ namespace CinemaDataTest
             foundUser = _userAccess.GetById(1);
 
             // Assert
-            Assert.True(foundUser.UserId == 1);
+            Assert.True(foundUser.ID == 1);
 
             extraOutput.WriteLine(foundUser.PhoneNumber.ToString());
 

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace CinemaData.ModelLayer
 {
-    public class SeatBooking
+    public class SeatBooking : Model
     {
-        public int ID { get; set; }
+        //public int ID { get; set; }
         public bool IsReserved { get; set; }
         public int RowNo { get; set; }
         public int SeatNo { get; set; }

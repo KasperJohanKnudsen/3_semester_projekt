@@ -12,7 +12,6 @@ namespace CinemaData.DatabaseLayer
         int Create(T entity);
         bool Update(T entity);
         bool Delete(int id);
-        T GetFromReader(SqlDataReader productReader);
 
     }
 }

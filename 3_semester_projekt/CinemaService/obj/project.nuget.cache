@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5hLX7tMfVCd3PS3sIK7f6SuGhFBObHZl1JMT+8aLFHudCooFsG6RfgJ+Z4i1hV8zR0nVd2jucaEqPpNeK42KIw==",
+  "dgSpecHash": "pqquM9pDCAZi7/JxY5ZGe+N1SN0PQbPhehKutjXJQBbbUaB1Auf1+BMtP9WP6U2DrOe5VbSiJmqQFRFdvf7AcQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\CinemaService\\CinemaService.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace CinemaData.ModelLayer
 {
-    public class Showing
+    public class Showing : Model
     {
-        public int ID { get; set; }
+        //public int ID { get; set; }
         public int MovieId { get; set; }
         public int TheaterId { get; set; }
         public DateTime StartTime { get; set; }

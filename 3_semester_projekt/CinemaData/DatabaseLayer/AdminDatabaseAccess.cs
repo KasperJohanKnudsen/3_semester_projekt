@@ -28,11 +28,6 @@ namespace CinemaData.DatabaseLayer
             throw new NotImplementedException();
         }
 
-        public Admin GetFromReader(SqlDataReader productReader)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool Update(Admin entity)
         {
             throw new NotImplementedException();

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace CinemaData.ModelLayer
 {
-    public class User
+    public class User : Model
     {
-        public int UserId { get; set; }
+        
         public int PhoneNumber { get; set; }
 
         public User() { }
@@ -17,7 +17,7 @@ namespace CinemaData.ModelLayer
 
         public User(int userId, int phoneNumber) : this(phoneNumber)
         {
-            UserId = userId;
+            ID = userId;
             PhoneNumber = phoneNumber;
         }
 

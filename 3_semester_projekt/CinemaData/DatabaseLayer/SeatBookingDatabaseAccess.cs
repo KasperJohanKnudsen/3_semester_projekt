@@ -87,7 +87,7 @@ namespace CinemaData.DatabaseLayer
             return foundSeatBooking;
         }
 
-        public SeatBooking GetFromReader(SqlDataReader productReader)
+        private SeatBooking GetFromReader(SqlDataReader productReader)
         {
             SeatBooking foundSeatBooking;
 

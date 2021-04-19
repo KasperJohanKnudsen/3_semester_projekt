@@ -19,10 +19,10 @@ namespace WebClientMVC.Models
             Price = price;
             SeatsBooked = seatsBooked;
         }
-        public Booking(string seatsBooked, int phoneNumber)
+        public Booking(string RowBooked, string SeatsBookedOnRow, int phoneNumber)
         {
             PhoneNumber = phoneNumber;
-            SeatsBooked = seatsBooked;
+            SeatsBooked = RowBooked + SeatsBookedOnRow;
         }
 
         public override string ToString()
@@ -30,6 +30,19 @@ namespace WebClientMVC.Models
             string bText = BookingOrder;
 
             return bText;
+        }
+
+        public enum Rows {
+            One = 1,
+            Two = 2,
+            Three = 3
+        }
+
+
+        public enum SeatOnRow {
+            One = 1,
+            Two = 2,
+            Three = 3
         }
     }
 }

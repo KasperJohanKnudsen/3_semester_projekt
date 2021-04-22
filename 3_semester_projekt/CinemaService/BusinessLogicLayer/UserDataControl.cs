@@ -35,7 +35,7 @@ namespace CinemaService.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public User Get(int idToMatch)
+        public User GetById(int idToMatch)
         {
             User foundUser;
             try

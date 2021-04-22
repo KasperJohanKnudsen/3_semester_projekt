@@ -11,19 +11,35 @@ namespace WebClientMVC.Models
         public decimal Price { get; set; }
         public string SeatsBooked { get; set; }
         public string BookingOrder { get; set; }
+        public string Rowbooked { get; set; }
+        public string SeatsBookedOnRow { get; set; }
         public int PhoneNumber { get; set; }
-
+       
+        
         public Booking() { }
+        /*
         public Booking(decimal price, string seatsBooked)
         {
             Price = price;
             SeatsBooked = seatsBooked;
         }
-        public Booking(string RowBooked, string SeatsBookedOnRow, int phoneNumber)
+        
+        public Booking(int phoneNumber, string seatsBooked)
         {
             PhoneNumber = phoneNumber;
-            SeatsBooked = RowBooked + SeatsBookedOnRow;
+            SeatsBooked = seatsBooked;
+            //SeatsBooked = RowBooked + SeatsBookedOnRow;
         }
+        */
+        public Booking(int phoneNumber, string rowBooked, string seatsBookedOnRow, string seatsBooked)
+        {
+            PhoneNumber = phoneNumber;
+
+            seatsBooked = rowBooked + seatsBookedOnRow;
+            SeatsBooked = seatsBooked;
+        }
+
+
 
         public override string ToString()
         {
@@ -35,7 +51,8 @@ namespace WebClientMVC.Models
         public enum Rows {
             One = 1,
             Two = 2,
-            Three = 3
+            Three = 3,
+            Four = 4
         }
 
 

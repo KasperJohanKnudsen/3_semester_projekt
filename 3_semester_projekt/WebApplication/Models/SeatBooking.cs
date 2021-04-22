@@ -20,5 +20,11 @@ namespace WebClientMVC.Models
             RowNo = rowNo;
             SeatNo = seatNo;
         }
+
+        public int GetReservedValue()
+        {
+            int resAsInt = Convert.ToInt32(IsReserved);
+            return resAsInt;
+        }
     }
 }

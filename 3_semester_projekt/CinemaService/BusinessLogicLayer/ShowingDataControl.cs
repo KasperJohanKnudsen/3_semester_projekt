@@ -25,9 +25,18 @@ namespace CinemaService.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public Showing Get(int id)
+        public Showing GetById(int id)
         {
-            throw new NotImplementedException();
+            Showing foundShowing;
+            try
+            {
+                foundShowing = _showingAccess.GetById(id);
+            }
+            catch
+            {
+                foundShowing = null;
+            }
+            return foundShowing;
         }
 
         public IEnumerable<Showing> Get()

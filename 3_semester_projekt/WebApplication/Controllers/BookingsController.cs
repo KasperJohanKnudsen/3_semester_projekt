@@ -54,7 +54,24 @@ namespace WebClientMVC.Controllers
             }
         }
 
-       
-       
+        public async Task<ActionResult> SeatBooking(int? id)
+        {
+            ShowingLogic showingAccVtrl = new ShowingLogic();
+            bool withReservations = true;
+            int showingIdInt = (id != null) ? ((int)id) : 0;
+            Showing foundShowing = await showingAccVtrl.GetShowingById(showingIdInt, withReservations);
+
+            string bookText = "Press green seat to reserve seat";
+            if (TempData["bookResult"] != null)
+            {
+                bookText = TempData["bookResult"].ToString();
+            }
+            ViewBag.PrevResult = bookText;
+
+            return View(foundShowing);
+        }
+
+
+
     }
 }

@@ -51,6 +51,29 @@ namespace CinemaService.Controllers
             // send response back to client
             return foundReturn;
         }
-        
+        [HttpGet, Route("{id}")]
+        public ActionResult<ShowingdataReadDto> Get(int id)
+        {
+            ActionResult<ShowingdataReadDto> foundReturn;
+
+            Showing foundShowing = _sControl.GetById(id);
+
+            ShowingdataReadDto foundDt = ModelConversion.ShowingReadDtoConvert.FromShowing(foundShowing);
+
+            if (foundDt != null)
+            {
+                foundReturn = Ok(foundDt);
+                // Statuscode 200
+            }
+            else
+            {
+                foundReturn = new StatusCodeResult(500);
+                // Internal server error
+            }
+            // send response back to client
+            return foundReturn;
+
+        }
+
     }
 }

@@ -1,0 +1,98 @@
+﻿@model WebClientMVC.Models.Showing
+
+@{
+    ViewBag.Title = "SeatBooking";
+}
+
+<h2>Seat Booking</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ShowingId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShowingId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MovieId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MovieId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+    </dl>
+</div>
+
+<ol class="allSeats">
+
+    @if (Model != null)
+    {
+        List<WebClientMVC.Models.SeatBooking> currenSeats;
+        foreach (int roomRow in Model.GetRoomRows())
+        {
+            <li class="row">
+                <ol class="seats" type="A">
+                    @{ currenSeats = Model.GetSeatRow(roomRow);
+                        int tempResVal;
+                        int tempSeatNo;
+                        int tempId;
+                        foreach (WebClientMVC.Models.SeatBooking sr in currenSeats)
+                        {
+                            tempResVal = sr.GetReservedValue();
+                            tempSeatNo = sr.SeatNo;
+                            tempId = (roomRow * 1000) + tempSeatNo;
+                            @*<li class="seat">
+                                    <input type="checkbox" id="11" value="0" name="seat" onclick="seatchange2(1)" />
+                                    <label for="11">1</label>
+                                </li>*@
+                            <li class="seat">
+                                @if (tempResVal > 0)
+                                {
+                                    <input type="checkbox" id="@tempId" value="@tempResVal" name="seat" checked="checked" onclick="seatchange(@tempId)" />
+                                    <label for="@tempId">@tempSeatNo</label>
+                                }
+                                else
+                                {
+                                    <input type="checkbox" id="@tempId" value="@tempResVal" name="seat" onclick="seatchange(@tempId)" />
+                                    <label for="@tempId">@tempSeatNo</label>
+                                }
+                            </li>
+                        }
+                    }
+                </ol>
+            </li>
+        }
+    }
+</ol>
+@using (Html.BeginForm())
+{
+    if (Model != null)
+    {
+        <input type="hidden" id="showId" name="showId" value="@Model.ShowingId">
+        <input type="hidden" id="reservedSeats" name="reservedSeats" value="">
+        <div class="form-group">
+            <div>@ViewBag.PrevResult</div>
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Book seats" class="btn btn-outline-primary" />
+            </div>
+        </div>
+        <span>Currently selected:</span>
+        <div id="seatSelection" name="seatSelection">None</div>
+    }
+}
+
+<script src="~/js/MovieDynamics.js"></script>
+

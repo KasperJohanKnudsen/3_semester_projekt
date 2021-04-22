@@ -37,6 +37,8 @@ namespace CinemaService.BusinesslogicLayer
 
                 newBooking.SeatBookingId = new Showing().FindIdInList(_seatBookingAccess.GetAll());
 
+                newBooking.Price = 100.0m;
+
                 insertedId = _bookingAccess.Create(newBooking);
             }
             catch
@@ -51,7 +53,7 @@ namespace CinemaService.BusinesslogicLayer
             throw new NotImplementedException();
         }
 
-        public Booking Get(int idToMatch)
+        public Booking GetById(int idToMatch)
         {
             Booking foundBooking;
             try

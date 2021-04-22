@@ -7,7 +7,7 @@ namespace CinemaService.BusinessLogicLayer
 {
     public interface IDataControl<T>
     {
-        T Get(int id);
+        T GetById(int id);
         IEnumerable<T> Get();
         int Add(T entityToAdd);
         bool Put(T entityToUpdate);

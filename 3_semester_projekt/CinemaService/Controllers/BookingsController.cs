@@ -55,7 +55,25 @@ namespace CinemaService.Controllers
         [HttpGet, Route("{id}")]
         public ActionResult<BookingdataReadDto> Get(int id)
         {
-            return null;
+            ActionResult<BookingdataReadDto> foundReturn;
+           
+            Booking foundBooking = _bControl.GetById(id);
+
+            BookingdataReadDto foundDt = ModelConversion.BookingdataReadDtoConvert.FromBooking(foundBooking);
+
+            if (foundDt != null)
+            {
+                    foundReturn = Ok(foundDt);
+                    // Statuscode 200
+            }
+            else
+            {
+                foundReturn = new StatusCodeResult(500);
+                // Internal server error
+            }
+            // send response back to client
+            return foundReturn;
+
         }
         // URL: 
         [HttpPost]

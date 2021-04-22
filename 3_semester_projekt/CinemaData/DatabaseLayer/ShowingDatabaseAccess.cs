@@ -11,6 +11,8 @@ namespace CinemaData.DatabaseLayer
     {
         readonly string _connectionString;
 
+        private IConfiguration Configuration { get; set; } 
+
         // Using iconfiguration to get hold of a connectionstring
         public ShowingDatabaseAccess(IConfiguration configuration)
         {
@@ -90,6 +92,34 @@ namespace CinemaData.DatabaseLayer
         public bool Update(Showing entity)
         {
             throw new NotImplementedException();
+        }
+
+        public List<SeatBooking> GetSeatBookingByShowingId(int showingId)
+        {
+            SeatBooking readSeatBooking;
+
+            List<SeatBooking> foundSeatBookings = null;
+            SeatBookingDatabaseAccess _sbAccess = new SeatBookingDatabaseAccess(Configuration);
+
+            string queryString = "select SeatBookingID, IsReserved, RowNo, SeatNo from SeatBooking_View where ShowingID = @ShowingID";
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            using (SqlCommand readCommand = new SqlCommand(queryString, con))
+            {
+                SqlParameter idParam = new SqlParameter("@ShowingID", showingId);
+                readCommand.Parameters.Add(idParam);
+                con.Open();
+                // SQLDatareader reads data from the database
+                SqlDataReader productReader = readCommand.ExecuteReader();
+                // Initialize the list
+                foundSeatBookings = new List<SeatBooking>();
+
+                while (productReader.Read())
+                {
+                    readSeatBooking = _sbAccess.GetFromReader(productReader);
+                    foundSeatBookings.Add(readSeatBooking);
+                }
+            }
+            return foundSeatBookings;
         }
 
         private Showing GetFromReader(SqlDataReader productReader)

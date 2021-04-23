@@ -85,3 +85,4 @@ C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebApplication\ob
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebApplication\obj\Debug\netcoreapp3.1\WebClientMVC.pdb
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebApplication\obj\Debug\netcoreapp3.1\WebClientMVC.genruntimeconfig.cache
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebApplication\obj\Debug\netcoreapp3.1\Razor\Views\Bookings\SeatBooking.cshtml.g.cs
+C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebApplication\obj\Debug\netcoreapp3.1\Razor\Views\Bookings\SeatBooking.cshtml.g.cs

@@ -11,9 +11,11 @@ namespace CinemaService.BusinessLogicLayer
     public class ShowingDataControl : IDataControl<Showing>
     {
         ICRUD<Showing> _showingAccess;
+        ShowingDatabaseAccess _sAccess;
         public ShowingDataControl(IConfiguration inConfiguration)
         {
             _showingAccess = new ShowingDatabaseAccess(inConfiguration);
+            _sAccess = new ShowingDatabaseAccess(inConfiguration);
         }
         public int Add(Showing entityToAdd)
         {
@@ -51,6 +53,20 @@ namespace CinemaService.BusinessLogicLayer
                 foundShowings = null;
             }
             return foundShowings;
+        }
+
+        public Showing GetShowingViewById(int showingId)
+        {
+            Showing foundShowing;
+            try
+            {
+                foundShowing = _sAccess.GetShowingById(showingId);
+            }
+            catch
+            {
+                foundShowing = null;
+            }
+            return foundShowing;
         }
 
         public bool Put(Showing entityToUpdate)

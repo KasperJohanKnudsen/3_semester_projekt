@@ -15,7 +15,22 @@ namespace WebClientMVC.BusinessLogicLayer
         {
             _sAccess = new ShowingService();
         }
+        public async Task<Showing> GetShowingById(int showingId, bool includeSeatReservations)
+        {
+            Showing retrievedShowing;
+            ShowingService sService = new ShowingService();
 
+            try
+            {
+                retrievedShowing = await sService.GetShowing(showingId, includeSeatReservations);
+            }
+            catch (Exception)
+            {
+                retrievedShowing = null;
+            }
+            return retrievedShowing;
+        }
+        /*
         public async Task<List<Showing>> GetAllShowings()
         {
             List<Showing> foundShowings = await _sAccess.GetShowings();
@@ -24,6 +39,8 @@ namespace WebClientMVC.BusinessLogicLayer
 
 
         }
+        */
+        /*
         public async Task<Showing> GetShowingById(int showingId, bool includeSeatReservations)
         {
             Showing retrievedShowing;
@@ -39,7 +56,35 @@ namespace WebClientMVC.BusinessLogicLayer
             }
             return retrievedShowing;
         }
+        */
 
+        private List<SeatBooking> GetSeatBookings(int showingId, string resString)
+        {
+            List<SeatBooking> seatBookings = null;
+            SeatBooking seatBooking;
+            int tempSeatId, rowNo, seatNo;
+            bool parseOk;
+
+            if (!string.IsNullOrWhiteSpace(resString))
+            {
+                seatBookings = new List<SeatBooking>();
+                DateTime resTime = DateTime.Now;
+                bool reserve = true;
+                string[] seatIds = resString.Split(':');
+                foreach (string seatId in seatIds)
+                {
+                    parseOk = int.TryParse(seatId, out tempSeatId);
+                    if (parseOk)
+                    {
+                        rowNo = tempSeatId / 1000;
+                        seatNo = tempSeatId - (rowNo * 1000);
+                        seatBooking = new SeatBooking(showingId, reserve, rowNo, seatNo);
+                        seatBookings.Add(seatBooking);
+                    }
+                }
+            }
+            return seatBookings;
+        }
         public async Task<int> SaveShowing(Showing aShowing)
         {
             //Booking newBooking = new Booking(price, seatsBooked);

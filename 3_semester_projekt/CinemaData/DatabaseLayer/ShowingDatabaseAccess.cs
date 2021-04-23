@@ -11,11 +11,12 @@ namespace CinemaData.DatabaseLayer
     {
         readonly string _connectionString;
 
-        private IConfiguration Configuration { get; set; } 
+        private readonly IConfiguration _configuration;
 
         // Using iconfiguration to get hold of a connectionstring
         public ShowingDatabaseAccess(IConfiguration configuration)
         {
+            _configuration = configuration;
             _connectionString = configuration.GetConnectionString("CinemaConnection");
         }
 
@@ -89,6 +90,35 @@ namespace CinemaData.DatabaseLayer
             return foundShowing;
         }
 
+        public Showing GetShowingById(int showingId)
+        {
+            Showing foundShowing = null;
+            //
+            string queryString = "select title, room, startTime, showingId from Showing_View where showingId = @ShowingID";
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            using (SqlCommand readCommand = new SqlCommand(queryString, con))
+            {
+                // Put the Id parameter into the command so that we know which room to read
+                SqlParameter idParam = new SqlParameter("@ShowingID", showingId);
+                readCommand.Parameters.Add(idParam);
+
+                con.Open();
+                // SQLDatareader reads data from the database
+                SqlDataReader productReader = readCommand.ExecuteReader();
+                foundShowing = new Showing();
+
+                if (productReader.HasRows)
+                {
+                    while (productReader.Read())
+                    {
+                        foundShowing = GetShowingFromReader(productReader);
+
+                    }
+                }
+            }
+            return foundShowing;
+        }
+
         public bool Update(Showing entity)
         {
             throw new NotImplementedException();
@@ -99,9 +129,9 @@ namespace CinemaData.DatabaseLayer
             SeatBooking readSeatBooking;
 
             List<SeatBooking> foundSeatBookings = null;
-            SeatBookingDatabaseAccess _sbAccess = new SeatBookingDatabaseAccess(Configuration);
+            //SeatBookingDatabaseAccess _sbAccess = new SeatBookingDatabaseAccess(_configuration);
 
-            string queryString = "select SeatBookingID, IsReserved, RowNo, SeatNo from SeatBooking_View where ShowingID = @ShowingID";
+            string queryString = "select showingId, RowNo, SeatNo, IsReserved from SeatBooking_View where ShowingID = @ShowingID";
             using (SqlConnection con = new SqlConnection(_connectionString))
             using (SqlCommand readCommand = new SqlCommand(queryString, con))
             {
@@ -115,13 +145,34 @@ namespace CinemaData.DatabaseLayer
 
                 while (productReader.Read())
                 {
-                    readSeatBooking = _sbAccess.GetFromReader(productReader);
+                    readSeatBooking = GetViewFromReader(productReader);
                     foundSeatBookings.Add(readSeatBooking);
                 }
             }
             return foundSeatBookings;
         }
 
+        private Showing GetShowingFromReader(SqlDataReader productReader)
+        {
+            Showing foundShowing;
+
+            string tempTitle;
+            string tempRoom;
+            DateTime tempShowTime;
+            int tempId;
+
+            tempTitle = productReader.GetString(productReader.GetOrdinal("title"));
+            tempRoom = productReader.GetString(productReader.GetOrdinal("room"));
+            tempShowTime = productReader.GetDateTime(productReader.GetOrdinal("startTime"));
+            tempId = productReader.GetInt32(productReader.GetOrdinal("showingId"));
+
+
+            //Build the booking with the values from the database
+            foundShowing = new Showing(tempId, tempTitle, tempRoom, tempShowTime);
+            return foundShowing;
+
+
+        }
         private Showing GetFromReader(SqlDataReader productReader)
         {
 
@@ -148,6 +199,29 @@ namespace CinemaData.DatabaseLayer
             return foundShowing;
 
 
+        }
+
+        public SeatBooking GetViewFromReader(SqlDataReader productReader)
+        {
+
+            //TODO: Replace GetFromReader in seatbookingaccess with this method
+            SeatBooking foundSeatBooking;
+
+            int tempId;
+            int tempRowNo;
+            int tempSeatNo;
+            bool tempIsReserved;
+
+
+            tempId = productReader.GetInt32(productReader.GetOrdinal("showingId"));
+            tempRowNo = productReader.GetInt32(productReader.GetOrdinal("RowNo"));
+            tempSeatNo = productReader.GetInt32(productReader.GetOrdinal("SeatNo"));
+            tempIsReserved = productReader.GetBoolean(productReader.GetOrdinal("IsReserved"));
+
+
+            //Build the booking with the values from the database
+            foundSeatBooking = new SeatBooking(tempId, tempIsReserved, tempRowNo, tempSeatNo);
+            return foundSeatBooking;
         }
     }
 }

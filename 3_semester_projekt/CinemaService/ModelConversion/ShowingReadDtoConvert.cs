@@ -9,6 +9,7 @@ namespace CinemaService.ModelConversion
 {
     public class ShowingReadDtoConvert
     {
+        /*
         public static List<ShowingdataReadDto> FromShowingCollection(List<Showing> inShowings)
         {
             List<ShowingdataReadDto> aShowingReadDtoList = null;
@@ -35,5 +36,6 @@ namespace CinemaService.ModelConversion
             }
             return aShowingReadDto;
         }
+        */
     }
 }

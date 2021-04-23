@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CinemaService.Controllers
 {
-    [Route("api/showings")]
+    [Route("api/movies")]
     [ApiController]
     public class ShowingsController : ControllerBase
     {
@@ -22,6 +22,7 @@ namespace CinemaService.Controllers
             _sControl = new ShowingDataControl(_configuration);
         }
         // URL: api/bookings
+        /*
         [HttpGet]
         public ActionResult<List<ShowingdataReadDto>> Get()
         {
@@ -51,6 +52,7 @@ namespace CinemaService.Controllers
             // send response back to client
             return foundReturn;
         }
+        
         [HttpGet, Route("{id}")]
         public ActionResult<ShowingdataReadDto> Get(int id)
         {
@@ -74,6 +76,71 @@ namespace CinemaService.Controllers
             return foundReturn;
 
         }
+        */
 
+        
+
+        [HttpGet, Route("showings/{showingId}")]
+        public IActionResult Get(int showingId = 0, bool includeReservations = false)
+        {
+            IActionResult foundToReturn;
+            Showing foundShowing;
+            List<SeatBooking> seatBookings;
+
+            ShowingDataControl sControl = new ShowingDataControl(_configuration);
+            SeatBookingDataControl sbControl = new SeatBookingDataControl(_configuration);
+
+            foundShowing = sControl.GetShowingViewById(showingId);
+            if(foundShowing != null && includeReservations)
+            {
+                seatBookings = sbControl.GetSeatBookings(showingId);
+                if(seatBookings != null)
+                {
+                    foundShowing.SeatBookings = seatBookings;
+                }
+                else
+                {
+                    foundToReturn = new StatusCodeResult(500);
+                }
+            }
+            if (foundShowing != null)
+            {
+                foundToReturn = Ok(foundShowing);
+            }
+            else
+            {
+                foundToReturn = NotFound();
+            }
+            return foundToReturn;
+            
+
+        }
+
+
+        [HttpGet]
+        [Route("showings/{showingId}/seatbookings")]
+        public IActionResult GetShowingSeatBookings (int showingId)
+        {
+            IActionResult foundToReturn;
+            List<SeatBooking> foundSeatBookings;
+
+            SeatBookingDataControl sControl = new SeatBookingDataControl(_configuration);
+
+            foundSeatBookings = sControl.GetSeatBookings(showingId);
+            if(foundSeatBookings != null && foundSeatBookings.Count > 0)
+            {
+                foundToReturn = Ok(foundSeatBookings);
+            }
+            else
+            {
+                foundToReturn = NotFound();
+            }
+
+            if (foundSeatBookings == null)
+            {
+                foundToReturn = new StatusCodeResult(500);
+            }
+            return foundToReturn;
+        }
     }
 }

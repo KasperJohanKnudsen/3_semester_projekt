@@ -12,7 +12,7 @@ namespace WebClientMVC.ServiceLayer
 {
     public class ShowingService
     {
-        static readonly string restUrl = "http://localhost:35452/api/showings";
+        static readonly string restUrl = "http://localhost:35452/api/movies";
         readonly HttpClient _httpClient;
 
         public HttpStatusCode CurrentHttpStatusCode { get; set; }
@@ -21,7 +21,7 @@ namespace WebClientMVC.ServiceLayer
         {
             _httpClient = new HttpClient();
         }
-
+        /*
         public async Task<List<Showing>> GetShowings(int id = -1)
         {
             List<Showing> showingsFromService = null;
@@ -72,7 +72,38 @@ namespace WebClientMVC.ServiceLayer
             return showingsFromService;
 
         }
+        */
 
+        public async Task<Showing> GetShowing(int showingId, bool includeSeatReservations)
+        {
+            Showing retrievedShowing;
+
+            // Create URI
+            string useRestUrl = restUrl + $"/showings/{showingId}/?includeReservations={includeSeatReservations}";
+            var uri = new Uri(string.Format(useRestUrl));
+
+            //
+            try
+            {
+                var response = await _httpClient.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    retrievedShowing = JsonConvert.DeserializeObject<Showing>(content);
+                }
+                else
+                {
+                    throw (new Exception());
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            return retrievedShowing;
+        }
+
+        /*
         public async Task<Showing> GetShowing(int showingId, bool includeSeatReservations)
         {
             Showing retrievedShowing;
@@ -101,6 +132,7 @@ namespace WebClientMVC.ServiceLayer
             }
             return retrievedShowing;
         }
+        */
         public async Task<int> SaveShowing(Showing showingToSave)
         {
             int insertedShowingId;

@@ -8,10 +8,14 @@ namespace CinemaData.ModelLayer
     {
         //public int ID { get; set; }
         public int MovieId { get; set; }
+        public string Title { get; set; }
+        public string Room { get; set; }
+        public DateTime ShowTime { get; set; }
         public int TheaterId { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime Date { get; set; }
         public int SeatBookingId { get; set; }
+        public List<SeatBooking> SeatBookings { get; set; }
 
 
         public Showing() { }
@@ -37,6 +41,14 @@ namespace CinemaData.ModelLayer
             StartTime = startTime;
             Date = date;
             SeatBookingId = seatbookingId;
+        }
+
+        public Showing(int id, string title, string room, DateTime showTime)
+        {
+            ID = id;
+            Title = title;
+            Room = room;
+            ShowTime = showTime;
         }
     }
 }

@@ -97,7 +97,7 @@ namespace CinemaData.DatabaseLayer
             int tempSeatNo;
 
 
-            tempId = productReader.GetInt32(productReader.GetOrdinal("SeatBookingID"));
+            tempId = productReader.GetInt32(productReader.GetOrdinal("ShowingID"));
             tempIsReserved = productReader.GetBoolean(productReader.GetOrdinal("IsReserved"));
             tempRowNo = productReader.GetInt32(productReader.GetOrdinal("RowNo"));
             tempSeatNo = productReader.GetInt32(productReader.GetOrdinal("SeatNo"));

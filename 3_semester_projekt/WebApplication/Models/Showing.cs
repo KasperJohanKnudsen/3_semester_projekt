@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebClientMVC.Models
 {
@@ -17,6 +19,11 @@ namespace WebClientMVC.Models
         public DateTime StartTime { get; set; }
         public DateTime Date { get; set; }
         public int SeatBookingId { get; set; }
+
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        [Column(TypeName = "int")]
+        public int? PhoneNumber { get; set; }
         public List<SeatBooking> SeatBookings { get; set; }
 
 

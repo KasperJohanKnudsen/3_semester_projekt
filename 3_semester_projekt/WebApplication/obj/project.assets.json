@@ -48,19 +48,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kaspe\\.nuget\\packages\\": {}
+    "C:\\Users\\PC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\WebApplication\\WebClientMVC.csproj",
+      "projectUniqueName": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\WebApplication\\WebClientMVC.csproj",
       "projectName": "WebClientMVC",
-      "projectPath": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\WebApplication\\WebClientMVC.csproj",
-      "packagesPath": "C:\\Users\\kaspe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\WebApplication\\obj\\",
+      "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\WebApplication\\WebClientMVC.csproj",
+      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\WebApplication\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\kaspe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -23,14 +23,15 @@ namespace WebClientMVC.Models
             Price = price;
             SeatsBooked = seatsBooked;
         }
-        
-        public Booking(int phoneNumber, string seatsBooked)
+        */
+        public Booking(int phoneNumber, decimal price, string seatsBooked)
         {
             PhoneNumber = phoneNumber;
+            Price = price;
             SeatsBooked = seatsBooked;
-            //SeatsBooked = RowBooked + SeatsBookedOnRow;
+            
         }
-        */
+        
         public Booking(int phoneNumber, string rowBooked, string seatsBookedOnRow, string seatsBooked)
         {
             PhoneNumber = phoneNumber;

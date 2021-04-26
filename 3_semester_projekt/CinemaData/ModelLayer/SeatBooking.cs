@@ -11,6 +11,7 @@ namespace CinemaData.ModelLayer
         public bool IsReserved { get; set; }
         public int RowNo { get; set; }
         public int SeatNo { get; set; }
+        public int PhoneNumber { get; set; }
 
 
         public SeatBooking() { }
@@ -21,13 +22,22 @@ namespace CinemaData.ModelLayer
             RowNo = rowNo;
             SeatNo = seatNo;
         }
-        public SeatBooking(int id, int showingId, bool isReserved, int rowNo, int seatNo)
+        public SeatBooking(int showingId, bool isReserved, int rowNo, int seatNo, int phoneNumber)
+        {
+            ShowingId = showingId;
+            IsReserved = isReserved;
+            RowNo = rowNo;
+            SeatNo = seatNo;
+            PhoneNumber = phoneNumber;
+        }
+        public SeatBooking(int id, int showingId, bool isReserved, int rowNo, int seatNo, int phoneNumber)
         {
             ID = id;
             ShowingId = showingId;
             IsReserved = isReserved;
             RowNo = rowNo;
             SeatNo = seatNo;
+            PhoneNumber = phoneNumber;
         }
 
     }

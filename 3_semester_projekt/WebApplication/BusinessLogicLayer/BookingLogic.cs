@@ -25,15 +25,18 @@ namespace WebClientMVC.BusinessLogicLayer
 
         }
 
-        public async Task<int> SaveBooking(Booking abooking)
+        public async Task<int> CreateBooking(int phoneNumber, decimal price, string seatsBooked)
         {
-            //Booking newBooking = new Booking(price, seatsBooked);
-            //newBooking.BookingOrder = "33";
-            int insertedId = await _bAccess.SaveBooking(abooking);
+            
+            // 
+            
+            Booking bookingToSave = new Booking(phoneNumber, price, seatsBooked);
+
+
+
+            int insertedId = await _bAccess.SaveBooking(bookingToSave);
             return insertedId;
         }
-
-
     }
 }
 

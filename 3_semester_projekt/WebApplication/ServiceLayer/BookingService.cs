@@ -72,7 +72,7 @@ namespace WebClientMVC.ServiceLayer
             return bookingsFromService;
 
         }
-        public async Task<int> SaveBooking(Booking bookingToSave)
+        public async Task<int> SaveBooking(Booking aBooking)
         {
             int insertedBookingId;
             string useRestUrl = restUrl;
@@ -80,7 +80,7 @@ namespace WebClientMVC.ServiceLayer
             //
             try
             {
-                var json = JsonConvert.SerializeObject(bookingToSave);
+                var json = JsonConvert.SerializeObject(aBooking);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = null;
                 response = await _httpClient.PostAsync(uri, content);

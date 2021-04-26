@@ -11,15 +11,31 @@ namespace CinemaService.BusinessLogicLayer
 {
     public class SeatBookingDataControl : IDataControl<SeatBooking>
     {
-        private readonly ShowingDatabaseAccess _sAccess;
+        private readonly ShowingDatabaseAccess _showingAccess;
+        private readonly SeatBookingDatabaseAccess _seatAccess;
+        
 
         public SeatBookingDataControl(IConfiguration inConfiguration)
         {
-            _sAccess = new ShowingDatabaseAccess(inConfiguration);
+            _showingAccess = new ShowingDatabaseAccess(inConfiguration);
+            _seatAccess = new SeatBookingDatabaseAccess(inConfiguration);
         }
-        public int Add(SeatBooking entityToAdd)
+        public int Add(SeatBooking newSeatBooking)
         {
-            throw new NotImplementedException();
+            int insertedId;
+            try
+            {
+                // Assignment below needs to be removed when hardcoding it can be avoided
+                newSeatBooking.ShowingId = new Showing().FindIdInList(_showingAccess.GetAll());
+                
+                
+                insertedId = _seatAccess.Create(newSeatBooking);
+            }
+            catch
+            {
+                insertedId = -1;
+            }
+            return insertedId;
         }
 
         public bool Delete(int id)
@@ -32,7 +48,7 @@ namespace CinemaService.BusinessLogicLayer
             List<SeatBooking> foundSeatBookings;
             try
             {
-                foundSeatBookings = _sAccess.GetSeatBookingByShowingId(showingId);
+                foundSeatBookings = _showingAccess.GetSeatBookingByShowingId(showingId);
             }
             catch (Exception e)
             {

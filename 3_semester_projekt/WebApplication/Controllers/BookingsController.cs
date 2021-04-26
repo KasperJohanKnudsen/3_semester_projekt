@@ -29,7 +29,7 @@ namespace WebClientMVC.Controllers
         {
             return View();
         }
-
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Booking aBooking)
@@ -45,7 +45,7 @@ namespace WebClientMVC.Controllers
 
 
 
-                insertedId = await _bookingLogic.SaveBooking(aBooking);
+                insertedId = await _bookingLogic.CreateBooking(aBooking);
 
                 return RedirectToAction(nameof(Index));
             } catch
@@ -53,6 +53,7 @@ namespace WebClientMVC.Controllers
                 return View();
             }
         }
+        */
 
         public async Task<ActionResult> SeatBooking(int? id)
         {
@@ -71,7 +72,42 @@ namespace WebClientMVC.Controllers
             return View(foundShowing);
         }
 
+        [HttpPost]
+        public async Task<ActionResult> SeatBooking(int phoneNumber, int showId, string reservedSeats)
+        {
+            BookingLogic bLogic = new BookingLogic();
+            ShowingLogic sLogic = new ShowingLogic();
 
+            // Build a booking based on phoneNumber, seats, price(Hardcoded), Userid and SeatbookingId
+            // UserId found if phonenumber already exist in DB otherwise create new user
+            // BookingId is made in DB auto
+            // SeatbookingId is from the newly created seatbooking?
+            int insertedId = -1;
+
+            // Transaction
+
+            bool wasUpdated = await sLogic.UpdateShowingBookings(showId, reservedSeats);
+            insertedId = await bLogic.CreateBooking(phoneNumber, 80.0m, reservedSeats);
+
+
+            if (wasUpdated)
+            {
+                ViewBag.PrevResult = "Seats was reserved!";
+            }
+            else
+            {
+                ViewBag.PrevResult = "Sorry - not reserved - something went wrong";
+            }
+
+            Showing foundShowing = await sLogic.GetShowingById(1, true);
+            // Transaction End
+
+            return View("SeatBooking", foundShowing);
+        }
 
     }
+
+
+
 }
+

@@ -67,10 +67,10 @@ namespace CinemaDataTest
             Showing foundShowing;
 
             // Act
-            foundShowing = _sAccess.GetShowingById(1);
+            foundShowing = _sAccess.GetShowingById(6);
 
             // Assert
-            Assert.True(foundShowing.ID == 1);
+            Assert.True(foundShowing.ID == 6);
 
 
 

@@ -11,6 +11,7 @@ namespace WebClientMVC.Controllers
     {
         readonly BookingLogic _bookingLogic;
 
+        public int ShowId { get; set;}
         public BookingsController()
         {
             _bookingLogic = new BookingLogic();
@@ -69,6 +70,8 @@ namespace WebClientMVC.Controllers
             }
             ViewBag.PrevResult = bookText;
 
+            // Assigning showId here because the view file seatBooking.cshtml could not find showId
+            ShowId = showingIdInt;
             return View(foundShowing);
         }
 
@@ -86,11 +89,12 @@ namespace WebClientMVC.Controllers
             int insertedId = -1;
 
             // Transaction
-
-            bool wasUpdated = await sLogic.UpdateShowingBookings(showId, reservedSeats, phoneNumber);
+            Showing foundShowing = await sLogic.GetShowingById(1, true);
+            bool wasUpdated = await sLogic.UpdateShowingBookings(ShowId, reservedSeats, phoneNumber);
 
             if (wasUpdated)
             {
+
                 ViewBag.PrevResult = "Seats was reserved!";
             }
             else
@@ -98,7 +102,7 @@ namespace WebClientMVC.Controllers
                 ViewBag.PrevResult = "Sorry - not reserved - something went wrong";
             }
 
-            Showing foundShowing = await sLogic.GetShowingById(1, true);
+            
             // Transaction End
 
             return View("SeatBooking", foundShowing);

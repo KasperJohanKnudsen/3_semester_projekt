@@ -30,6 +30,23 @@ namespace WebClientMVC.BusinessLogicLayer
             }
             return retrievedShowing;
         }
+
+        public async Task<bool> UpdateShowingBookings(int showingId, string changedSeatRes)
+        {
+            bool wasUpdatedOk = false;
+            ShowingService sService = new ShowingService();
+
+            List<SeatBooking> newReservations = GetSeatBookings(showingId, changedSeatRes);
+            try
+            {
+                wasUpdatedOk = await sService.UpdateSeatBookings(showingId, newReservations);
+            }
+            catch (Exception)
+            {
+                wasUpdatedOk = false;
+            }
+            return wasUpdatedOk;
+        }
         /*
         public async Task<List<Showing>> GetAllShowings()
         {
@@ -85,6 +102,7 @@ namespace WebClientMVC.BusinessLogicLayer
             }
             return seatBookings;
         }
+        /*
         public async Task<int> SaveShowing(Showing aShowing)
         {
             //Booking newBooking = new Booking(price, seatsBooked);
@@ -92,5 +110,6 @@ namespace WebClientMVC.BusinessLogicLayer
             int insertedId = await _sAccess.SaveShowing(aShowing);
             return insertedId;
         }
+        */
     }
 }

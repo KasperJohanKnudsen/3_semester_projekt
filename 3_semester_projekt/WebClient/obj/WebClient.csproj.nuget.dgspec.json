@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\WebClient\\WebClient.csproj": {}
+    "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\WebClient\\WebClient.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\WebClient\\WebClient.csproj": {
+    "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\WebClient\\WebClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\WebClient\\WebClient.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\WebClient\\WebClient.csproj",
         "projectName": "WebClient",
-        "projectPath": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\WebClient\\WebClient.csproj",
-        "packagesPath": "C:\\Users\\kaspe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\WebClient\\obj\\",
+        "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\WebClient\\WebClient.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\WebClient\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kaspe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

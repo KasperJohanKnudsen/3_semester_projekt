@@ -22,9 +22,42 @@ namespace CinemaData.DatabaseLayer
         {
             _connectionString = inConnectionString;
         }
-        public int Create(SeatBooking entity)
+        public int Create(SeatBooking aSeatBooking)
         {
-            throw new NotImplementedException();
+            int insertedId = -1;
+
+
+            string insertString = "insert into SeatBooking(IsReserved, RowNo, SeatNo, ShowingID, PhoneNumber) OUTPUT INSERTED.SeatBookingID values (@IsReserved, @RowNo, @SeatNo, @ShowingID, @PhoneNumber)";
+
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            //Create the command with a sql script
+            using (SqlCommand CreateCommand = new SqlCommand(insertString, con))
+            {
+
+                // Prepare SQL
+                // Prepares a parameters inside the database to receive a property from the class
+                SqlParameter isReservedParam = new SqlParameter("@IsReserved", aSeatBooking.IsReserved);
+                SqlParameter rowNoParam = new SqlParameter("@RowNo", aSeatBooking.RowNo);
+                SqlParameter seatNoParam = new SqlParameter("@SeatNo", aSeatBooking.SeatNo);
+                SqlParameter showingIdParam = new SqlParameter("@ShowingID", aSeatBooking.ShowingId);
+                SqlParameter phoneNumberParam = new SqlParameter("@PhoneNumber", aSeatBooking.PhoneNumber);
+
+
+                //Adds the above parameter to a Command
+                CreateCommand.Parameters.Add(isReservedParam);
+                CreateCommand.Parameters.Add(rowNoParam);
+                CreateCommand.Parameters.Add(seatNoParam);
+                CreateCommand.Parameters.Add(showingIdParam);
+                CreateCommand.Parameters.Add(phoneNumberParam);
+
+
+                // Opens the connection
+                con.Open();
+                // Execute the command, save and read generated key (ID)
+                insertedId = (int)CreateCommand.ExecuteScalar();
+            }
+            // Returns the new id, if it's -1 something is wrong
+            return insertedId;
         }
 
         public bool Delete(int id)
@@ -95,16 +128,18 @@ namespace CinemaData.DatabaseLayer
             bool tempIsReserved;
             int tempRowNo;
             int tempSeatNo;
+            int tempPhoneNumber;
 
 
             tempId = productReader.GetInt32(productReader.GetOrdinal("ShowingID"));
             tempIsReserved = productReader.GetBoolean(productReader.GetOrdinal("IsReserved"));
             tempRowNo = productReader.GetInt32(productReader.GetOrdinal("RowNo"));
             tempSeatNo = productReader.GetInt32(productReader.GetOrdinal("SeatNo"));
+            tempPhoneNumber = productReader.GetInt32(productReader.GetOrdinal("PhoneNumber"));
 
 
             //Build the booking with the values from the database
-            foundSeatBooking = new SeatBooking(tempId, tempIsReserved, tempRowNo, tempSeatNo);
+            foundSeatBooking = new SeatBooking(tempId, tempIsReserved, tempRowNo, tempSeatNo, tempPhoneNumber);
             return foundSeatBooking;
         }
 

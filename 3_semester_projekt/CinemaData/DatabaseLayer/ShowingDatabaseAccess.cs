@@ -213,10 +213,12 @@ namespace CinemaData.DatabaseLayer
             bool tempIsReserved;
 
 
+
             tempId = productReader.GetInt32(productReader.GetOrdinal("showingId"));
             tempRowNo = productReader.GetInt32(productReader.GetOrdinal("RowNo"));
             tempSeatNo = productReader.GetInt32(productReader.GetOrdinal("SeatNo"));
             tempIsReserved = productReader.GetBoolean(productReader.GetOrdinal("IsReserved"));
+
 
 
             //Build the booking with the values from the database

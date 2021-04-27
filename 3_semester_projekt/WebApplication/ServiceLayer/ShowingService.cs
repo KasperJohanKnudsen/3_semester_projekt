@@ -21,58 +21,7 @@ namespace WebClientMVC.ServiceLayer
         {
             _httpClient = new HttpClient();
         }
-        /*
-        public async Task<List<Showing>> GetShowings(int id = -1)
-        {
-            List<Showing> showingsFromService = null;
-            // api/persons/{id}
-            string useRestUrl = restUrl;
-            bool hasValidId = (id > 0);
-            if (hasValidId)
-            {
-                useRestUrl += id;
-            }
-            var uri = new Uri(string.Format(useRestUrl));
-
-            try
-            {
-                var response = await _httpClient.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    if (hasValidId)
-                    {
-                        Showing foundShowing = JsonConvert.DeserializeObject<Showing>(content);
-                        if (foundShowing != null)
-                        {
-                            showingsFromService = new List<Showing>() { foundShowing };
-                        }
-                    }
-                    else
-                    {
-                        showingsFromService = JsonConvert.DeserializeObject<List<Showing>>(content);
-                    }
-                }
-                else
-                {
-                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                    {
-                        showingsFromService = new List<Showing>();
-                    }
-                    else
-                    {
-                        showingsFromService = null;
-                    }
-                }
-            }
-            catch
-            {
-                showingsFromService = null;
-            }
-            return showingsFromService;
-
-        }
-        */
+        
 
         public async Task<Showing> GetShowing(int showingId, bool includeSeatReservations)
         {
@@ -103,37 +52,127 @@ namespace WebClientMVC.ServiceLayer
             return retrievedShowing;
         }
 
-        /*
-        public async Task<Showing> GetShowing(int showingId, bool includeSeatReservations)
+        public async Task<bool> UpdateSeatBookings(int showingId, List<SeatBooking> newReservations)
         {
-            Showing retrievedShowing;
+            bool changedOk;
 
-            // Create URI
-            string useRestUrl = restUrl + $"/showing/{showingId}/?includeReservations={includeSeatReservations}";
-            var uri = new Uri(string.Format(useRestUrl));
+            string useRestUrl = null;
+            string jsonString = null;
+            HttpResponseMessage response = null;
 
-            //
+            useRestUrl = restUrl + $"/showings/{showingId}/seatbookings";
+
             try
             {
-                var response = await _httpClient.GetAsync(uri);
+                var uri = new Uri(string.Format(useRestUrl, string.Empty));
+                jsonString = JsonConvert.SerializeObject(newReservations);
+                var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+
+                response = await _httpClient.PutAsync(uri, content);
+
                 if (response.IsSuccessStatusCode)
                 {
-                    var content = await response.Content.ReadAsStringAsync();
-                    retrievedShowing = JsonConvert.DeserializeObject<Showing>(content);
+                    changedOk = true;
                 }
                 else
                 {
-                    throw (new Exception());
+                    changedOk = false;
                 }
             }
             catch
             {
-                throw;
+                changedOk = false;
             }
-            return retrievedShowing;
+
+            return changedOk;
         }
-        */
-        public async Task<int> SaveShowing(Showing showingToSave)
+
+    }
+
+    /*
+    public async Task<List<Showing>> GetShowings(int id = -1)
+    {
+        List<Showing> showingsFromService = null;
+        // api/persons/{id}
+        string useRestUrl = restUrl;
+        bool hasValidId = (id > 0);
+        if (hasValidId)
+        {
+            useRestUrl += id;
+        }
+        var uri = new Uri(string.Format(useRestUrl));
+
+        try
+        {
+            var response = await _httpClient.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                if (hasValidId)
+                {
+                    Showing foundShowing = JsonConvert.DeserializeObject<Showing>(content);
+                    if (foundShowing != null)
+                    {
+                        showingsFromService = new List<Showing>() { foundShowing };
+                    }
+                }
+                else
+                {
+                    showingsFromService = JsonConvert.DeserializeObject<List<Showing>>(content);
+                }
+            }
+            else
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                {
+                    showingsFromService = new List<Showing>();
+                }
+                else
+                {
+                    showingsFromService = null;
+                }
+            }
+        }
+        catch
+        {
+            showingsFromService = null;
+        }
+        return showingsFromService;
+
+    }
+    */
+    /*
+    public async Task<Showing> GetShowing(int showingId, bool includeSeatReservations)
+    {
+        Showing retrievedShowing;
+
+        // Create URI
+        string useRestUrl = restUrl + $"/showing/{showingId}/?includeReservations={includeSeatReservations}";
+        var uri = new Uri(string.Format(useRestUrl));
+
+        //
+        try
+        {
+            var response = await _httpClient.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                retrievedShowing = JsonConvert.DeserializeObject<Showing>(content);
+            }
+            else
+            {
+                throw (new Exception());
+            }
+        }
+        catch
+        {
+            throw;
+        }
+        return retrievedShowing;
+    }
+    */
+    /*
+    public async Task<int> SaveShowing(Showing showingToSave)
         {
             int insertedShowingId;
             string useRestUrl = restUrl;
@@ -161,5 +200,7 @@ namespace WebClientMVC.ServiceLayer
             }
             return insertedShowingId;
         }
+    
     }
+    */
 }

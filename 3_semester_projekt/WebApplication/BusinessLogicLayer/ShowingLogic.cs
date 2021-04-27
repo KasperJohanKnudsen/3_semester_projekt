@@ -31,12 +31,12 @@ namespace WebClientMVC.BusinessLogicLayer
             return retrievedShowing;
         }
 
-        public async Task<bool> UpdateShowingBookings(int showingId, string changedSeatRes)
+        public async Task<bool> UpdateShowingBookings(int showingId, string changedSeatRes, int userPhoneNumber)
         {
             bool wasUpdatedOk = false;
             ShowingService sService = new ShowingService();
 
-            List<SeatBooking> newReservations = GetSeatBookings(showingId, changedSeatRes);
+            List<SeatBooking> newReservations = GetSeatBookings(showingId, changedSeatRes, userPhoneNumber);
             try
             {
                 wasUpdatedOk = await sService.UpdateSeatBookings(showingId, newReservations);
@@ -75,7 +75,7 @@ namespace WebClientMVC.BusinessLogicLayer
         }
         */
 
-        private List<SeatBooking> GetSeatBookings(int showingId, string resString)
+        private List<SeatBooking> GetSeatBookings(int showingId, string resString, int userPhoneNumber)
         {
             List<SeatBooking> seatBookings = null;
             SeatBooking seatBooking;
@@ -95,7 +95,7 @@ namespace WebClientMVC.BusinessLogicLayer
                     {
                         rowNo = tempSeatId / 1000;
                         seatNo = tempSeatId - (rowNo * 1000);
-                        seatBooking = new SeatBooking(showingId, reserve, rowNo, seatNo);
+                        seatBooking = new SeatBooking(showingId, reserve, rowNo, seatNo, userPhoneNumber);
                         seatBookings.Add(seatBooking);
                     }
                 }

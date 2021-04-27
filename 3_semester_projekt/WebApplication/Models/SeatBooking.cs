@@ -11,6 +11,7 @@ namespace WebClientMVC.Models
         public bool IsReserved { get; set; }
         public int RowNo { get; set; }
         public int SeatNo { get; set; }
+        public int PhoneNumber { get; set; }
 
 
         public SeatBooking() { }
@@ -20,6 +21,15 @@ namespace WebClientMVC.Models
             IsReserved = isReserved;
             RowNo = rowNo;
             SeatNo = seatNo;
+        }
+
+        public SeatBooking(int showingId, bool isReserved, int rowNo, int seatNo, int userPhoneNumber)
+        {
+            ShowingID = showingId;
+            IsReserved = isReserved;
+            RowNo = rowNo;
+            SeatNo = seatNo;
+            PhoneNumber = userPhoneNumber;
         }
 
         public int GetReservedValue()

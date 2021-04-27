@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CinemaService.BusinessLogicLayer;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,10 @@ namespace CinemaService.Controllers
 
     public class SeatBookingsController
     {
-        private readonly SeatBookingDataControl;
+        private readonly SeatBookingDataControl _seatBookingDataControl;
         
-        [HttpPost]
+        //[HttpPost]
+        /*
         public ActionResult<int> PostNewBooking(BookingdataCreateDto inBooking)
         {
             ActionResult<int> foundReturn;
@@ -36,5 +38,6 @@ namespace CinemaService.Controllers
             return foundReturn;
 
         }
+        */
     }
 }

@@ -8,7 +8,6 @@ C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebClient\bin
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebClient\bin\Debug\netcoreapp3.1\WebClient.pdb
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebClient\bin\Debug\netcoreapp3.1\WebClient.Views.dll
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebClient\bin\Debug\netcoreapp3.1\WebClient.Views.pdb
-C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebClient\obj\Debug\netcoreapp3.1\WebClient.csprojAssemblyReference.cache
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebClient\obj\Debug\netcoreapp3.1\WebClient.AssemblyInfoInputs.cache
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebClient\obj\Debug\netcoreapp3.1\WebClient.AssemblyInfo.cs
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebClient\obj\Debug\netcoreapp3.1\WebClient.csproj.CoreCompileInputs.cache

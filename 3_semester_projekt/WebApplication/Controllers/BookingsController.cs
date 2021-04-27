@@ -75,7 +75,7 @@ namespace WebClientMVC.Controllers
         [HttpPost]
         public async Task<ActionResult> SeatBooking(int phoneNumber, int showId, string reservedSeats)
         {
-            BookingLogic bLogic = new BookingLogic();
+            //BookingLogic bLogic = new BookingLogic();
             ShowingLogic sLogic = new ShowingLogic();
 
             // Build a booking based on phoneNumber, seats, price(Hardcoded), Userid and SeatbookingId
@@ -87,9 +87,7 @@ namespace WebClientMVC.Controllers
 
             // Transaction
 
-            bool wasUpdated = await sLogic.UpdateShowingBookings(showId, reservedSeats);
-            insertedId = await bLogic.CreateBooking(phoneNumber, 80.0m, reservedSeats);
-
+            bool wasUpdated = await sLogic.UpdateShowingBookings(showId, reservedSeats, phoneNumber);
 
             if (wasUpdated)
             {

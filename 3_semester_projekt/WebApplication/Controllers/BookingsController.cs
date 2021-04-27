@@ -82,6 +82,7 @@ namespace WebClientMVC.Controllers
             // UserId found if phonenumber already exist in DB otherwise create new user
             // BookingId is made in DB auto
             // SeatbookingId is from the newly created seatbooking?
+            // TODO: Move to API 
             int insertedId = -1;
 
             // Transaction

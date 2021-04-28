@@ -69,7 +69,8 @@ namespace CinemaService.BusinessLogicLayer
             return foundShowing;
         }
 
-        public bool Put(Showing entityToUpdate)
+
+        public bool Put(int id, List<Showing> entitiesToUpdate)
         {
             throw new NotImplementedException();
         }

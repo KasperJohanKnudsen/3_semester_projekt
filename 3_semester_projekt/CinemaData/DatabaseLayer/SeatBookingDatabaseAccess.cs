@@ -143,9 +143,42 @@ namespace CinemaData.DatabaseLayer
             return foundSeatBooking;
         }
 
-        public bool Update(SeatBooking entity)
+        public bool Update(int showingId, List<SeatBooking> newSeatBookings)
         {
-            throw new NotImplementedException();
+            int numRowsUpdated = 0;
+            int numBookings = (newSeatBookings != null) ? newSeatBookings.Count : -1;
+
+            string sqlUpdate = "UPDATE SeatBooking set IsReserved = 1, PhoneNumber = @PhoneNumber WHERE IsReserved = 0 AND ShowingID = @ShowingId AND RowNo = @RowNo AND SeatNo = @SeatNo";
+
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            using (SqlCommand CreateCommand = new SqlCommand(sqlUpdate, con))
+            {
+
+                con.Open();
+                foreach (SeatBooking seatBooking in newSeatBookings)
+                {
+                    CreateCommand.Parameters.Clear();
+                    SqlParameter rowNoParam = new SqlParameter("@RowNo", seatBooking.RowNo);
+                    SqlParameter seatNoParam = new SqlParameter("@SeatNo", seatBooking.SeatNo);
+                    SqlParameter showingIdParam = new SqlParameter("@ShowingID", showingId);
+                    SqlParameter phoneNumberParam = new SqlParameter("@PhoneNumber", seatBooking.PhoneNumber);
+
+                    //Adds the above parameter to a Command
+
+                    CreateCommand.Parameters.Add(rowNoParam);
+                    CreateCommand.Parameters.Add(seatNoParam);
+                    CreateCommand.Parameters.Add(showingIdParam);
+                    CreateCommand.Parameters.Add(phoneNumberParam);
+
+                    // Opens the connection
+                    
+                    // Execute the command, save and read generated key (ID)
+                    CreateCommand.ExecuteScalar();
+                }
+
+                
+            }
+            return (numRowsUpdated == numBookings);
         }
     }
 }

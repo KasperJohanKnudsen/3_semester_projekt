@@ -71,3 +71,4 @@ C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebClient\obj\Deb
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebClient\obj\Debug\netcoreapp3.1\WebClient.pdb
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebClient\obj\Debug\netcoreapp3.1\WebClient.genruntimeconfig.cache
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebClient\obj\Debug\netcoreapp3.1\WebClient.csproj.CopyComplete
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\WebClient\obj\Debug\netcoreapp3.1\WebClient.csprojAssemblyReference.cache

@@ -119,11 +119,6 @@ namespace CinemaData.DatabaseLayer
             return foundShowing;
         }
 
-        public bool Update(Showing entity)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<SeatBooking> GetSeatBookingByShowingId(int showingId)
         {
             SeatBooking readSeatBooking;
@@ -224,6 +219,11 @@ namespace CinemaData.DatabaseLayer
             //Build the booking with the values from the database
             foundSeatBooking = new SeatBooking(tempId, tempIsReserved, tempRowNo, tempSeatNo);
             return foundSeatBooking;
+        }
+
+        public bool Update(int id, List<Showing> updateEntities)
+        {
+            throw new NotImplementedException();
         }
     }
 }

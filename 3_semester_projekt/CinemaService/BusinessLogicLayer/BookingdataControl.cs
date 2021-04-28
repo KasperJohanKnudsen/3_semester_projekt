@@ -67,12 +67,6 @@ namespace CinemaService.BusinesslogicLayer
             return foundBooking;
         }
 
-        public bool Put(Booking entityToUpdate)
-        {
-            throw new NotImplementedException();
-        }
-
-
 
         public IEnumerable<Booking> Get()
         {
@@ -86,6 +80,11 @@ namespace CinemaService.BusinesslogicLayer
                 foundBookings = null;
             }
             return foundBookings;
+        }
+
+        public bool Put(int id, List<Booking> entitiesToUpdate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

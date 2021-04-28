@@ -82,7 +82,7 @@ namespace CinemaData.DatabaseLayer
             return foundMovie;
         }
 
-        public bool Update(Movie entity)
+        public bool Update(int id, List<Movie> updateEntities)
         {
             throw new NotImplementedException();
         }

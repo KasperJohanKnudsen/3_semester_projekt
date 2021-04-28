@@ -63,7 +63,7 @@ namespace CinemaService.BusinessLogicLayer
             return foundUsers;
         }
 
-        public bool Put(User entityToUpdate)
+        public bool Put(int id, List<User> entitiesToUpdate)
         {
             throw new NotImplementedException();
         }

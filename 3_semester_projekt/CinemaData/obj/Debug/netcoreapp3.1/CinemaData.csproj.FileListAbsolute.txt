@@ -24,3 +24,4 @@ C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\CinemaData\obj\De
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\CinemaData\obj\Debug\netcoreapp3.1\CinemaData.csproj.CoreCompileInputs.cache
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\CinemaData\obj\Debug\netcoreapp3.1\CinemaData.dll
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\CinemaData\obj\Debug\netcoreapp3.1\CinemaData.pdb
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\CinemaData\obj\Debug\netcoreapp3.1\CinemaData.csprojAssemblyReference.cache

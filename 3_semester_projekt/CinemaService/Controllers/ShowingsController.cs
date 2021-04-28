@@ -15,11 +15,13 @@ namespace CinemaService.Controllers
     public class ShowingsController : ControllerBase
     {
         private readonly ShowingDataControl _sControl;
+        private readonly BookShowingController _bookShowingController;
         private readonly IConfiguration _configuration;
         public ShowingsController(IConfiguration inConfiguration)
         {
             _configuration = inConfiguration;
             _sControl = new ShowingDataControl(_configuration);
+            _bookShowingController = new BookShowingController();
         }
         // URL: api/bookings
         /*
@@ -140,6 +142,28 @@ namespace CinemaService.Controllers
             {
                 foundToReturn = new StatusCodeResult(500);
             }
+            return foundToReturn;
+        }
+
+        [HttpPut, Route("showings/{showingId}/seatbookings")]
+        public IActionResult UpdateShowingSeatBookings(int showingId, List<SeatBooking> newSeatBookings)
+        {
+            IActionResult foundToReturn;
+            SeatBookingDataControl sDataControl = new SeatBookingDataControl(_configuration);
+            bool wasOk = sDataControl.Put(showingId, newSeatBookings);
+
+            //_bookShowingController.BookShowing(showingId, newSeatBookings);
+
+
+            if(wasOk)
+            {
+                foundToReturn = Ok();
+            }
+            else
+            {
+                foundToReturn = new StatusCodeResult(200);
+            }
+
             return foundToReturn;
         }
     }

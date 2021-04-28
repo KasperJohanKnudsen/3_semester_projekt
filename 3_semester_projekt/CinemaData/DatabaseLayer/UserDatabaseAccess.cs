@@ -132,10 +132,9 @@ namespace CinemaData.DatabaseLayer
             return foundUser;
         }
 
-        public bool Update(User entity)
+        public bool Update(int id, List<User> updateEntities)
         {
             throw new NotImplementedException();
         }
- 
     }
 }

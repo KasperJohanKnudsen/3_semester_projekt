@@ -10,7 +10,7 @@ namespace CinemaData.DatabaseLayer
         T GetById(int id);
         IEnumerable<T> GetAll();
         int Create(T entity);
-        bool Update(T entity);
+        bool Update(int id, List<T> updateEntities);
         bool Delete(int id);
 
     }

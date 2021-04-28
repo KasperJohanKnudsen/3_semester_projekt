@@ -27,8 +27,7 @@ namespace CinemaData.DatabaseLayer
         {
             throw new NotImplementedException();
         }
-
-        public bool Update(Admin entity)
+        public bool Update(int id, List<Admin> updateEntities)
         {
             throw new NotImplementedException();
         }

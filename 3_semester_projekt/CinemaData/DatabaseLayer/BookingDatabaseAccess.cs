@@ -148,11 +148,11 @@ namespace CinemaData.DatabaseLayer
             return foundBooking;
         }
 
-        public bool Update(Booking entity)
+
+        public bool Update(int id, List<Booking> updateEntities)
         {
             throw new NotImplementedException();
         }
-
     }
 
 }

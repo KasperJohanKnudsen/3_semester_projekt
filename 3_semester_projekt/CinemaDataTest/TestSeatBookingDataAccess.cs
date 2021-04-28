@@ -51,6 +51,32 @@ namespace CinemaDataTest
 
         }
 
+        [Fact]
+        public void TestUpdateSeatBookings()
+        {
+            //Arrange
+            int phoneNumber = 112;
+            Showing showing = _showingAccess.GetById(1);
+            bool isReserved = true;
+
+
+            List<SeatBooking> seatBookings = new List<SeatBooking>();
+
+            SeatBooking updateSeatbooking1 = new SeatBooking(showing.ID, isReserved, 1, 1, phoneNumber);
+            SeatBooking updateSeatbooking2 = new SeatBooking(showing.ID, isReserved, 1, 2, phoneNumber);
+            SeatBooking updateSeatbooking3 = new SeatBooking(showing.ID, isReserved, 1, 3, phoneNumber);
+
+            seatBookings.Add(updateSeatbooking1);
+            seatBookings.Add(updateSeatbooking2);
+            seatBookings.Add(updateSeatbooking3);
+
+
+            //Act
+            _seatBookingAccess.Update(showing.ID, seatBookings);
+
+            //Assert
+
+        }
 
 
         private readonly ITestOutputHelper extraOutput;

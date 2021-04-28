@@ -63,9 +63,18 @@ namespace CinemaService.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public bool Put(SeatBooking entityToUpdate)
+        public bool Put(int showingId, List<SeatBooking> newSeatBookings)
         {
-            throw new NotImplementedException();
+            bool wasOk;
+            try
+            {
+                wasOk = _seatAccess.Update(showingId, newSeatBookings);
+            }
+            catch
+            {
+                wasOk = false;
+            }
+            return wasOk;
         }
 
         public IEnumerable<SeatBooking> Get()

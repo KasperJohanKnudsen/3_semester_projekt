@@ -14,6 +14,7 @@ namespace CinemaService.BusinesslogicLayer
         ICRUD<User> _userAccess;
         ICRUD<Showing> _showingAccess;
         ICRUD<SeatBooking> _seatBookingAccess;
+        SeatBookingDataControl _seatBookingControl; 
 
 
         public BookingdataControl(IConfiguration inConfiguration)
@@ -22,6 +23,7 @@ namespace CinemaService.BusinesslogicLayer
             _userAccess = new UserDatabaseAccess(inConfiguration);
             _showingAccess = new ShowingDatabaseAccess(inConfiguration);
             _seatBookingAccess = new SeatBookingDatabaseAccess(inConfiguration);
+            _seatBookingControl = new SeatBookingDataControl(inConfiguration);
  
 
         }
@@ -38,6 +40,8 @@ namespace CinemaService.BusinesslogicLayer
                 newBooking.SeatBookingId = new Showing().FindIdInList(_seatBookingAccess.GetAll());
 
                 newBooking.Price = 100.0m;
+
+                _seatBookingControl.GetSeatBookings(1);
 
                 insertedId = _bookingAccess.Create(newBooking);
             }

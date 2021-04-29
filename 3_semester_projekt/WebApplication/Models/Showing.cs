@@ -10,7 +10,7 @@ namespace WebClientMVC.Models
     public class Showing
     {
         public int ShowingId { get; set; }
-
+        public int ID { get; set; }
         public string Title { get; set; }
         public string Room { get; set; }
         public DateTime ShowTime { get; set; }

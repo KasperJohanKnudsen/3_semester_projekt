@@ -75,7 +75,7 @@ namespace WebClientMVC.BusinessLogicLayer
         }
         */
 
-        private List<SeatBooking> GetSeatBookings(int showingId, string resString, int userPhoneNumber)
+        public List<SeatBooking> GetSeatBookings(int showingId, string resString, int userPhoneNumber)
         {
             List<SeatBooking> seatBookings = null;
             SeatBooking seatBooking;

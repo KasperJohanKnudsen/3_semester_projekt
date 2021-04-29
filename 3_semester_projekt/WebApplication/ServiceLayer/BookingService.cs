@@ -72,12 +72,15 @@ namespace WebClientMVC.ServiceLayer
             return bookingsFromService;
 
         }
-        public async Task<int> SaveBooking(Booking aBooking)
+        public async Task<int> SaveBooking(int showingId, string seatsBooked, int phoneNumber)
         {
             int insertedBookingId;
             string useRestUrl = restUrl;
             var uri = new Uri(string.Format(useRestUrl, string.Empty));
             //
+
+            Booking aBooking = new Booking(phoneNumber, seatsBooked, showingId);
+
             try
             {
                 var json = JsonConvert.SerializeObject(aBooking);

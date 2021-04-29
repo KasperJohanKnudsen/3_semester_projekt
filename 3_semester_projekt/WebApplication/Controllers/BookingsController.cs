@@ -79,21 +79,14 @@ namespace WebClientMVC.Controllers
         [HttpPost]
         public async Task<ActionResult> SeatBooking(int phoneNumber, int showId, string reservedSeats)
         {
-            //BookingLogic bLogic = new BookingLogic();
             ShowingLogic sLogic = new ShowingLogic();
 
-            // Build a booking based on phoneNumber, seats, price(Hardcoded), Userid and SeatbookingId
-            // UserId found if phonenumber already exist in DB otherwise create new user
-            // BookingId is made in DB auto
-            // SeatbookingId is from the newly created seatbooking?
-            // TODO: Move to API 
-            int insertedId = -1;
 
-            // Transaction
-            
-            bool wasUpdated = await sLogic.UpdateShowingBookings(ShowId, reservedSeats, phoneNumber);
+            //bool wasUpdated = await sLogic.UpdateShowingBookings(showId, reservedSeats, phoneNumber);
 
-            if (wasUpdated)
+            bool wasReserved = await _bookingLogic.CreateBooking(showId, phoneNumber, reservedSeats);
+
+            if (wasReserved)
             {
 
                 ViewBag.PrevResult = "Seats was reserved!";
@@ -104,7 +97,6 @@ namespace WebClientMVC.Controllers
             }
 
             Showing foundShowing = await sLogic.GetShowingById(1, true);
-            // Transaction End
 
             return View("SeatBooking", foundShowing);
         }

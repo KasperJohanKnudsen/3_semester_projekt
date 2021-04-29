@@ -9,6 +9,8 @@ namespace CinemaData.ModelLayer
         public int Id { get; set; }
         public int UserId { get; set; }
         public int ShowingId { get; set; }
+        public int PhoneNumber { get; set; }
+
         public decimal Price { get; set; }
         public string SeatsBooked { get; set; }
         public int SeatBookingId { get; set; }

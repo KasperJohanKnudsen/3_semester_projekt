@@ -10,6 +10,7 @@ namespace CinemaService.BusinessLogicLayer
         T GetById(int id);
         IEnumerable<T> Get();
         int Add(T entityToAdd);
+
         bool Put(int id, List<T> entitiesToUpdate);
         bool Delete(int id);
     }

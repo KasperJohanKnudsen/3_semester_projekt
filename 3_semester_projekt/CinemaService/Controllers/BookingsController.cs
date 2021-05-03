@@ -77,14 +77,18 @@ namespace CinemaService.Controllers
         }
         // URL: 
         [HttpPost]
-        public ActionResult<int> PostNewBooking(BookingdataCreateDto inBooking)
+        public ActionResult<int> PostNewBooking(Booking inBooking)
         {
+            //int showId, List< SeatBooking > newSeatBookings
+
+            int showId = inBooking.ShowingId;
+            List<SeatBooking> newSeatBookings = inBooking.SeatBookings;
             ActionResult<int> foundReturn;
             int insertedId = -1;
             if (inBooking != null)
             {
-                Booking dbBooking = ModelConversion.BookingCreateDtoConvert.ToBooking(inBooking);
-                insertedId = _bControl.Add(dbBooking);
+                //Booking dbBooking = ModelConversion.BookingCreateDtoConvert.ToBooking(inBooking);
+                insertedId = _bControl.Add(inBooking, showId, newSeatBookings);
             }
             if (insertedId > 0)
             {

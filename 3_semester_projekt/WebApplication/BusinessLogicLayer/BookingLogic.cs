@@ -25,17 +25,45 @@ namespace WebClientMVC.BusinessLogicLayer
 
         }
 
-        public async Task<int> CreateBooking(int phoneNumber, decimal price, string seatsBooked)
+        public async Task<int> CreateBooking(int phoneNumber, int showId, decimal price, string seatsBooked)
         {
-            
+
             // 
-            
-            Booking bookingToSave = new Booking(phoneNumber, price, seatsBooked);
+            List<SeatBooking> newReservations = GetSeatBookings(showId, seatsBooked, phoneNumber);
+           
+            Booking bookingToSave = new Booking(phoneNumber, showId, 100.0m, newReservations);
 
 
 
             int insertedId = await _bAccess.SaveBooking(bookingToSave);
             return insertedId;
+        }
+        private List<SeatBooking> GetSeatBookings(int showingId, string resString, int userPhoneNumber)
+        {
+            List<SeatBooking> seatBookings = null;
+            SeatBooking seatBooking;
+            int tempSeatId, rowNo, seatNo;
+            bool parseOk;
+
+            if (!string.IsNullOrWhiteSpace(resString))
+            {
+                seatBookings = new List<SeatBooking>();
+                DateTime resTime = DateTime.Now;
+                bool reserve = true;
+                string[] seatIds = resString.Split(':');
+                foreach (string seatId in seatIds)
+                {
+                    parseOk = int.TryParse(seatId, out tempSeatId);
+                    if (parseOk)
+                    {
+                        rowNo = tempSeatId / 1000;
+                        seatNo = tempSeatId - (rowNo * 1000);
+                        seatBooking = new SeatBooking(showingId, reserve, rowNo, seatNo, userPhoneNumber);
+                        seatBookings.Add(seatBooking);
+                    }
+                }
+            }
+            return seatBookings;
         }
     }
 }

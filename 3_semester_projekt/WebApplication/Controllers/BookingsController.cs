@@ -80,33 +80,52 @@ namespace WebClientMVC.Controllers
         public async Task<ActionResult> SeatBooking(int phoneNumber, int showId, string reservedSeats)
         {
             //BookingLogic bLogic = new BookingLogic();
-            ShowingLogic sLogic = new ShowingLogic();
 
-            // Build a booking based on phoneNumber, seats, price(Hardcoded), Userid and SeatbookingId
-            // UserId found if phonenumber already exist in DB otherwise create new user
-            // BookingId is made in DB auto
-            // SeatbookingId is from the newly created seatbooking?
-            // TODO: Move to API 
-            int insertedId = -1;
 
             // Transaction
-            
-            bool wasUpdated = await sLogic.UpdateShowingBookings(showId, reservedSeats, phoneNumber);
 
-            if (wasUpdated)
+            //bool wasUpdated = await sLogic.UpdateShowingBookings(showId, reservedSeats, phoneNumber);
+
+            //Booking aBooking = new Booking(phoneNumber, showId, 100.0m, reservedSeats);
+
+            ShowingLogic sLogic = new ShowingLogic();
+
+            try
             {
+                //bool wasOk = await _bookingLogic.SaveBooking(aBooking);
 
-                ViewBag.PrevResult = "Seats was reserved!";
+                
+                int insertedId = -1;
+                //decimal price = 100.0m;
+                //string seatsBooked = "Row: 666, Seat 1";
+
+
+
+                insertedId = await _bookingLogic.CreateBooking(phoneNumber, showId, 100.0m, reservedSeats);
+                Showing foundShowing = await sLogic.GetShowingById(1, true);
+                return View("SeatBooking", foundShowing);
+                
             }
-            else
+            catch
             {
-                ViewBag.PrevResult = "Sorry - not reserved - something went wrong";
+                /*
+                if (wasUpdated)
+                {
+
+                    ViewBag.PrevResult = "Seats was reserved!";
+                }
+                else
+                {
+                    ViewBag.PrevResult = "Sorry - not reserved - something went wrong";
+                }
+                */
+
+
+                // Transaction End
+                Showing foundShowing = await sLogic.GetShowingById(1, true);
+                return View("SeatBooking", foundShowing);
+
             }
-
-            Showing foundShowing = await sLogic.GetShowingById(1, true);
-            // Transaction End
-
-            return View("SeatBooking", foundShowing);
         }
 
     }

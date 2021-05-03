@@ -22,16 +22,19 @@ namespace CinemaDataTest
  
             Booking insertBooking = new Booking(user.ID, showing.ID, price, seatsBooked, seatBooking.ID);
 
-
+            int showId = 1;
+            List<SeatBooking> seatBookings = new List<SeatBooking>();
+            SeatBooking seatBooking1 = new SeatBooking(showId, true, 1, 4);
+            seatBookings.Add(seatBooking1);
             //Act
-            _bookingAccess.Create(insertBooking);
+            _bookingAccess.Create(insertBooking, showId, seatBookings);
 
             //Assert
             
         }
 
         private readonly ITestOutputHelper extraOutput;
-        readonly private ICRUD<Booking> _bookingAccess;
+        readonly private BookingDatabaseAccess _bookingAccess;
         readonly private ICRUD<User> _userAccess;
         readonly private ICRUD<Showing> _showingAccess;
         readonly private ICRUD<SeatBooking> _seatBookingAccess;

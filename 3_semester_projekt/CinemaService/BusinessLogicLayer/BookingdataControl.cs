@@ -4,13 +4,15 @@ using CinemaData.ModelLayer;
 using CinemaData.DatabaseLayer;
 using Microsoft.Extensions.Configuration;
 using CinemaService.BusinessLogicLayer;
+using CinemaService.Buffer;
 
 namespace CinemaService.BusinesslogicLayer
 {
-    public class BookingdataControl : IDataControl<Booking>
+    public class BookingdataControl
     {
 
-        ICRUD<Booking> _bookingAccess;
+        //ICRUD<Booking> _bookingAccess;
+        BookingDatabaseAccess _bookingAccess;
         ICRUD<User> _userAccess;
         ICRUD<Showing> _showingAccess;
         ICRUD<SeatBooking> _seatBookingAccess;
@@ -22,24 +24,28 @@ namespace CinemaService.BusinesslogicLayer
             _userAccess = new UserDatabaseAccess(inConfiguration);
             _showingAccess = new ShowingDatabaseAccess(inConfiguration);
             _seatBookingAccess = new SeatBookingDatabaseAccess(inConfiguration);
- 
+
 
         }
-        public int Add(Booking newBooking)
+        public int Add(Booking newBooking, int showingId, List<SeatBooking> newSeatBookings)
         {
             int insertedId;
             try
             {
                 // Assignments below needs to be removed when hardcoding them can be avoided
-                newBooking.UserId = new User().FindIdInList(_userAccess.GetAll());
+                //newBooking.UserId = new User().FindIdInList(_userAccess.GetAll());
 
-                newBooking.ShowingId = new Showing().FindIdInList(_showingAccess.GetAll());
+                //newBooking.ShowingId = new Showing().FindIdInList(_showingAccess.GetAll());
 
                 newBooking.SeatBookingId = new Showing().FindIdInList(_seatBookingAccess.GetAll());
 
+                // newBooking.PhoneNumber = sbBufferList.PhoneNumber;
+                // newBooking.ShowingId = sbBufferList.ShowingId;
+                // newBooking.SeatsBooked = sbBufferList.SeatsBooked;
+                
                 newBooking.Price = 100.0m;
 
-                insertedId = _bookingAccess.Create(newBooking);
+                insertedId = _bookingAccess.Create(newBooking, showingId, newSeatBookings);
             }
             catch
             {

@@ -1,6 +1,7 @@
 ﻿using APIAccess.ControlLayer;
 using CinemaData.DatabaseLayer;
 using CinemaData.ModelLayer;
+using CinemaService.Buffer;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -69,6 +70,20 @@ namespace CinemaService.BusinessLogicLayer
             try
             {
                 wasOk = _seatAccess.Update(showingId, newSeatBookings);
+                /*
+                List<SeatBookingBuffer> sbBufferList = new List<SeatBookingBuffer>();
+
+                foreach (SeatBooking seatBooking in newSeatBookings)
+                {
+                    int phoneNumber = seatBooking.PhoneNumber;
+                    int seatsBooked = seatBooking.RowNo + seatBooking.SeatNo;
+
+
+                    SeatBookingBuffer sbBuffer = new SeatBookingBuffer(showingId, phoneNumber, seatsBooked.ToString());
+                    sbBufferList.Add(sbBuffer);
+                }
+                */
+                
             }
             catch
             {

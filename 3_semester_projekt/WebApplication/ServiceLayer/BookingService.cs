@@ -100,5 +100,41 @@ namespace WebClientMVC.ServiceLayer
             }
             return insertedBookingId;
         }
+
+
+        public async Task<bool> PostSeatBookings(int showingId, List<SeatBooking> newReservations)
+        {
+            bool changedOk;
+
+            string useRestUrl = null;
+            string jsonString = null;
+            HttpResponseMessage response = null;
+
+            useRestUrl = restUrl + $"/bookings/{showingId}/seatbookings";
+
+            try
+            {
+                var uri = new Uri(string.Format(useRestUrl, string.Empty));
+                jsonString = JsonConvert.SerializeObject(newReservations);
+                var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+
+                response = await _httpClient.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    changedOk = true;
+                }
+                else
+                {
+                    changedOk = false;
+                }
+            }
+            catch
+            {
+                changedOk = false;
+            }
+
+            return changedOk;
+        }
     }
 }

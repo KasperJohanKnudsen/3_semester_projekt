@@ -7,13 +7,15 @@ using System.Text;
 
 namespace CinemaData.DatabaseLayer
 {
-    public class BookingDatabaseAccess : ICRUD<Booking>
+    public class BookingDatabaseAccess
     {
         readonly string _connectionString;
+        SeatBookingDatabaseAccess _sbAccess;
 
         // Using iconfiguration to get hold of a connectionstring
         public BookingDatabaseAccess(IConfiguration configuration)
         {
+            _sbAccess = new SeatBookingDatabaseAccess(configuration);
             _connectionString = configuration.GetConnectionString("CinemaConnection");
         }
 
@@ -23,13 +25,13 @@ namespace CinemaData.DatabaseLayer
             _connectionString = inConnectionString;
         }
 
-        public int Create(Booking aBooking)
+        public int Create(Booking aBooking, int showId, List<SeatBooking> newReservations)
         {
             // I think we use -1 because then we are sure that it is not from the database if it returns that
             int insertedId = -1;
 
 
-            string insertString = "insert into Booking(UserID, ShowingId, Price, SeatsBooked, SeatBookingID) OUTPUT INSERTED.BookingID values (@UserID, @ShowingID, @Price, @SeatsBooked, @SeatBookingId)";
+            string insertString = "insert into Booking(PhoneNumber, ShowingId, Price, SeatsBooked, SeatBookingID) OUTPUT INSERTED.BookingID values (@PhoneNumber, @ShowingID, @Price, @SeatsBooked, @SeatBookingId)";
 
             using (SqlConnection con = new SqlConnection(_connectionString))
             //Create the command with a sql script
@@ -38,20 +40,24 @@ namespace CinemaData.DatabaseLayer
 
                 // Prepare SQL
                 // Prepares a parameters inside the database to receive a property from the class
-                SqlParameter userIdParam = new SqlParameter("@UserID", aBooking.UserId);
+                SqlParameter PhoneNumberParam = new SqlParameter("@PhoneNumber", aBooking.PhoneNumber);
                 SqlParameter showingIdParam = new SqlParameter("@ShowingID", aBooking.ShowingId);
                 SqlParameter priceParam = new SqlParameter("@Price", aBooking.Price);
                 SqlParameter seatsBookedParam = new SqlParameter("@SeatsBooked", aBooking.SeatsBooked);
+
+                //aBooking.SeatsBooked.Substring(0, 2);
+                
                 SqlParameter seatBookingIdParam = new SqlParameter("@SeatBookingID", aBooking.SeatBookingId);
 
 
                 //Adds the above parameter to a Command
-                CreateCommand.Parameters.Add(userIdParam);
+                CreateCommand.Parameters.Add(PhoneNumberParam);
                 CreateCommand.Parameters.Add(showingIdParam);
                 CreateCommand.Parameters.Add(priceParam);
                 CreateCommand.Parameters.Add(seatsBookedParam);
                 CreateCommand.Parameters.Add(seatBookingIdParam);
 
+                _sbAccess.Update(showId, newReservations);
 
                 // Opens the connection
                 con.Open();
@@ -76,7 +82,7 @@ namespace CinemaData.DatabaseLayer
             Booking readBooking;
 
 
-            string queryString = "select BookingID, UserID, ShowingID, Price, SeatsBooked, SeatBookingID from Booking";
+            string queryString = "select BookingID, PhoneNumber, ShowingID, Price, SeatsBooked, SeatBookingID from Booking";
             using (SqlConnection con = new SqlConnection(_connectionString))
             using (SqlCommand readCommand = new SqlCommand(queryString, con))
             {
@@ -99,7 +105,7 @@ namespace CinemaData.DatabaseLayer
         {
             Booking foundBooking = null;
             //
-            string queryString = "select BookingID, UserID, ShowingID, Price, SeatsBooked, SeatBookingID from Booking where BookingID = @BookingID";
+            string queryString = "select BookingID, PhoneNumber, ShowingID, Price, SeatsBooked, SeatBookingID from Booking where BookingID = @BookingID";
             using (SqlConnection con = new SqlConnection(_connectionString))
             using (SqlCommand readCommand = new SqlCommand(queryString, con))
             {
@@ -129,7 +135,7 @@ namespace CinemaData.DatabaseLayer
             Booking foundBooking;
 
             int tempId;
-            int tempUserId;
+            int tempPhoneNumber;
             int tempShowingId;
             decimal tempPrice;
             string tempSeatsBooked;
@@ -137,14 +143,14 @@ namespace CinemaData.DatabaseLayer
 
 
             tempId = productReader.GetInt32(productReader.GetOrdinal("BookingID"));
-            tempUserId = productReader.GetInt32(productReader.GetOrdinal("UserID"));
+            tempPhoneNumber = productReader.GetInt32(productReader.GetOrdinal("PhoneNumber"));
             tempShowingId = productReader.GetInt32(productReader.GetOrdinal("ShowingID"));
             tempPrice = productReader.GetDecimal(productReader.GetOrdinal("Price"));
             tempSeatsBooked = productReader.GetString(productReader.GetOrdinal("SeatsBooked"));
             tempSeatBookingId = productReader.GetInt32(productReader.GetOrdinal("SeatBookingID"));
 
             //Build the booking with the values from the database
-            foundBooking = new Booking(tempId, tempUserId, tempShowingId, tempPrice, tempSeatsBooked, tempSeatBookingId);
+            foundBooking = new Booking(tempId, tempPhoneNumber, tempShowingId, tempPrice, tempSeatsBooked, tempSeatBookingId);
             return foundBooking;
         }
 

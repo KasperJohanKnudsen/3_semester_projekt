@@ -91,7 +91,7 @@ namespace WebClientMVC.Controllers
 
             // Transaction
             
-            bool wasUpdated = await sLogic.UpdateShowingBookings(ShowId, reservedSeats, phoneNumber);
+            bool wasUpdated = await sLogic.UpdateShowingBookings(showId, reservedSeats, phoneNumber);
 
             if (wasUpdated)
             {

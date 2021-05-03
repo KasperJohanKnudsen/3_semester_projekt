@@ -34,7 +34,7 @@
         </dd>
 
         <dd>
-            @Html.DisplayFor(model => model.ShowingId)
+            @Html.DisplayFor(model => model.ID)
         </dd>
 
     </dl>
@@ -78,7 +78,7 @@
 </ol>
 @using (Html.BeginForm()) {
     if (Model != null) {
-        <input type="hidden" id="showId" name="showId" value="@Model.ShowingId">
+        <input type="hidden" id="showId" name="showId" value="@Model.ID">
         <form asp-action="Book seats">
             <div class="col-md-4">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>

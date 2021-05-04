@@ -40,27 +40,13 @@ namespace CinemaData.DatabaseLayer
 
                 // Opens the connection
                 con.Open();
-                using (SqlTransaction transaction = con.BeginTransaction())
-                {
+               
                     using (SqlCommand CreateCommand = new SqlCommand(insertString, con))
                     {
-                        try
-                        {
-                            int rowNo;
+                         int rowNo;
                             int seatNo;
                             bool isAlreadyReserved = false;
 
-                            foreach (SeatBooking sb in newReservations)
-                            {
-                                rowNo = sb.RowNo;
-                                seatNo = sb.SeatNo;
-                                isAlreadyReserved = _sbAccess.GetByRowNoAndSeatNo(rowNo, seatNo).IsReserved;
-                                if (isAlreadyReserved)
-                                    break;
-                            }
-
-                            if (!isAlreadyReserved)
-                            {
                                 foreach (SeatBooking seatBooking in newReservations)
                                 {
                                     rowNo = seatBooking.RowNo;
@@ -100,19 +86,14 @@ namespace CinemaData.DatabaseLayer
                                 }
 
                                 bool wentOk = _sbAccess.Update(showId, newReservations);
-                                transaction.Commit();
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e.StackTrace);
-                            transaction.Rollback();
-                        }
+                               
+                        
+                        
                     }
                             
 
                     
-                }
+                
             }
             // Returns the new id, if it's -1 something is wrong
             return insertedId;

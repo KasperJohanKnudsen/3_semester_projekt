@@ -52,6 +52,24 @@ namespace CinemaDataTest
         }
 
         [Fact]
+        public void TestGetSeatBookingByRowNoAndSeatNo()
+        {
+            // Arrange
+            SeatBooking foundSeatBooking;
+
+            // Act
+            foundSeatBooking = _seatBookingAccess.GetByRowNoAndSeatNo(12, 2);
+
+            // Assert
+            Assert.True(foundSeatBooking.ID == 2);
+
+
+
+            extraOutput.WriteLine(foundSeatBooking.ID.ToString());
+
+        }
+
+        [Fact]
         public void TestUpdateSeatBookings()
         {
             //Arrange
@@ -80,7 +98,7 @@ namespace CinemaDataTest
 
 
         private readonly ITestOutputHelper extraOutput;
-        readonly private ICRUD<SeatBooking> _seatBookingAccess;
+        readonly private SeatBookingDatabaseAccess _seatBookingAccess;
         readonly private ICRUD<Showing> _showingAccess;
         readonly string _connectionString = "Server=localhost; Integrated " + "Security=true; Database=CinemaCenter";
 

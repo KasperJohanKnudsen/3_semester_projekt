@@ -35,36 +35,84 @@ namespace CinemaData.DatabaseLayer
             string insertString = "insert into Booking(PhoneNumber, ShowingId, Price, SeatsBooked, SeatBookingID) OUTPUT INSERTED.BookingID values (@PhoneNumber, @ShowingID, @Price, @SeatsBooked, @SeatBookingId)";
 
             using (SqlConnection con = new SqlConnection(_connectionString))
-            //Create the command with a sql script
-            using (SqlCommand CreateCommand = new SqlCommand(insertString, con))
             {
-
-                // Prepare SQL
-                // Prepares a parameters inside the database to receive a property from the class
-                SqlParameter PhoneNumberParam = new SqlParameter("@PhoneNumber", aBooking.PhoneNumber);
-                SqlParameter showingIdParam = new SqlParameter("@ShowingID", aBooking.ShowingId);
-                SqlParameter priceParam = new SqlParameter("@Price", aBooking.Price);
-                SqlParameter seatsBookedParam = new SqlParameter("@SeatsBooked", aBooking.SeatsBooked);
-
-                //aBooking.SeatsBooked.Substring(0, 2);
-                
-                SqlParameter seatBookingIdParam = new SqlParameter("@SeatBookingID", aBooking.SeatBookingId);
-
-
-                //Adds the above parameter to a Command
-                CreateCommand.Parameters.Add(PhoneNumberParam);
-                CreateCommand.Parameters.Add(showingIdParam);
-                CreateCommand.Parameters.Add(priceParam);
-                CreateCommand.Parameters.Add(seatsBookedParam);
-                CreateCommand.Parameters.Add(seatBookingIdParam);
-
-                bool wentOk = false;
-                wentOk =_sbAccess.Update(showId, newReservations);
+                //Create the command with a sql script
 
                 // Opens the connection
                 con.Open();
-                // Execute the command, save and read generated key (ID)
-                insertedId = (int)CreateCommand.ExecuteScalar();
+                using (SqlTransaction transaction = con.BeginTransaction())
+                {
+                    using (SqlCommand CreateCommand = new SqlCommand(insertString, con))
+                    {
+                        try
+                        {
+                            int rowNo;
+                            int seatNo;
+                            bool isAlreadyReserved = false;
+
+                            foreach (SeatBooking sb in newReservations)
+                            {
+                                rowNo = sb.RowNo;
+                                seatNo = sb.SeatNo;
+                                isAlreadyReserved = _sbAccess.GetByRowNoAndSeatNo(rowNo, seatNo).IsReserved;
+                                if (isAlreadyReserved)
+                                    break;
+                            }
+
+                            if (!isAlreadyReserved)
+                            {
+                                foreach (SeatBooking seatBooking in newReservations)
+                                {
+                                    rowNo = seatBooking.RowNo;
+                                    seatNo = seatBooking.SeatNo;
+
+
+                                    CreateCommand.Parameters.Clear();
+                                    // Prepare SQL
+                                    // Prepares a parameters inside the database to receive a property from the class
+                                    SqlParameter PhoneNumberParam = new SqlParameter("@PhoneNumber", aBooking.PhoneNumber);
+                                    SqlParameter showingIdParam = new SqlParameter("@ShowingID", aBooking.ShowingId);
+                                    SqlParameter priceParam = new SqlParameter("@Price", aBooking.Price);
+
+
+                                    //aBooking.SeatsBooked.Substring(0, 2);
+
+
+                                    string seatsBooked = "Row: " + rowNo.ToString() + " Seat: " + seatNo.ToString();
+                                    int seatBookingId = _sbAccess.GetByRowNoAndSeatNo(rowNo, seatNo).ID;
+
+                                    SqlParameter seatsBookedParam = new SqlParameter("@SeatsBooked", seatsBooked);
+
+                                    SqlParameter seatBookingIdParam = new SqlParameter("@SeatBookingID", seatBookingId);
+
+
+                                    //Adds the above parameter to a Command
+                                    CreateCommand.Parameters.Add(PhoneNumberParam);
+                                    CreateCommand.Parameters.Add(showingIdParam);
+                                    CreateCommand.Parameters.Add(priceParam);
+                                    CreateCommand.Parameters.Add(seatsBookedParam);
+                                    CreateCommand.Parameters.Add(seatBookingIdParam);
+
+
+
+                                    // Execute the command, save and read generated key (ID)
+                                    insertedId = (int)CreateCommand.ExecuteScalar();
+                                }
+
+                                bool wentOk = _sbAccess.Update(showId, newReservations);
+                                transaction.Commit();
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.StackTrace);
+                            transaction.Rollback();
+                        }
+                    }
+                            
+
+                    
+                }
             }
             // Returns the new id, if it's -1 something is wrong
             return insertedId;

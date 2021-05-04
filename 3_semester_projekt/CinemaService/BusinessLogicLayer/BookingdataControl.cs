@@ -37,7 +37,7 @@ namespace CinemaService.BusinesslogicLayer
 
                 //newBooking.ShowingId = new Showing().FindIdInList(_showingAccess.GetAll());
 
-                newBooking.SeatBookingId = new Showing().FindIdInList(_seatBookingAccess.GetAll());
+                //newBooking.SeatBookingId = new SeatBooking().FindIdInList(_seatBookingAccess.GetAll());
 
                 // newBooking.PhoneNumber = sbBufferList.PhoneNumber;
                 // newBooking.ShowingId = sbBufferList.ShowingId;

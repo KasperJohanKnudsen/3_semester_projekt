@@ -102,7 +102,7 @@ namespace WebClientMVC.Controllers
 
 
                 insertedId = await _bookingLogic.CreateBooking(phoneNumber, showId, 100.0m, reservedSeats);
-                Showing foundShowing = await sLogic.GetShowingById(1, true);
+                Showing foundShowing = await sLogic.GetShowingById(showId, true);
                 return View("SeatBooking", foundShowing);
                 
             }

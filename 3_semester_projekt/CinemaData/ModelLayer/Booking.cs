@@ -39,10 +39,10 @@ namespace CinemaData.ModelLayer
             Price = price;
             SeatsBooked = seatsBooked;
         }
-        public Booking(int userId, int showingId, decimal price, string seatsBooked, int seatbookingId) : this(price, seatsBooked)
+        public Booking(int phoneNumber, int showingId, decimal price, string seatsBooked, int seatbookingId) : this(price, seatsBooked)
         {
 
-            UserId = userId;
+            PhoneNumber = phoneNumber;
             ShowingId = showingId;
             Price = price;
             SeatsBooked = seatsBooked;

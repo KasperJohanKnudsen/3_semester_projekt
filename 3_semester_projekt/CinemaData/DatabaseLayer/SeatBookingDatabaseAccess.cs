@@ -72,7 +72,7 @@ namespace CinemaData.DatabaseLayer
             SeatBooking readSeatBooking;
 
 
-            string queryString = "select SeatBookingID, IsReserved, RowNo, SeatNo from SeatBooking";
+            string queryString = "select SeatBookingID, IsReserved, RowNo, SeatNo, ShowingID, PhoneNumber from SeatBooking";
             using (SqlConnection con = new SqlConnection(_connectionString))
             using (SqlCommand readCommand = new SqlCommand(queryString, con))
             {
@@ -95,7 +95,7 @@ namespace CinemaData.DatabaseLayer
         {
             SeatBooking foundSeatBooking = null;
             //
-            string queryString = "select SeatBookingID, IsReserved, RowNo, SeatNo from SeatBooking where SeatBookingID = @SeatBookingID";
+            string queryString = "select SeatBookingID, IsReserved, RowNo, SeatNo, ShowingID, PhoneNumber from SeatBooking where SeatBookingID = @SeatBookingID";
             using (SqlConnection con = new SqlConnection(_connectionString))
             using (SqlCommand readCommand = new SqlCommand(queryString, con))
             {
@@ -128,18 +128,20 @@ namespace CinemaData.DatabaseLayer
             bool tempIsReserved;
             int tempRowNo;
             int tempSeatNo;
-            int tempPhoneNumber;
+            int tempShowId;
+            int tempPhoneNumber = productReader["PhoneNumber"] as int? ?? -1;
 
 
-            tempId = productReader.GetInt32(productReader.GetOrdinal("ShowingID"));
+            tempId = productReader.GetInt32(productReader.GetOrdinal("SeatBookingID"));
             tempIsReserved = productReader.GetBoolean(productReader.GetOrdinal("IsReserved"));
             tempRowNo = productReader.GetInt32(productReader.GetOrdinal("RowNo"));
             tempSeatNo = productReader.GetInt32(productReader.GetOrdinal("SeatNo"));
-            tempPhoneNumber = productReader.GetInt32(productReader.GetOrdinal("PhoneNumber"));
+            tempShowId = productReader.GetInt32(productReader.GetOrdinal("ShowingID"));
+
 
 
             //Build the booking with the values from the database
-            foundSeatBooking = new SeatBooking(tempId, tempIsReserved, tempRowNo, tempSeatNo, tempPhoneNumber);
+            foundSeatBooking = new SeatBooking(tempId, tempShowId, tempIsReserved, tempRowNo, tempSeatNo, tempPhoneNumber);
             return foundSeatBooking;
         }
 

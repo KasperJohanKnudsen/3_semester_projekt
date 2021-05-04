@@ -22,6 +22,7 @@ namespace CinemaData.DatabaseLayer
         // For booking data test project
         public BookingDatabaseAccess(string inConnectionString)
         {
+            _sbAccess = new SeatBookingDatabaseAccess(inConnectionString);
             _connectionString = inConnectionString;
         }
 
@@ -57,7 +58,8 @@ namespace CinemaData.DatabaseLayer
                 CreateCommand.Parameters.Add(seatsBookedParam);
                 CreateCommand.Parameters.Add(seatBookingIdParam);
 
-                _sbAccess.Update(showId, newReservations);
+                bool wentOk = false;
+                wentOk =_sbAccess.Update(showId, newReservations);
 
                 // Opens the connection
                 con.Open();

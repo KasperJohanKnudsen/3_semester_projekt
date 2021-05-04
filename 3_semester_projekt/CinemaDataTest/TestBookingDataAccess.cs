@@ -14,28 +14,29 @@ namespace CinemaDataTest
         public void TestCreateBooking()
         {
             //Arrange
-            User user = _userAccess.GetById(1);
+            //User user = _userAccess.GetById(1);
             Showing showing = _showingAccess.GetById(1);
-            SeatBooking seatBooking = _seatBookingAccess.GetById(1);
+            SeatBooking seatBooking = _seatBookingAccess.GetById(15);
             string seatsBooked = "Row: " + seatBooking.RowNo.ToString() + " SeatNumber: " +seatBooking.SeatNo.ToString();
             decimal price = 200.0m;
  
-            Booking insertBooking = new Booking(user.ID, showing.ID, price, seatsBooked, seatBooking.ID);
+            Booking insertBooking = new Booking(555, 1, price, seatsBooked, seatBooking.ID);
 
             int showId = 1;
             List<SeatBooking> seatBookings = new List<SeatBooking>();
-            SeatBooking seatBooking1 = new SeatBooking(showId, true, 1, 4);
+            SeatBooking seatBooking1 = new SeatBooking(15, showId, false, 1, 9, 90122);
             seatBookings.Add(seatBooking1);
             //Act
             _bookingAccess.Create(insertBooking, showId, seatBookings);
+            //int showingId, bool isReserved, int rowNo, int seatNo, int phoneNumber
 
             //Assert
-            
+
         }
 
         private readonly ITestOutputHelper extraOutput;
         readonly private BookingDatabaseAccess _bookingAccess;
-        readonly private ICRUD<User> _userAccess;
+
         readonly private ICRUD<Showing> _showingAccess;
         readonly private ICRUD<SeatBooking> _seatBookingAccess;
         readonly string _connectionString = "Server=localhost; Integrated " + "Security=true; Database=CinemaCenter";
@@ -44,7 +45,6 @@ namespace CinemaDataTest
         {
             this.extraOutput = output;
             _bookingAccess = new BookingDatabaseAccess(_connectionString);
-            _userAccess = new UserDatabaseAccess(_connectionString);
             _showingAccess = new ShowingDatabaseAccess(_connectionString);
             _seatBookingAccess = new SeatBookingDatabaseAccess(_connectionString);
         }

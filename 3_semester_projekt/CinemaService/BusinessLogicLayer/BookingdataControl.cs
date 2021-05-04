@@ -47,8 +47,9 @@ namespace CinemaService.BusinesslogicLayer
 
                 insertedId = _bookingAccess.Create(newBooking, showingId, newSeatBookings);
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 insertedId = -1;
             }
             return insertedId;

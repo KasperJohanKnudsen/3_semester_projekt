@@ -123,9 +123,8 @@ namespace CinemaData.DatabaseLayer
         public SeatBooking GetByRowNoAndSeatNo(int rowNo, int seatNo, SqlTransaction transaction = null, SqlConnection connection = null)
         {
 
-            connection.tr
-            using (transaction ?? new SqlTransaction)
-            {
+            
+            
 
                 SeatBooking foundSeatBooking = null;
                 string queryString = "select SeatBookingID, IsReserved, RowNo, SeatNo, ShowingID, PhoneNumber from SeatBooking where RowNo = @RowNo AND SeatNo = @SeatNo";
@@ -154,7 +153,7 @@ namespace CinemaData.DatabaseLayer
                 }
                 return foundSeatBooking;
 
-            }
+            
         }
 
         public SeatBooking GetFromReader(SqlDataReader productReader)

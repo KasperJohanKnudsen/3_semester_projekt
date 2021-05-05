@@ -47,36 +47,43 @@ namespace CinemaData.DatabaseLayer
                     {
                         using (SqlCommand CreateCommand = new SqlCommand(insertString, con, transaction))
                         {
-
+                            
                             int rowNo;
                             int seatNo;
+                            SeatBooking foundSeatBooking = new SeatBooking();
                             //bool isAlreadyReserved = false;
 
-                            foreach (SeatBooking sb in newReservations)
+                            string queryString = "select SeatBookingID, IsReserved, RowNo, SeatNo, ShowingID, PhoneNumber from SeatBooking where RowNo = @RowNo AND SeatNo = @SeatNo";
+                            using (SqlCommand readCommand = new SqlCommand(queryString, con, transaction))
                             {
-                                rowNo = sb.RowNo;
-                                seatNo = sb.SeatNo;
-
-                                SeatBooking foundSeatBooking = null;
-                                string queryString = "select SeatBookingID, IsReserved, RowNo, SeatNo, ShowingID, PhoneNumber from SeatBooking where RowNo = @RowNo AND SeatNo = @SeatNo";
                                 
-                                using (SqlCommand readCommand = new SqlCommand(queryString, con))
+                                
+                                foreach (SeatBooking sb in newReservations)
                                 {
+                                    rowNo = sb.RowNo;
+                                    seatNo = sb.SeatNo;
+
+                                    foundSeatBooking = null;
+
+                                    // using (SqlConnection con2 = new SqlConnection(_connectionString))
+
                                     // Put the Id parameter into the command so that we know which room to read
+                                    readCommand.Parameters.Clear();
                                     SqlParameter rowNoParam = new SqlParameter("@RowNo", rowNo);
                                     SqlParameter seatNoParam = new SqlParameter("@SeatNo", seatNo);
                                     readCommand.Parameters.Add(rowNoParam);
                                     readCommand.Parameters.Add(seatNoParam);
 
-                                    con.Open();
+                                    // con2.Open();
                                     // SQLDatareader reads data from the database
+                                    
                                     SqlDataReader productReader = readCommand.ExecuteReader();
-                                    foundSeatBooking = new SeatBooking();
-
                                     if (productReader.HasRows)
                                     {
                                         while (productReader.Read())
                                         {
+                                            
+
                                             int tempId;
                                             bool tempIsReserved;
                                             int tempRowNo;
@@ -98,17 +105,18 @@ namespace CinemaData.DatabaseLayer
 
                                         }
                                     }
+                                    productReader.Close();
                                 }
-                                
 
-                                if (_sbAccess.GetByRowNoAndSeatNo(rowNo, seatNo, transaction).IsReserved)
+
+                                if (foundSeatBooking.IsReserved)
                                 {
                                     transaction.Rollback();
                                     return -1;
                                 }
                             }
-                            _delay -= 10000;
-                            System.Threading.Thread.Sleep(_delay);
+                            //_delay -= 10000;
+                            //System.Threading.Thread.Sleep(_delay);
 
                             foreach (SeatBooking seatBooking in newReservations)
                             {
@@ -128,7 +136,7 @@ namespace CinemaData.DatabaseLayer
 
 
                                 string seatsBooked = "Row: " + rowNo.ToString() + " Seat: " + seatNo.ToString();
-                                int seatBookingId = _sbAccess.GetByRowNoAndSeatNo(rowNo, seatNo, ).ID;
+                                int seatBookingId = _sbAccess.GetByRowNoAndSeatNo(rowNo, seatNo).ID;
 
                                 SqlParameter seatsBookedParam = new SqlParameter("@SeatsBooked", seatsBooked);
 
@@ -148,8 +156,39 @@ namespace CinemaData.DatabaseLayer
                                 insertedId = (int)CreateCommand.ExecuteScalar();
                             }
 
-                            bool wentOk = _sbAccess.Update(showId, newReservations);
+                            //bool wentOk = _sbAccess.Update(showId, newReservations);
+                            int numRowsUpdated = 0;
+                            int numBookings = (newReservations != null) ? newReservations.Count : -1;
+
+                            string sqlUpdate = "UPDATE SeatBooking set IsReserved = 1, PhoneNumber = @PhoneNumber WHERE IsReserved = 0 AND ShowingID = @ShowingId AND RowNo = @RowNo AND SeatNo = @SeatNo";
+
+
+                            using (SqlCommand UpdateCommand = new SqlCommand(sqlUpdate, con, transaction))
+                            {
+                                foreach (SeatBooking seatBooking in newReservations)
+                                {
+                                    UpdateCommand.Parameters.Clear();
+                                    SqlParameter rowNoParam = new SqlParameter("@RowNo", seatBooking.RowNo);
+                                    SqlParameter seatNoParam = new SqlParameter("@SeatNo", seatBooking.SeatNo);
+                                    SqlParameter showingIdParam = new SqlParameter("@ShowingID", showId);
+                                    SqlParameter phoneNumberParam = new SqlParameter("@PhoneNumber", seatBooking.PhoneNumber);
+
+                                    //Adds the above parameter to a Command
+
+                                    UpdateCommand.Parameters.Add(rowNoParam);
+                                    UpdateCommand.Parameters.Add(seatNoParam);
+                                    UpdateCommand.Parameters.Add(showingIdParam);
+                                    UpdateCommand.Parameters.Add(phoneNumberParam);
+
+                                    // Opens the connection
+
+                                    // Execute the command, save and read generated key (ID)
+                                    UpdateCommand.ExecuteScalar();
+                                }
+
+                            }
                             transaction.Commit();
+
 
 
 

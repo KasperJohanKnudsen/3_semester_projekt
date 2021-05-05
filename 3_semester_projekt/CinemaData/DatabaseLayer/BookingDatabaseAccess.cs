@@ -25,7 +25,8 @@ namespace CinemaData.DatabaseLayer
             _sbAccess = new SeatBookingDatabaseAccess(inConnectionString);
             _connectionString = inConnectionString;
         }
-
+        
+        private static int _delay = 20000;
         public int Create(Booking aBooking, int showId, List<SeatBooking> newReservations)
         {
             // I think we use -1 because then we are sure that it is not from the database if it returns that
@@ -34,85 +35,135 @@ namespace CinemaData.DatabaseLayer
 
             string insertString = "insert into Booking(PhoneNumber, ShowingId, Price, SeatsBooked, SeatBookingID) OUTPUT INSERTED.BookingID values (@PhoneNumber, @ShowingID, @Price, @SeatsBooked, @SeatBookingId)";
 
-            using (SqlConnection con = new SqlConnection(_connectionString))
+            try
             {
-                //Create the command with a sql script
-
-                // Opens the connection
-                con.Open();
-                using (SqlTransaction transaction = con.BeginTransaction())
+                using (SqlConnection con = new SqlConnection(_connectionString))
                 {
-                    using (SqlCommand CreateCommand = new SqlCommand(insertString, con))
+                    //Create the command with a sql script
+
+                    // Opens the connection
+                    con.Open();
+                    using (SqlTransaction transaction = con.BeginTransaction(System.Data.IsolationLevel.RepeatableRead))
                     {
-                        try
+                        using (SqlCommand CreateCommand = new SqlCommand(insertString, con, transaction))
                         {
+
                             int rowNo;
                             int seatNo;
-                            bool isAlreadyReserved = false;
+                            //bool isAlreadyReserved = false;
 
                             foreach (SeatBooking sb in newReservations)
                             {
                                 rowNo = sb.RowNo;
                                 seatNo = sb.SeatNo;
-                                isAlreadyReserved = _sbAccess.GetByRowNoAndSeatNo(rowNo, seatNo).IsReserved;
-                                if (isAlreadyReserved)
-                                    break;
-                            }
 
-                            if (!isAlreadyReserved)
-                            {
-                                foreach (SeatBooking seatBooking in newReservations)
+                                SeatBooking foundSeatBooking = null;
+                                string queryString = "select SeatBookingID, IsReserved, RowNo, SeatNo, ShowingID, PhoneNumber from SeatBooking where RowNo = @RowNo AND SeatNo = @SeatNo";
+                                
+                                using (SqlCommand readCommand = new SqlCommand(queryString, con))
                                 {
-                                    rowNo = seatBooking.RowNo;
-                                    seatNo = seatBooking.SeatNo;
+                                    // Put the Id parameter into the command so that we know which room to read
+                                    SqlParameter rowNoParam = new SqlParameter("@RowNo", rowNo);
+                                    SqlParameter seatNoParam = new SqlParameter("@SeatNo", seatNo);
+                                    readCommand.Parameters.Add(rowNoParam);
+                                    readCommand.Parameters.Add(seatNoParam);
+
+                                    con.Open();
+                                    // SQLDatareader reads data from the database
+                                    SqlDataReader productReader = readCommand.ExecuteReader();
+                                    foundSeatBooking = new SeatBooking();
+
+                                    if (productReader.HasRows)
+                                    {
+                                        while (productReader.Read())
+                                        {
+                                            int tempId;
+                                            bool tempIsReserved;
+                                            int tempRowNo;
+                                            int tempSeatNo;
+                                            int tempShowId;
+                                            int tempPhoneNumber = productReader["PhoneNumber"] as int? ?? -1;
 
 
-                                    CreateCommand.Parameters.Clear();
-                                    // Prepare SQL
-                                    // Prepares a parameters inside the database to receive a property from the class
-                                    SqlParameter PhoneNumberParam = new SqlParameter("@PhoneNumber", aBooking.PhoneNumber);
-                                    SqlParameter showingIdParam = new SqlParameter("@ShowingID", aBooking.ShowingId);
-                                    SqlParameter priceParam = new SqlParameter("@Price", aBooking.Price);
-
-
-                                    //aBooking.SeatsBooked.Substring(0, 2);
-
-
-                                    string seatsBooked = "Row: " + rowNo.ToString() + " Seat: " + seatNo.ToString();
-                                    int seatBookingId = _sbAccess.GetByRowNoAndSeatNo(rowNo, seatNo).ID;
-
-                                    SqlParameter seatsBookedParam = new SqlParameter("@SeatsBooked", seatsBooked);
-
-                                    SqlParameter seatBookingIdParam = new SqlParameter("@SeatBookingID", seatBookingId);
-
-
-                                    //Adds the above parameter to a Command
-                                    CreateCommand.Parameters.Add(PhoneNumberParam);
-                                    CreateCommand.Parameters.Add(showingIdParam);
-                                    CreateCommand.Parameters.Add(priceParam);
-                                    CreateCommand.Parameters.Add(seatsBookedParam);
-                                    CreateCommand.Parameters.Add(seatBookingIdParam);
+                                            tempId = productReader.GetInt32(productReader.GetOrdinal("SeatBookingID"));
+                                            tempIsReserved = productReader.GetBoolean(productReader.GetOrdinal("IsReserved"));
+                                            tempRowNo = productReader.GetInt32(productReader.GetOrdinal("RowNo"));
+                                            tempSeatNo = productReader.GetInt32(productReader.GetOrdinal("SeatNo"));
+                                            tempShowId = productReader.GetInt32(productReader.GetOrdinal("ShowingID"));
 
 
 
-                                    // Execute the command, save and read generated key (ID)
-                                    insertedId = (int)CreateCommand.ExecuteScalar();
+                                            //Build the booking with the values from the database
+                                            foundSeatBooking = new SeatBooking(tempId, tempShowId, tempIsReserved, tempRowNo, tempSeatNo, tempPhoneNumber);
+
+                                        }
+                                    }
                                 }
+                                
 
-                                bool wentOk = _sbAccess.Update(showId, newReservations);
-                                transaction.Commit();
+                                if (_sbAccess.GetByRowNoAndSeatNo(rowNo, seatNo, transaction).IsReserved)
+                                {
+                                    transaction.Rollback();
+                                    return -1;
+                                }
                             }
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e.StackTrace);
-                            transaction.Rollback();
-                        }
-                    }
-                            
+                            _delay -= 10000;
+                            System.Threading.Thread.Sleep(_delay);
 
-                    
+                            foreach (SeatBooking seatBooking in newReservations)
+                            {
+                                rowNo = seatBooking.RowNo;
+                                seatNo = seatBooking.SeatNo;
+
+
+                                CreateCommand.Parameters.Clear();
+                                // Prepare SQL
+                                // Prepares a parameters inside the database to receive a property from the class
+                                SqlParameter PhoneNumberParam = new SqlParameter("@PhoneNumber", aBooking.PhoneNumber);
+                                SqlParameter showingIdParam = new SqlParameter("@ShowingID", aBooking.ShowingId);
+                                SqlParameter priceParam = new SqlParameter("@Price", aBooking.Price);
+
+
+                                //aBooking.SeatsBooked.Substring(0, 2);
+
+
+                                string seatsBooked = "Row: " + rowNo.ToString() + " Seat: " + seatNo.ToString();
+                                int seatBookingId = _sbAccess.GetByRowNoAndSeatNo(rowNo, seatNo, ).ID;
+
+                                SqlParameter seatsBookedParam = new SqlParameter("@SeatsBooked", seatsBooked);
+
+                                SqlParameter seatBookingIdParam = new SqlParameter("@SeatBookingID", seatBookingId);
+
+
+                                //Adds the above parameter to a Command
+                                CreateCommand.Parameters.Add(PhoneNumberParam);
+                                CreateCommand.Parameters.Add(showingIdParam);
+                                CreateCommand.Parameters.Add(priceParam);
+                                CreateCommand.Parameters.Add(seatsBookedParam);
+                                CreateCommand.Parameters.Add(seatBookingIdParam);
+
+
+
+                                // Execute the command, save and read generated key (ID)
+                                insertedId = (int)CreateCommand.ExecuteScalar();
+                            }
+
+                            bool wentOk = _sbAccess.Update(showId, newReservations);
+                            transaction.Commit();
+
+
+
+                        }
+
+
+
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
             // Returns the new id, if it's -1 something is wrong
             return insertedId;

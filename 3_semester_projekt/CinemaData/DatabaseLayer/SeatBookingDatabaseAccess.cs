@@ -120,35 +120,41 @@ namespace CinemaData.DatabaseLayer
             return foundSeatBooking;
         }
 
-        public SeatBooking GetByRowNoAndSeatNo(int rowNo, int seatNo)
+        public SeatBooking GetByRowNoAndSeatNo(int rowNo, int seatNo, SqlTransaction transaction = null, SqlConnection connection = null)
         {
-            SeatBooking foundSeatBooking = null;
-            string queryString = "select SeatBookingID, IsReserved, RowNo, SeatNo, ShowingID, PhoneNumber from SeatBooking where RowNo = @RowNo AND SeatNo = @SeatNo";
-            using (SqlConnection con = new SqlConnection(_connectionString))
-            using (SqlCommand readCommand = new SqlCommand(queryString, con))
+
+            connection.tr
+            using (transaction ?? new SqlTransaction)
             {
-                // Put the Id parameter into the command so that we know which room to read
-                SqlParameter rowNoParam = new SqlParameter("@RowNo", rowNo);
-                SqlParameter seatNoParam = new SqlParameter("@SeatNo", seatNo);
-                readCommand.Parameters.Add(rowNoParam);
-                readCommand.Parameters.Add(seatNoParam);
 
-                con.Open();
-                // SQLDatareader reads data from the database
-                SqlDataReader productReader = readCommand.ExecuteReader();
-                foundSeatBooking = new SeatBooking();
-
-                if (productReader.HasRows)
+                SeatBooking foundSeatBooking = null;
+                string queryString = "select SeatBookingID, IsReserved, RowNo, SeatNo, ShowingID, PhoneNumber from SeatBooking where RowNo = @RowNo AND SeatNo = @SeatNo";
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                using (SqlCommand readCommand = new SqlCommand(queryString, con))
                 {
-                    while (productReader.Read())
-                    {
-                        foundSeatBooking = GetFromReader(productReader);
+                    // Put the Id parameter into the command so that we know which room to read
+                    SqlParameter rowNoParam = new SqlParameter("@RowNo", rowNo);
+                    SqlParameter seatNoParam = new SqlParameter("@SeatNo", seatNo);
+                    readCommand.Parameters.Add(rowNoParam);
+                    readCommand.Parameters.Add(seatNoParam);
 
+                    con.Open();
+                    // SQLDatareader reads data from the database
+                    SqlDataReader productReader = readCommand.ExecuteReader();
+                    foundSeatBooking = new SeatBooking();
+
+                    if (productReader.HasRows)
+                    {
+                        while (productReader.Read())
+                        {
+                            foundSeatBooking = GetFromReader(productReader);
+
+                        }
                     }
                 }
-            }
-            return foundSeatBooking;
+                return foundSeatBooking;
 
+            }
         }
 
         public SeatBooking GetFromReader(SqlDataReader productReader)

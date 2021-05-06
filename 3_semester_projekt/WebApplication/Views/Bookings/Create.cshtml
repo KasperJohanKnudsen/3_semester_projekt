@@ -18,11 +18,7 @@
                 <input asp-for="PhoneNumber" class="form-control" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="SeatsBooked" class="control-label"></label>
-                <input asp-for="SeatsBooked" class="form-control" />
-                <span asp-validation-for="SeatsBooked" class="text-danger"></span>
-            </div>
+
 
             <div class="form-group">
                 @Html.DropDownList("rowBooked",

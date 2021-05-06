@@ -8,13 +8,11 @@ namespace CinemaService.DTOs
     public class BookingdataCreateDto
     {
         public decimal Price { get; set; }
-        public string SeatsBooked { get; set; }
 
         public BookingdataCreateDto() { }
-        public BookingdataCreateDto(decimal price, string seatsBooked)
+        public BookingdataCreateDto(decimal price)
         {
             Price = price;
-            SeatsBooked = seatsBooked;
         }
     }
 }

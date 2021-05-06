@@ -33,7 +33,7 @@ namespace CinemaData.DatabaseLayer
             int insertedId = -1;
 
 
-            string insertString = "insert into Booking(PhoneNumber, ShowingId, Price, SeatsBooked, SeatBookingID) OUTPUT INSERTED.BookingID values (@PhoneNumber, @ShowingID, @Price, @SeatsBooked, @SeatBookingId)";
+            string insertString = "insert into Booking(PhoneNumber, ShowingId, Price, SeatBookingID) OUTPUT INSERTED.BookingID values (@PhoneNumber, @ShowingID, @Price, @SeatBookingId)";
 
             try
             {
@@ -71,8 +71,8 @@ namespace CinemaData.DatabaseLayer
                                     return -1;
                                 }
                             }
-                            _delay -= 10000;
-                            System.Threading.Thread.Sleep(_delay);
+                            //_delay -= 10000;
+                            //System.Threading.Thread.Sleep(_delay);
 
                             foreach (SeatBooking seatBooking in newReservations)
                             {
@@ -167,11 +167,8 @@ namespace CinemaData.DatabaseLayer
 
             //aBooking.SeatsBooked.Substring(0, 2);
 
-
-            string seatsBooked = "Row: " + rowNo.ToString() + " Seat: " + seatNo.ToString();
             int seatBookingId = _sbAccess.GetByRowNoAndSeatNo(rowNo, seatNo).ID;
 
-            SqlParameter seatsBookedParam = new SqlParameter("@SeatsBooked", seatsBooked);
 
             SqlParameter seatBookingIdParam = new SqlParameter("@SeatBookingID", seatBookingId);
 
@@ -180,7 +177,6 @@ namespace CinemaData.DatabaseLayer
             CreateCommand.Parameters.Add(PhoneNumberParam);
             CreateCommand.Parameters.Add(showingIdParam);
             CreateCommand.Parameters.Add(priceParam);
-            CreateCommand.Parameters.Add(seatsBookedParam);
             CreateCommand.Parameters.Add(seatBookingIdParam);
 
             ThreadStatus(aBooking, " is creating booking ");
@@ -235,7 +231,7 @@ namespace CinemaData.DatabaseLayer
             Booking readBooking;
 
 
-            string queryString = "select BookingID, PhoneNumber, ShowingID, Price, SeatsBooked, SeatBookingID from Booking";
+            string queryString = "select BookingID, PhoneNumber, ShowingID, Price, SeatBookingID from Booking";
             using (SqlConnection con = new SqlConnection(_connectionString))
             using (SqlCommand readCommand = new SqlCommand(queryString, con))
             {
@@ -258,7 +254,7 @@ namespace CinemaData.DatabaseLayer
         {
             Booking foundBooking = null;
             //
-            string queryString = "select BookingID, PhoneNumber, ShowingID, Price, SeatsBooked, SeatBookingID from Booking where BookingID = @BookingID";
+            string queryString = "select BookingID, PhoneNumber, ShowingID, Price, SeatBookingID from Booking where BookingID = @BookingID";
             using (SqlConnection con = new SqlConnection(_connectionString))
             using (SqlCommand readCommand = new SqlCommand(queryString, con))
             {
@@ -291,7 +287,6 @@ namespace CinemaData.DatabaseLayer
             int tempPhoneNumber;
             int tempShowingId;
             decimal tempPrice;
-            string tempSeatsBooked;
             int tempSeatBookingId;
 
 
@@ -299,11 +294,11 @@ namespace CinemaData.DatabaseLayer
             tempPhoneNumber = productReader.GetInt32(productReader.GetOrdinal("PhoneNumber"));
             tempShowingId = productReader.GetInt32(productReader.GetOrdinal("ShowingID"));
             tempPrice = productReader.GetDecimal(productReader.GetOrdinal("Price"));
-            tempSeatsBooked = productReader.GetString(productReader.GetOrdinal("SeatsBooked"));
+
             tempSeatBookingId = productReader.GetInt32(productReader.GetOrdinal("SeatBookingID"));
 
             //Build the booking with the values from the database
-            foundBooking = new Booking(tempId, tempPhoneNumber, tempShowingId, tempPrice, tempSeatsBooked, tempSeatBookingId);
+            foundBooking = new Booking(tempId, tempPhoneNumber, tempShowingId, tempPrice, tempSeatBookingId);
             return foundBooking;
         }
 

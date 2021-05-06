@@ -11,7 +11,6 @@ namespace CinemaData.ModelLayer
         public int PhoneNumber { get; set; }
         public int ShowingId { get; set; }
         public decimal Price { get; set; }
-        public string SeatsBooked { get; set; }
         public int SeatBookingId { get; set; }
         
         public List<SeatBooking> SeatBookings { get; set; }
@@ -34,18 +33,16 @@ namespace CinemaData.ModelLayer
         */
 
         public Booking() { }
-        public Booking(decimal price, string seatsBooked)
+        public Booking(decimal price)
         {
             Price = price;
-            SeatsBooked = seatsBooked;
         }
-        public Booking(int phoneNumber, int showingId, decimal price, string seatsBooked, int seatbookingId) : this(price, seatsBooked)
+        public Booking(int phoneNumber, int showingId, decimal price, int seatbookingId) : this(price)
         {
 
             PhoneNumber = phoneNumber;
             ShowingId = showingId;
             Price = price;
-            SeatsBooked = seatsBooked;
             SeatBookingId = seatbookingId;
         }
 
@@ -61,24 +58,22 @@ namespace CinemaData.ModelLayer
         }
         */
 
-        public Booking(int id, int phoneNumber, int showingId, decimal price, string seatsBooked, int seatbookingId, List<SeatBooking> seatBookings) : this(price, seatsBooked)
+        public Booking(int id, int phoneNumber, int showingId, decimal price, int seatbookingId, List<SeatBooking> seatBookings) : this(price)
         {
             Id = id;
             PhoneNumber = phoneNumber;
             ShowingId = showingId;
             Price = price;
-            SeatsBooked = seatsBooked;
             SeatBookingId = seatbookingId;
             SeatBookings = seatBookings;
         }
 
-        public Booking(int id, int phoneNumber, int showingId, decimal price, string seatsBooked, int seatbookingId) : this(price, seatsBooked)
+        public Booking(int id, int phoneNumber, int showingId, decimal price, int seatbookingId) : this(price)
         {
             Id = id;
             PhoneNumber = phoneNumber;
             ShowingId = showingId;
             Price = price;
-            SeatsBooked = seatsBooked;
             SeatBookingId = seatbookingId;
         }
     }

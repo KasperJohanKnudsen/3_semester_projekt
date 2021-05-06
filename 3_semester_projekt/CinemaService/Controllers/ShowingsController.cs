@@ -15,13 +15,12 @@ namespace CinemaService.Controllers
     public class ShowingsController : ControllerBase
     {
         private readonly ShowingDataControl _sControl;
-        private readonly BookShowingController _bookShowingController;
+
         private readonly IConfiguration _configuration;
         public ShowingsController(IConfiguration inConfiguration)
         {
             _configuration = inConfiguration;
             _sControl = new ShowingDataControl(_configuration);
-            _bookShowingController = new BookShowingController();
         }
         // URL: api/bookings
         /*

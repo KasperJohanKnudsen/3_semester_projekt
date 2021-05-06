@@ -20,7 +20,7 @@ namespace CinemaDataTest
             string seatsBooked = "Row: " + seatBooking.RowNo.ToString() + " SeatNumber: " +seatBooking.SeatNo.ToString();
             decimal price = 200.0m;
  
-            Booking insertBooking = new Booking(555, 1, price, seatsBooked, seatBooking.ID);
+            Booking insertBooking = new Booking(555, 1, price, seatBooking.ID);
 
             int showId = 1;
             List<SeatBooking> seatBookings = new List<SeatBooking>();

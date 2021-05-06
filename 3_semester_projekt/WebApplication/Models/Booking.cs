@@ -9,7 +9,6 @@ namespace WebClientMVC.Models
     {
         public int Id { get; set; }
         public decimal Price { get; set; }
-        public string SeatsBooked { get; set; }
         public int ShowingId { get; set; }
         public string BookingOrder { get; set; }
         public string Rowbooked { get; set; }
@@ -27,11 +26,10 @@ namespace WebClientMVC.Models
             SeatsBooked = seatsBooked;
         }
         */
-        public Booking(int phoneNumber, decimal price, string seatsBooked)
+        public Booking(int phoneNumber, decimal price)
         {
             PhoneNumber = phoneNumber;
             Price = price;
-            SeatsBooked = seatsBooked;
             
         }
 
@@ -44,12 +42,9 @@ namespace WebClientMVC.Models
 
         }
 
-        public Booking(int phoneNumber, string rowBooked, string seatsBookedOnRow, string seatsBooked)
+        public Booking(int phoneNumber, string rowBooked, string seatsBookedOnRow)
         {
             PhoneNumber = phoneNumber;
-
-            seatsBooked = rowBooked + seatsBookedOnRow;
-            SeatsBooked = seatsBooked;
         }
 
 

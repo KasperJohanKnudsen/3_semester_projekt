@@ -1,7 +1,6 @@
 ﻿using APIAccess.ControlLayer;
 using CinemaData.DatabaseLayer;
 using CinemaData.ModelLayer;
-using CinemaService.Buffer;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

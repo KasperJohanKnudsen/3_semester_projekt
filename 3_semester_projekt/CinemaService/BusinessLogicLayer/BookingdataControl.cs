@@ -4,7 +4,6 @@ using CinemaData.ModelLayer;
 using CinemaData.DatabaseLayer;
 using Microsoft.Extensions.Configuration;
 using CinemaService.BusinessLogicLayer;
-using CinemaService.Buffer;
 
 namespace CinemaService.BusinesslogicLayer
 {

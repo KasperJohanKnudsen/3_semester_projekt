@@ -61,15 +61,16 @@ namespace CinemaData.DatabaseLayer
                                 foreach (SeatBooking sb in newReservations)
                                 {
                                     ReadSeatbookings(aBooking, out rowNo, out seatNo, out foundSeatBooking, readCommand, sb);
+                                    if (foundSeatBooking.IsReserved)
+                                    {
+                                        ThreadStatus(aBooking, " is rolled back");
+                                        transaction.Rollback();
+                                        return -1;
+                                    }
                                 }
 
 
-                                if (foundSeatBooking.IsReserved)
-                                {
-                                    ThreadStatus(aBooking, " is rolled back");
-                                    transaction.Rollback();
-                                    return -1;
-                                }
+                               
                             }
                             //_delay -= 10000;
                             //System.Threading.Thread.Sleep(_delay);

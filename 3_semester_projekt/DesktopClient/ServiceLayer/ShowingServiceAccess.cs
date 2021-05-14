@@ -11,7 +11,7 @@ namespace DesktopClient.ServiceLayer
 {
     class ShowingServiceAccess
     {
-        static readonly string restUrl = "http://localhost:35452/api/showings";
+        static readonly string restUrl = "http://localhost:35452/api/movies";
         readonly HttpClient _httpClient;
 
         public HttpStatusCode CurrentHttpStatusCode { get; set; }
@@ -70,6 +70,41 @@ namespace DesktopClient.ServiceLayer
             }
             return showingsFromService;
 
+        }
+
+        public async Task<bool> DeleteShowing(int showingId)
+        {
+            bool changedOk;
+
+            string useRestUrl = null;
+            string jsonString = null;
+            HttpResponseMessage response = null;
+
+            useRestUrl = restUrl + $"/showings/{showingId}";
+
+            try
+            {
+                var uri = new Uri(string.Format(useRestUrl, string.Empty));
+                //jsonString = JsonConvert.SerializeObject(showingId);
+                //var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+
+                response = await _httpClient.DeleteAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    changedOk = true;
+                }
+                else
+                {
+                    changedOk = false;
+                }
+            }
+            catch
+            {
+                changedOk = false;
+            }
+
+            return changedOk;
         }
     }
 }

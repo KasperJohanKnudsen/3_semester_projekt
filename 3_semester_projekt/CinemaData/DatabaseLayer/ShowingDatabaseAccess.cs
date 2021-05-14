@@ -31,8 +31,29 @@ namespace CinemaData.DatabaseLayer
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            string queryString = "DELETE FROM Showing where ShowingId = @ShowingId";
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            using (SqlCommand deleteCommand = new SqlCommand(queryString, con))
+            {
+                SqlParameter idParam = new SqlParameter("@ShowingId", id);
+                deleteCommand.Parameters.Add(idParam);
+
+                con.Open();
+                try
+                {
+                    deleteCommand.ExecuteScalar();
+                    return true;
+                }
+                catch(Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e.Message);
+                    return false;
+                }
+                
+            }
+            
         }
+
 
         public IEnumerable<Showing> GetAll()
         {

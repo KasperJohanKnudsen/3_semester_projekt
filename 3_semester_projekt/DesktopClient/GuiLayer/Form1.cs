@@ -78,5 +78,25 @@ namespace DesktopClient
                          labelProcessSave.Text = messageText;
             */
         }
+
+        private void EnteredShowingId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void DeleteButton_Click(object sender, EventArgs e)
+        {
+            int showingId = 0;
+            if (Int32.TryParse(EnteredShowingId.Text, out showingId))
+            {
+                await _showingControl.Delete(showingId);
+            }
+            else
+            {
+                DeleteStatus.Text = "Sletning lykkes ikke";
+            }
+
+            
+        }
     }
 }

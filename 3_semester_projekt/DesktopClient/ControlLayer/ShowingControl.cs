@@ -20,9 +20,21 @@ namespace DesktopClient.ControlLayer
         {
             List<Showing> foundShowings = await _sAccess.GetShowings();
             return foundShowings;
+        }
 
-
-
+        public async Task<bool> Delete(int showingId)
+        {
+            bool wasUpdatedOk = false;
+            ShowingServiceAccess sService = new ShowingServiceAccess();
+            try
+            {
+                wasUpdatedOk = await sService.DeleteShowing(showingId);
+            }
+            catch (Exception)
+            {
+                wasUpdatedOk = false;
+            }
+            return wasUpdatedOk;
         }
     }
 }

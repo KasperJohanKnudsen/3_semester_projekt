@@ -40,6 +40,10 @@ namespace DesktopClient
             this.ListBoxSeatsInShowing = new System.Windows.Forms.ListBox();
             this.ChooseSeatLabel = new System.Windows.Forms.Label();
             this.WarningLabel = new System.Windows.Forms.Label();
+            this.EnteredShowingId = new System.Windows.Forms.TextBox();
+            this.DeleteButton = new System.Windows.Forms.Button();
+            this.DeleteLabel = new System.Windows.Forms.Label();
+            this.DeleteStatus = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -146,11 +150,50 @@ namespace DesktopClient
             this.WarningLabel.Size = new System.Drawing.Size(0, 15);
             this.WarningLabel.TabIndex = 8;
             // 
+            // EnteredShowingId
+            // 
+            this.EnteredShowingId.Location = new System.Drawing.Point(502, 124);
+            this.EnteredShowingId.Name = "EnteredShowingId";
+            this.EnteredShowingId.Size = new System.Drawing.Size(100, 23);
+            this.EnteredShowingId.TabIndex = 9;
+            this.EnteredShowingId.TextChanged += new System.EventHandler(this.EnteredShowingId_TextChanged);
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(502, 153);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteButton.TabIndex = 10;
+            this.DeleteButton.Text = "Slet";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // DeleteLabel
+            // 
+            this.DeleteLabel.AutoSize = true;
+            this.DeleteLabel.Location = new System.Drawing.Point(462, 106);
+            this.DeleteLabel.Name = "DeleteLabel";
+            this.DeleteLabel.Size = new System.Drawing.Size(216, 15);
+            this.DeleteLabel.TabIndex = 11;
+            this.DeleteLabel.Text = "Indtast id på forestilling som skal slettes";
+            // 
+            // DeleteStatus
+            // 
+            this.DeleteStatus.AutoSize = true;
+            this.DeleteStatus.Location = new System.Drawing.Point(468, 186);
+            this.DeleteStatus.Name = "DeleteStatus";
+            this.DeleteStatus.Size = new System.Drawing.Size(0, 15);
+            this.DeleteStatus.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 338);
+            this.Controls.Add(this.DeleteStatus);
+            this.Controls.Add(this.DeleteLabel);
+            this.Controls.Add(this.DeleteButton);
+            this.Controls.Add(this.EnteredShowingId);
             this.Controls.Add(this.WarningLabel);
             this.Controls.Add(this.ChooseSeatLabel);
             this.Controls.Add(this.groupBox2);
@@ -183,6 +226,10 @@ namespace DesktopClient
         private System.Windows.Forms.ListBox ListBoxSeatsInShowing;
         private System.Windows.Forms.Label ChooseSeatLabel;
         private System.Windows.Forms.Label WarningLabel;
+        private System.Windows.Forms.TextBox EnteredShowingId;
+        private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Label DeleteLabel;
+        private System.Windows.Forms.Label DeleteStatus;
     }
 }
 

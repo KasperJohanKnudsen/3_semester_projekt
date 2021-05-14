@@ -35,6 +35,24 @@ namespace CinemaDataTest
         }
 
         [Fact]
+        public void TestDeleteShowingById()
+        {
+            // Arrange
+            int Insertedid = 12;
+
+            // Act
+            _showingAccess.Delete(Insertedid);
+
+            // Assert
+            
+
+
+
+            extraOutput.WriteLine(_showingAccess.GetById(12).ToString());
+
+        }
+
+        [Fact]
         public void TestGetSeatBookingByShowingId()
         {
 

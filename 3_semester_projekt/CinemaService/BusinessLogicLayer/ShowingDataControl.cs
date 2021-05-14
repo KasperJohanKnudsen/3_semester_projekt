@@ -24,7 +24,17 @@ namespace CinemaService.BusinessLogicLayer
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            bool wasOk;
+            try
+            {
+                wasOk = _showingAccess.Delete(id);
+            }
+            catch
+            {
+                wasOk = false;
+            }
+            return wasOk;
+
         }
 
         public Showing GetById(int id)

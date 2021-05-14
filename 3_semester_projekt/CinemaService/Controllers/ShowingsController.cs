@@ -117,6 +117,26 @@ namespace CinemaService.Controllers
 
         }
 
+        [HttpDelete, Route("showings/{showingId}")]
+        public IActionResult Delete(int showingId)
+        {
+            IActionResult foundToReturn;
+            ShowingDataControl showingDataControl = new ShowingDataControl(_configuration);
+            bool wasOk = showingDataControl.Delete(showingId);
+            if (wasOk)
+            {
+                foundToReturn = Ok();
+            }
+            else
+            {
+                foundToReturn = new StatusCodeResult(200);
+            }
+
+            return foundToReturn;
+
+
+        }
+
 
         [HttpGet]
         [Route("showings/{showingId}/seatbookings")]

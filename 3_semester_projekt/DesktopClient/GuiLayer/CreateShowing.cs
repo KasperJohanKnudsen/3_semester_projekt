@@ -27,6 +27,7 @@ namespace DesktopClient {
                 ErrorLbl.Text = "Der skete en fejl under oprettelse.";
             }
             else {
+                System.Diagnostics.Debug.WriteLine(insertedId);
                 ErrorLbl.Text = "Showing er oprettet";
             }
 

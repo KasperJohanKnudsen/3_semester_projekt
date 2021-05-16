@@ -61,3 +61,4 @@ C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\DesktopClient\obj
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.dll
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.pdb
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.genruntimeconfig.cache
+C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\DesktopClient\obj\Debug\netcoreapp3.1\DesktopClient.CreateShowing.resources

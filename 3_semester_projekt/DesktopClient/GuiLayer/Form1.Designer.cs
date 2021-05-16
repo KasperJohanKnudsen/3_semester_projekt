@@ -40,6 +40,7 @@ namespace DesktopClient
             this.ListBoxSeatsInShowing = new System.Windows.Forms.ListBox();
             this.ChooseSeatLabel = new System.Windows.Forms.Label();
             this.WarningLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -146,11 +147,22 @@ namespace DesktopClient
             this.WarningLabel.Size = new System.Drawing.Size(0, 15);
             this.WarningLabel.TabIndex = 8;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(502, 88);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Opret Showing";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 338);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.WarningLabel);
             this.Controls.Add(this.ChooseSeatLabel);
             this.Controls.Add(this.groupBox2);
@@ -183,6 +195,7 @@ namespace DesktopClient
         private System.Windows.Forms.ListBox ListBoxSeatsInShowing;
         private System.Windows.Forms.Label ChooseSeatLabel;
         private System.Windows.Forms.Label WarningLabel;
+        private System.Windows.Forms.Button button1;
     }
 }
 

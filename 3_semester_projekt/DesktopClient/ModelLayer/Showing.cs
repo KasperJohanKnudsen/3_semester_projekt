@@ -6,6 +6,9 @@ namespace DesktopClient.ModelLayer
 {
     public class Showing
     {
+        private string movie;
+        private string date;
+
         public string MovieName { get; set; }
         public string Theater { get; set; }
         public DateTime StartTime { get; set; }
@@ -21,6 +24,13 @@ namespace DesktopClient.ModelLayer
             StartTime = startTime;
             Date = date;
         }
+
+        public Showing(string movie, string theater, DateTime date) {
+            this.movie = movie;
+            Theater = theater;
+            Date = date;
+        }
+
         public override string ToString()
         {
             string sText = ShowingOrder;

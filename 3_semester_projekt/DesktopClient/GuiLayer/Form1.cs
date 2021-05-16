@@ -78,5 +78,10 @@ namespace DesktopClient
                          labelProcessSave.Text = messageText;
             */
         }
+
+        private void button1_Click(object sender, EventArgs e) {
+            CreateShowing form = new CreateShowing();
+            form.Show();
+        }
     }
 }

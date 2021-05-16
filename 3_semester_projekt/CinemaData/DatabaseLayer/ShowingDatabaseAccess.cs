@@ -24,9 +24,71 @@ namespace CinemaData.DatabaseLayer
         {
             _connectionString = inConnectionString;
         }
-        public int Create(Showing entity)
-        {
-            throw new NotImplementedException();
+
+        public int Create(Showing aShowing) {
+            // I think we use -1 because then we are sure that it is not from the database if it returns that
+            int insertedId = -1;
+
+            //Create the command with a sql script
+            string insertString = "insert into Showing(MovieId, TheaterID, StartTime, Date, SeatBookingID) OUTPUT INSERTED.SHOWINGID values (@MovieId, @TheaterID, @StartTime, @Date, @SeatBookingID)";
+
+            try {
+                using (SqlConnection con = new SqlConnection(_connectionString)) {
+
+                    // Opens the connection
+                    con.Open();
+                    using (SqlTransaction transaction = con.BeginTransaction(System.Data.IsolationLevel.RepeatableRead)) { // not sure if repeatable read is needed
+                        using (SqlCommand CreateCommand = new SqlCommand(insertString, con, transaction)) {
+
+
+                            // need to insert the showing itself 
+
+
+
+
+                            // create individual rows and seats for the theater for the customer to book
+                            for (int rows = 1; rows < 7; rows++) { // we have 7 rows in each cinema
+                                for (int seats = 1; seats < 12; seats++) { // we have 12 seats on each row
+                                    CreateSeatBookings(aShowing, insertedId, rows, seats, CreateCommand, con, transaction);
+                                }
+
+                            }
+                            transaction.Commit();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+            // Returns the new id, if it's -1 something is wrong
+            return insertedId;
+        }
+
+        private void CreateSeatBookings(Showing aShowing, int insertedId, int rows, int seats, SqlCommand CreateCommand, SqlConnection con, SqlTransaction transaction) {
+
+            string sqlInsert = "insert ino SeatBooking set IsReserved = 0, RowNo = @RowNo, SeatNo = @SeatNo, ShowingID = @ShowingID";
+            using (SqlCommand UpdateCommand = new SqlCommand(sqlInsert, con, transaction)) {
+                CreateCommand.Parameters.Clear();
+                // Prepare SQL
+                // Prepares a parameters inside the database to receive a property from the class
+                SqlParameter rowParam = new SqlParameter("@RowNo", rows);
+                SqlParameter SeatsParam = new SqlParameter("@SeatNo", seats);
+                SqlParameter ShowingIDParam = new SqlParameter("@ShowingID", aShowing.ID);
+
+
+                //Adds the above parameter to a Command
+                CreateCommand.Parameters.Add(rowParam);
+                CreateCommand.Parameters.Add(SeatsParam);
+                CreateCommand.Parameters.Add(ShowingIDParam);
+
+
+
+                // Execute the command, save and read generated key (ID)
+                insertedId = (int)CreateCommand.ExecuteScalar();
+
+            }
         }
 
         public bool Delete(int id)

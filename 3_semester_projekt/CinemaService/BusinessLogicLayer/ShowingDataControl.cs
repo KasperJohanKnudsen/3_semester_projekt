@@ -17,9 +17,16 @@ namespace CinemaService.BusinessLogicLayer
             _showingAccess = new ShowingDatabaseAccess(inConfiguration);
             _sAccess = new ShowingDatabaseAccess(inConfiguration);
         }
-        public int Add(Showing entityToAdd)
+        public int Add(Showing showing)
         {
-            throw new NotImplementedException();
+            int insertedId;
+            try {
+                insertedId = _showingAccess.Create(showing);
+            }
+            catch {
+                insertedId = -1;
+            }
+            return insertedId;
         }
 
         public bool Delete(int id)

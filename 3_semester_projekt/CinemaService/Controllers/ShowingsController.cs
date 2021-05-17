@@ -163,6 +163,31 @@ namespace CinemaService.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult<int> PostNewShowing(Showing inShowing) {
+            //int showId, List< SeatBooking > newSeatBookings
+
+            int movieID = inShowing.MovieId;
+            int theaterID = inShowing.TheaterId;
+
+            ActionResult<int> foundReturn;
+            int insertedId = -1;
+            if (inShowing != null) {
+
+                insertedId = _sControl.Add(inShowing);
+            }
+            if (insertedId > 0) {
+                foundReturn = Ok(insertedId);
+            }
+            else {
+                foundReturn = new StatusCodeResult(500);
+                // Internal server error
+            }
+
+            return foundReturn;
+
+        }
+
 
         [HttpGet]
         [Route("showings/{showingId}/seatbookings")]

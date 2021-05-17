@@ -20,7 +20,7 @@ namespace DesktopClient {
             //int movieId = SelectMovieBox.Items.;
             //int theaterId = SelectTheaterBox.Text;
             DateTime date = monthCalendar1.SelectionRange.Start;
-            insertedId = await _showingControl.CreateShowing(4, 10, date); //hardcode dropdowns cause lack of time
+            insertedId = await _showingControl.CreateShowing(4, 9, date); //hardcode dropdowns cause lack of time
             if (insertedId <= 0) {
                 ErrorLbl.Text = "Der skete en fejl under oprettelse.";
             }

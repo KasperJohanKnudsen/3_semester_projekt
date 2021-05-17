@@ -24,14 +24,13 @@ namespace CinemaData.ModelLayer
             StartTime = startTime;
             Date = date;
         }
-        public Showing(int movieId, int theaterId, DateTime startTime, DateTime date, int seatbookingId) : this(startTime, date)
+        public Showing(int movieId, int theaterId, DateTime startTime, DateTime date) : this(startTime, date)
         {
 
             MovieId = movieId;
             TheaterId = theaterId;
             StartTime = startTime;
             Date = date;
-            SeatBookingId = seatbookingId;
         }
         public Showing(int id, int movieId, int theaterId, DateTime startTime, DateTime date, int seatbookingId) : this(startTime, date)
         {

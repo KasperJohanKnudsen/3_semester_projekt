@@ -98,5 +98,10 @@ namespace DesktopClient
 
             
         }
+
+        private void CreateShowingBtn_Click(object sender, EventArgs e) {
+            CreateShowing form = new CreateShowing();
+            form.Show();
+        }
     }
 }

@@ -36,5 +36,16 @@ namespace DesktopClient.ControlLayer
             }
             return wasUpdatedOk;
         }
+        public async Task<int> CreateShowing(int movieId, int theaterId, DateTime date) {
+            Showing newShowing = new Showing(movieId, theaterId, date, date);
+            int insertedId = -1;
+            try {
+                insertedId = await _sAccess.CreateShowing(newShowing);
+            }
+            catch (Exception) {
+                insertedId = -1;
+            }
+            return insertedId;
+        }
     }
 }

@@ -24,9 +24,86 @@ namespace CinemaData.DatabaseLayer
         {
             _connectionString = inConnectionString;
         }
-        public int Create(Showing entity)
-        {
-            throw new NotImplementedException();
+        public int Create(Showing aShowing) {
+            // I think we use -1 because then we are sure that it is not from the database if it returns that
+            int insertedId = -1;
+
+            //Create the command with a sql script
+            string insertString = "insert into Showing(MovieId, TheaterID, StartTime, Date) OUTPUT INSERTED.SHOWINGID values (@MovieId, @TheaterID, @StartTime, @Date)";
+
+            try {
+                using (SqlConnection con = new SqlConnection(_connectionString)) {
+
+                    // Opens the connection
+                    con.Open();
+                    using (SqlTransaction transaction = con.BeginTransaction(System.Data.IsolationLevel.RepeatableRead)) { // not sure if repeatable read is needed
+                        using (SqlCommand CreateCommand = new SqlCommand(insertString, con, transaction)) {
+
+
+                            SqlParameter movieParam = new SqlParameter("@MovieId", aShowing.MovieId);
+                            SqlParameter theaterIdParam = new SqlParameter("@TheaterId", aShowing.TheaterId);
+                            SqlParameter startTimeParam = new SqlParameter("@StartTime", aShowing.StartTime);
+                            SqlParameter dateParam = new SqlParameter("@Date", aShowing.Date);
+
+
+                            CreateCommand.Parameters.Add(movieParam);
+                            CreateCommand.Parameters.Add(theaterIdParam);
+                            CreateCommand.Parameters.Add(startTimeParam);
+                            CreateCommand.Parameters.Add(dateParam);
+                            // need to insert the showing itself 
+
+
+
+                            insertedId = (int)CreateCommand.ExecuteScalar();
+
+
+                            // create individual rows and seats for the theater for the customer to book
+                            for (int rows = 1; rows <= 7; rows++) { // we have 7 rows in each cinema
+                                for (int seats = 1; seats <= 12; seats++) { // we have 12 seats on each row
+                                    CreateSeatBookings(aShowing, insertedId, rows, seats, CreateCommand, con, transaction, insertedId);
+                                }
+
+                            }
+
+                            transaction.Commit();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+            // Returns the new id, if it's -1 something is wrong
+            return insertedId;
+        }
+
+        private void CreateSeatBookings(Showing aShowing, int insertedId, int rows, int seats, SqlCommand CreateCommand, SqlConnection con, SqlTransaction transaction, int showId) {
+
+            string sqlInsert = "insert into SeatBooking(IsReserved, RowNo, SeatNo, ShowingID) values (0, @RowNo, @SeatNo, @ShowingID)";
+
+            using (SqlCommand InsertCommand = new SqlCommand(sqlInsert, con, transaction)) {
+                InsertCommand.Parameters.Clear();
+                // Prepare SQL
+                // Prepares a parameters inside the database to receive a property from the class
+                //SqlParameter isReserved = new SqlParameter("@IsReserved", 0);
+                SqlParameter rowParam = new SqlParameter("@RowNo", rows);
+                SqlParameter SeatsParam = new SqlParameter("@SeatNo", seats);
+                SqlParameter ShowingIDParam = new SqlParameter("@ShowingID", showId);
+
+
+                //Adds the above parameter to a Command
+                //InsertCommand.Parameters.Add(isReserved);
+                InsertCommand.Parameters.Add(rowParam);
+                InsertCommand.Parameters.Add(SeatsParam);
+                InsertCommand.Parameters.Add(ShowingIDParam);
+
+
+
+                // Execute the command, save and read generated key (ID)
+                InsertCommand.ExecuteScalar();
+
+            }
         }
 
         public bool Delete(int id)

@@ -44,6 +44,7 @@ namespace DesktopClient
             this.DeleteButton = new System.Windows.Forms.Button();
             this.DeleteLabel = new System.Windows.Forms.Label();
             this.DeleteStatus = new System.Windows.Forms.Label();
+            this.CreateShowingBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -185,11 +186,22 @@ namespace DesktopClient
             this.DeleteStatus.Size = new System.Drawing.Size(0, 15);
             this.DeleteStatus.TabIndex = 12;
             // 
+            // CreateShowingBtn
+            // 
+            this.CreateShowingBtn.Location = new System.Drawing.Point(502, 61);
+            this.CreateShowingBtn.Name = "CreateShowingBtn";
+            this.CreateShowingBtn.Size = new System.Drawing.Size(135, 23);
+            this.CreateShowingBtn.TabIndex = 13;
+            this.CreateShowingBtn.Text = "Opret ny Showing";
+            this.CreateShowingBtn.UseVisualStyleBackColor = true;
+            this.CreateShowingBtn.Click += new System.EventHandler(this.CreateShowingBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 338);
+            this.Controls.Add(this.CreateShowingBtn);
             this.Controls.Add(this.DeleteStatus);
             this.Controls.Add(this.DeleteLabel);
             this.Controls.Add(this.DeleteButton);
@@ -230,6 +242,7 @@ namespace DesktopClient
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.Label DeleteLabel;
         private System.Windows.Forms.Label DeleteStatus;
+        private System.Windows.Forms.Button CreateShowingBtn;
     }
 }
 

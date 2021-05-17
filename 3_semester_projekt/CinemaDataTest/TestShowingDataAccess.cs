@@ -35,6 +35,46 @@ namespace CinemaDataTest
         }
 
         [Fact]
+        public void TestGetShowingAll() {
+            // Arrange
+            List<Showing> foundShowings = new List<Showing>();
+            string output = null;
+            // Act
+            foundShowings = (List<Showing>)_showingAccess.GetAll();
+
+            // Assert
+            //Assert.True();
+
+            foreach (Showing item in foundShowings) {
+                output = item.ID.ToString();
+            }
+
+
+
+            extraOutput.WriteLine(output);
+
+        }
+
+        [Fact]
+        public void TestCreateShowing() {
+            // Arrange
+            Showing aShowing = new Showing(3, 10, DateTime.Now, DateTime.Now);
+
+            // Act
+            _showingAccess.Create(aShowing);
+
+            // Assert
+            Assert.True(aShowing.MovieId == 3);
+
+
+            // MovieId, TheaterID, StartTime, Date, SeatBookingID
+
+
+            //extraOutput.WriteLine(foundShowing.StartTime.ToString());
+
+        }
+
+        [Fact]
         public void TestDeleteShowingById()
         {
             // Arrange

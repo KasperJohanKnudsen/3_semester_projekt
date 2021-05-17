@@ -22,6 +22,32 @@ namespace CinemaService.Controllers
             _configuration = inConfiguration;
             _sControl = new ShowingDataControl(_configuration);
         }
+
+        [HttpGet]
+        public IActionResult Get() {
+            IActionResult foundReturn;
+            // retrieve and convert data
+            List<Showing> foundShowings = (List<Showing>)_sControl.Get();
+
+            // evaluate
+            if (foundShowings != null) {
+                if (foundShowings.Count > 0) {
+                    foundReturn = Ok(foundShowings);
+                    // Statuscode 200
+                }
+                else {
+                    foundReturn = new StatusCodeResult(204);
+                    // Ok, but no content
+                }
+            }
+            else {
+                foundReturn = new StatusCodeResult(500);
+                // Internal server error
+            }
+            // send response back to client
+            return foundReturn;
+        }
+
         // URL: api/bookings
         /*
         [HttpGet]
@@ -79,7 +105,7 @@ namespace CinemaService.Controllers
         }
         */
 
-        
+
 
         [HttpGet, Route("showings/{showingId}")]
         public IActionResult Get(int showingId = 0, bool includeReservations = false)

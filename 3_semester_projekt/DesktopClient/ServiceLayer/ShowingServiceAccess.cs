@@ -106,5 +106,28 @@ namespace DesktopClient.ServiceLayer
 
             return changedOk;
         }
+        public async Task<int> CreateShowing(Showing aShowing) {
+            int insertedBookingId;
+            string useRestUrl = restUrl;
+            var uri = new Uri(string.Format(useRestUrl, string.Empty));
+            //
+            try {
+                var json = JsonConvert.SerializeObject(aShowing);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = null;
+                response = await _httpClient.PostAsync(uri, content);
+                string resultingIdString = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode) {
+                    Int32.TryParse(resultingIdString, out insertedBookingId);
+                }
+                else {
+                    insertedBookingId = -2;
+                }
+            }
+            catch {
+                insertedBookingId = -3;
+            }
+            return insertedBookingId;
+        }
     }
 }

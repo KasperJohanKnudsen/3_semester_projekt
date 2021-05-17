@@ -30,7 +30,10 @@ namespace CinemaData.DatabaseLayer
             int insertedId = -1;
 
             //Create the command with a sql script
-            string insertString = "insert into Showing(MovieId, TheaterID, StartTime, Date, SeatBookingID) OUTPUT INSERTED.SHOWINGID values (@MovieId, @TheaterID, @StartTime, @Date, @SeatBookingID)";
+            string insertString = "insert into Showing(MovieId, TheaterID, StartTime, Date) OUTPUT INSERTED.SHOWINGID values (@MovieId, @TheaterID, @StartTime, @Date)";
+
+
+
 
             try {
                 using (SqlConnection con = new SqlConnection(_connectionString)) {
@@ -41,18 +44,31 @@ namespace CinemaData.DatabaseLayer
                         using (SqlCommand CreateCommand = new SqlCommand(insertString, con, transaction)) {
 
 
+                            SqlParameter movieParam = new SqlParameter("@MovieId", aShowing.MovieId);
+                            SqlParameter theaterIdParam = new SqlParameter("@TheaterId", aShowing.TheaterId);
+                            SqlParameter startTimeParam = new SqlParameter("@StartTime", aShowing.StartTime);
+                            SqlParameter dateParam = new SqlParameter("@Date", aShowing.Date);
+
+
+                            CreateCommand.Parameters.Add(movieParam);
+                            CreateCommand.Parameters.Add(theaterIdParam);
+                            CreateCommand.Parameters.Add(startTimeParam);
+                            CreateCommand.Parameters.Add(dateParam);
                             // need to insert the showing itself 
 
 
 
+                            insertedId = (int)CreateCommand.ExecuteScalar();
+
 
                             // create individual rows and seats for the theater for the customer to book
-                            for (int rows = 1; rows < 7; rows++) { // we have 7 rows in each cinema
-                                for (int seats = 1; seats < 12; seats++) { // we have 12 seats on each row
-                                    CreateSeatBookings(aShowing, insertedId, rows, seats, CreateCommand, con, transaction);
+                            for (int rows = 1; rows <= 7; rows++) { // we have 7 rows in each cinema
+                                for (int seats = 1; seats <= 12; seats++) { // we have 12 seats on each row
+                                    CreateSeatBookings(aShowing, insertedId, rows, seats, CreateCommand, con, transaction, insertedId);
                                 }
 
                             }
+                            
                             transaction.Commit();
                         }
                     }
@@ -66,27 +82,30 @@ namespace CinemaData.DatabaseLayer
             return insertedId;
         }
 
-        private void CreateSeatBookings(Showing aShowing, int insertedId, int rows, int seats, SqlCommand CreateCommand, SqlConnection con, SqlTransaction transaction) {
+        private void CreateSeatBookings(Showing aShowing, int insertedId, int rows, int seats, SqlCommand CreateCommand, SqlConnection con, SqlTransaction transaction, int showId) {
 
-            string sqlInsert = "insert ino SeatBooking set IsReserved = 0, RowNo = @RowNo, SeatNo = @SeatNo, ShowingID = @ShowingID";
-            using (SqlCommand UpdateCommand = new SqlCommand(sqlInsert, con, transaction)) {
-                CreateCommand.Parameters.Clear();
+            string sqlInsert = "insert into SeatBooking(IsReserved, RowNo, SeatNo, ShowingID) values (0, @RowNo, @SeatNo, @ShowingID)";
+
+            using (SqlCommand InsertCommand = new SqlCommand(sqlInsert, con, transaction)) {
+                InsertCommand.Parameters.Clear();
                 // Prepare SQL
                 // Prepares a parameters inside the database to receive a property from the class
+                //SqlParameter isReserved = new SqlParameter("@IsReserved", 0);
                 SqlParameter rowParam = new SqlParameter("@RowNo", rows);
                 SqlParameter SeatsParam = new SqlParameter("@SeatNo", seats);
-                SqlParameter ShowingIDParam = new SqlParameter("@ShowingID", aShowing.ID);
+                SqlParameter ShowingIDParam = new SqlParameter("@ShowingID", showId);
 
 
                 //Adds the above parameter to a Command
-                CreateCommand.Parameters.Add(rowParam);
-                CreateCommand.Parameters.Add(SeatsParam);
-                CreateCommand.Parameters.Add(ShowingIDParam);
+                //InsertCommand.Parameters.Add(isReserved);
+                InsertCommand.Parameters.Add(rowParam);
+                InsertCommand.Parameters.Add(SeatsParam);
+                InsertCommand.Parameters.Add(ShowingIDParam);
 
 
 
                 // Execute the command, save and read generated key (ID)
-                insertedId = (int)CreateCommand.ExecuteScalar();
+                InsertCommand.ExecuteScalar();
 
             }
         }
@@ -240,7 +259,7 @@ namespace CinemaData.DatabaseLayer
             int tempTheaterId;
             DateTime tempStartTime;
             DateTime tempDate;
-            int tempSeatBookingId;
+            int tempSeatBookingId = productReader["SeatbookingID"] as int?  ?? -1;
 
 
             tempId = productReader.GetInt32(productReader.GetOrdinal("ShowingID"));
@@ -248,7 +267,7 @@ namespace CinemaData.DatabaseLayer
             tempTheaterId = productReader.GetInt32(productReader.GetOrdinal("TheaterID"));
             tempStartTime = productReader.GetDateTime(productReader.GetOrdinal("StartTime"));
             tempDate = productReader.GetDateTime(productReader.GetOrdinal("Date"));
-            tempSeatBookingId = productReader.GetInt32(productReader.GetOrdinal("SeatBookingID"));
+            //tempSeatBookingId = productReader.GetInt32(productReader.GetOrdinal("SeatBookingID"));
 
 
             //Build the booking with the values from the database

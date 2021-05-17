@@ -10,6 +10,8 @@ namespace DesktopClient.ModelLayer
         private string date;
 
         public string MovieName { get; set; }
+        public int MovieId { get; set; }
+        public int TheaterId { get; set; }
         public string Theater { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime Date { get; set; }
@@ -17,10 +19,10 @@ namespace DesktopClient.ModelLayer
 
         public Showing() { }
 
-        public Showing(string movieName, string theater, DateTime startTime, DateTime date)
+        public Showing(int movieId, int theaterId, DateTime startTime, DateTime date)
         {
-            MovieName = movieName;
-            Theater = theater;
+            MovieId = movieId;
+            TheaterId = theaterId;
             StartTime = startTime;
             Date = date;
         }

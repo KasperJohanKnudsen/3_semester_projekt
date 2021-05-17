@@ -55,13 +55,13 @@
             // 
             this.SelectMovieBox.FormattingEnabled = true;
             this.SelectMovieBox.Items.AddRange(new object[] {
-            "Løvernes Konge",
-            "Ringenes Herre"});
+            "Løvernes Konge"});
             this.SelectMovieBox.Location = new System.Drawing.Point(63, 126);
             this.SelectMovieBox.Name = "SelectMovieBox";
             this.SelectMovieBox.Size = new System.Drawing.Size(227, 23);
             this.SelectMovieBox.TabIndex = 4;
             this.SelectMovieBox.Text = "Vælg Film";
+            this.SelectMovieBox.SelectedIndexChanged += new System.EventHandler(this.SelectMovieBox_SelectedIndexChanged);
             // 
             // monthCalendar1
             // 
@@ -74,8 +74,7 @@
             // 
             this.SelectTheaterBox.FormattingEnabled = true;
             this.SelectTheaterBox.Items.AddRange(new object[] {
-            "1",
-            "2"});
+            "10"});
             this.SelectTheaterBox.Location = new System.Drawing.Point(63, 166);
             this.SelectTheaterBox.Name = "SelectTheaterBox";
             this.SelectTheaterBox.Size = new System.Drawing.Size(227, 23);

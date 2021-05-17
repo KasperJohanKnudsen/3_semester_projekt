@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\CinemaDataTest\\CinemaDataTest.csproj": {}
+    "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\CinemaDataTest\\CinemaDataTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\CinemaDataTest\\CinemaDataTest.csproj": {
+    "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\CinemaDataTest\\CinemaDataTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\CinemaDataTest\\CinemaDataTest.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\CinemaDataTest\\CinemaDataTest.csproj",
         "projectName": "CinemaDataTest",
-        "projectPath": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\CinemaDataTest\\CinemaDataTest.csproj",
-        "packagesPath": "C:\\Users\\kaspe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\CinemaDataTest\\obj\\",
+        "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\CinemaDataTest\\CinemaDataTest.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\CinemaDataTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kaspe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\CinemaData\\CinemaData.csproj": {
-                "projectPath": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\CinemaData\\CinemaData.csproj"
+              "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\CinemaData\\CinemaData.csproj": {
+                "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\CinemaData\\CinemaData.csproj"
               }
             }
           }
@@ -84,17 +84,17 @@
         }
       }
     },
-    "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\CinemaData\\CinemaData.csproj": {
+    "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\CinemaData\\CinemaData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\CinemaData\\CinemaData.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\CinemaData\\CinemaData.csproj",
         "projectName": "CinemaData",
-        "projectPath": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\CinemaData\\CinemaData.csproj",
-        "packagesPath": "C:\\Users\\kaspe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kaspe\\Documents\\3_semester_projekt\\3_semester_projekt\\CinemaData\\obj\\",
+        "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\CinemaData\\CinemaData.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PC\\Documents\\GitHub\\3_semester_projekt\\3_semester_projekt\\CinemaData\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kaspe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

@@ -19,17 +19,22 @@ namespace DesktopClient {
 
         private async void CreateShowingSubmit_Click(object sender, EventArgs e) {
             int insertedId = -1;
-            string movie = SelectMovieBox.Text;
-            string theater = SelectTheaterBox.Text;
+            //int movieId = SelectMovieBox.Items.;
+            //int theaterId = SelectTheaterBox.Text;
             DateTime date = monthCalendar1.SelectionRange.Start;
-            insertedId = await _showingControl.CreateShowing(movie, theater, date);
-            if (insertedId == -1) {
+            insertedId = await _showingControl.CreateShowing(4, 10, date);
+            if (insertedId <= 0) {
                 ErrorLbl.Text = "Der skete en fejl under oprettelse.";
             }
             else {
                 System.Diagnostics.Debug.WriteLine(insertedId);
                 ErrorLbl.Text = "Showing er oprettet";
             }
+
+        }
+
+        private void SelectMovieBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

@@ -23,20 +23,20 @@ namespace CinemaService.Controllers
             _sControl = new ShowingDataControl(_configuration);
         }
         // URL: api/bookings
-        /*
+        
         [HttpGet]
-        public ActionResult<List<ShowingdataReadDto>> Get()
+        public IActionResult Get()
         {
-            ActionResult<List<ShowingdataReadDto>> foundReturn;
+            IActionResult foundReturn;
             // retrieve and convert data
             List<Showing> foundShowings = (List<Showing>)_sControl.Get();
-            List<ShowingdataReadDto> foundDts = ModelConversion.ShowingReadDtoConvert.FromShowingCollection(foundShowings);
+            
             // evaluate
-            if (foundDts != null)
+            if (foundShowings != null)
             {
-                if (foundDts.Count > 0)
+                if (foundShowings.Count > 0)
                 {
-                    foundReturn = Ok(foundDts);
+                    foundReturn = Ok(foundShowings);
                     // Statuscode 200
                 }
                 else
@@ -53,7 +53,7 @@ namespace CinemaService.Controllers
             // send response back to client
             return foundReturn;
         }
-        
+        /*
         [HttpGet, Route("{id}")]
         public ActionResult<ShowingdataReadDto> Get(int id)
         {

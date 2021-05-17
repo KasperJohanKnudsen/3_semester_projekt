@@ -26,8 +26,8 @@ namespace DesktopClient.ControlLayer
         }
 
 
-        public async Task<int> CreateShowing(String movie, string theater, DateTime date) {
-            Showing newShowing = new Showing(movie, theater, date);
+        public async Task<int> CreateShowing(int movieId, int theaterId, DateTime date) {
+            Showing newShowing = new Showing(movieId, theaterId, date, date);
             int insertedId = -1;
             try {
                 insertedId = await _sAccess.CreateShowing(newShowing);

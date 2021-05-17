@@ -276,7 +276,7 @@ namespace CinemaData.DatabaseLayer
             int tempTheaterId;
             DateTime tempStartTime;
             DateTime tempDate;
-            int tempSeatBookingId;
+            int tempSeatBookingId = productReader["SeatbookingID"] as int? ?? -1;
 
 
             tempId = productReader.GetInt32(productReader.GetOrdinal("ShowingID"));
@@ -284,7 +284,7 @@ namespace CinemaData.DatabaseLayer
             tempTheaterId = productReader.GetInt32(productReader.GetOrdinal("TheaterID"));
             tempStartTime = productReader.GetDateTime(productReader.GetOrdinal("StartTime"));
             tempDate = productReader.GetDateTime(productReader.GetOrdinal("Date"));
-            tempSeatBookingId = productReader.GetInt32(productReader.GetOrdinal("SeatBookingID"));
+            //tempSeatBookingId = productReader.GetInt32(productReader.GetOrdinal("SeatBookingID"));
 
 
             //Build the booking with the values from the database

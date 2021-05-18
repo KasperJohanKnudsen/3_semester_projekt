@@ -15,3 +15,4 @@ C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\APIAccess\obj\Deb
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\APIAccess\obj\Debug\netcoreapp3.1\APIAccess.csproj.CoreCompileInputs.cache
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\APIAccess\obj\Debug\netcoreapp3.1\APIAccess.dll
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\APIAccess\obj\Debug\netcoreapp3.1\APIAccess.pdb
+C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\APIAccess\obj\Debug\netcoreapp3.1\APIAccess.csprojAssemblyReference.cache

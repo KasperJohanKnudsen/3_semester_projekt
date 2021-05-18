@@ -10,7 +10,7 @@ function seatchange(seatId) {
     var seatNoStr = "" + seatId;
     var currentSeat = document.getElementById(seatId);
     var foundReservationValue = currentSeat.value;
-    alert("Clicked on:" + seatId + ", value was:" + foundReservationValue);
+    //alert("Clicked on:" + seatId + ", value was:" + foundReservationValue);
     if (foundReservationValue === '0') {
         SetReservedSeats(seatId, true);
         currentSeat.value = 1;

@@ -52,7 +52,6 @@ C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebApplication\bi
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebApplication\bin\Debug\netcoreapp3.1\WebClientMVC.Views.dll
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebApplication\bin\Debug\netcoreapp3.1\WebClientMVC.Views.pdb
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebApplication\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebApplication\obj\Debug\netcoreapp3.1\WebClientMVC.csprojAssemblyReference.cache
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebApplication\obj\Debug\netcoreapp3.1\WebClientMVC.AssemblyInfoInputs.cache
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebApplication\obj\Debug\netcoreapp3.1\WebClientMVC.AssemblyInfo.cs
 C:\Users\kaspe\Documents\3_semester_projekt\3_semester_projekt\WebApplication\obj\Debug\netcoreapp3.1\WebClientMVC.csproj.CoreCompileInputs.cache

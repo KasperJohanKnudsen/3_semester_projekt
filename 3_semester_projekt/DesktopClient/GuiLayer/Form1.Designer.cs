@@ -47,7 +47,7 @@ namespace DesktopClient
             // 
             // EnteredShowingId
             // 
-            this.EnteredShowingId.Location = new System.Drawing.Point(502, 124);
+            this.EnteredShowingId.Location = new System.Drawing.Point(12, 265);
             this.EnteredShowingId.Name = "EnteredShowingId";
             this.EnteredShowingId.Size = new System.Drawing.Size(100, 23);
             this.EnteredShowingId.TabIndex = 9;
@@ -55,7 +55,7 @@ namespace DesktopClient
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(502, 153);
+            this.DeleteButton.Location = new System.Drawing.Point(12, 294);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteButton.TabIndex = 10;
@@ -66,7 +66,7 @@ namespace DesktopClient
             // DeleteLabel
             // 
             this.DeleteLabel.AutoSize = true;
-            this.DeleteLabel.Location = new System.Drawing.Point(462, 106);
+            this.DeleteLabel.Location = new System.Drawing.Point(12, 247);
             this.DeleteLabel.Name = "DeleteLabel";
             this.DeleteLabel.Size = new System.Drawing.Size(216, 15);
             this.DeleteLabel.TabIndex = 11;
@@ -82,7 +82,7 @@ namespace DesktopClient
             // 
             // CreateShowingBtn
             // 
-            this.CreateShowingBtn.Location = new System.Drawing.Point(502, 61);
+            this.CreateShowingBtn.Location = new System.Drawing.Point(12, 23);
             this.CreateShowingBtn.Name = "CreateShowingBtn";
             this.CreateShowingBtn.Size = new System.Drawing.Size(135, 23);
             this.CreateShowingBtn.TabIndex = 13;

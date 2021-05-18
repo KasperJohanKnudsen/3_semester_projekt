@@ -11,7 +11,6 @@ namespace CinemaData.ModelLayer
         public int PhoneNumber { get; set; }
         public int ShowingId { get; set; }
         public decimal Price { get; set; }
-        public int SeatBookingId { get; set; }
         
         public List<SeatBooking> SeatBookings { get; set; }
         
@@ -37,13 +36,13 @@ namespace CinemaData.ModelLayer
         {
             Price = price;
         }
-        public Booking(int phoneNumber, int showingId, decimal price, int seatbookingId) : this(price)
+        public Booking(int phoneNumber, int showingId, decimal price) : this(price)
         {
 
             PhoneNumber = phoneNumber;
             ShowingId = showingId;
             Price = price;
-            SeatBookingId = seatbookingId;
+
         }
 
         /*
@@ -58,23 +57,21 @@ namespace CinemaData.ModelLayer
         }
         */
 
-        public Booking(int id, int phoneNumber, int showingId, decimal price, int seatbookingId, List<SeatBooking> seatBookings) : this(price)
+        public Booking(int id, int phoneNumber, int showingId, decimal price, List<SeatBooking> seatBookings) : this(price)
         {
             Id = id;
             PhoneNumber = phoneNumber;
             ShowingId = showingId;
             Price = price;
-            SeatBookingId = seatbookingId;
             SeatBookings = seatBookings;
         }
 
-        public Booking(int id, int phoneNumber, int showingId, decimal price, int seatbookingId) : this(price)
+        public Booking(int id, int phoneNumber, int showingId, decimal price) : this(price)
         {
             Id = id;
             PhoneNumber = phoneNumber;
             ShowingId = showingId;
             Price = price;
-            SeatBookingId = seatbookingId;
         }
     }
 }

@@ -33,7 +33,7 @@ namespace CinemaData.DatabaseLayer
             int insertedId = -1;
 
 
-            string insertString = "insert into Booking(PhoneNumber, ShowingId, Price, SeatBookingID) OUTPUT INSERTED.BookingID values (@PhoneNumber, @ShowingID, @Price, @SeatBookingId)";
+            string insertString = "insert into Booking(PhoneNumber, ShowingId, Price) OUTPUT INSERTED.BookingID values (@PhoneNumber, @ShowingID, @Price)";
 
             try
             {
@@ -171,14 +171,12 @@ namespace CinemaData.DatabaseLayer
             int seatBookingId = _sbAccess.GetByRowNoAndSeatNo(rowNo, seatNo).ID;
 
 
-            SqlParameter seatBookingIdParam = new SqlParameter("@SeatBookingID", seatBookingId);
 
 
             //Adds the above parameter to a Command
             CreateCommand.Parameters.Add(PhoneNumberParam);
             CreateCommand.Parameters.Add(showingIdParam);
             CreateCommand.Parameters.Add(priceParam);
-            CreateCommand.Parameters.Add(seatBookingIdParam);
 
             ThreadStatus(aBooking, " is creating booking ");
 
@@ -232,7 +230,7 @@ namespace CinemaData.DatabaseLayer
             Booking readBooking;
 
 
-            string queryString = "select BookingID, PhoneNumber, ShowingID, Price, SeatBookingID from Booking";
+            string queryString = "select BookingID, PhoneNumber, ShowingID, Price from Booking";
             using (SqlConnection con = new SqlConnection(_connectionString))
             using (SqlCommand readCommand = new SqlCommand(queryString, con))
             {
@@ -255,7 +253,7 @@ namespace CinemaData.DatabaseLayer
         {
             Booking foundBooking = null;
             //
-            string queryString = "select BookingID, PhoneNumber, ShowingID, Price, SeatBookingID from Booking where BookingID = @BookingID";
+            string queryString = "select BookingID, PhoneNumber, ShowingID, Price from Booking where BookingID = @BookingID";
             using (SqlConnection con = new SqlConnection(_connectionString))
             using (SqlCommand readCommand = new SqlCommand(queryString, con))
             {
@@ -288,7 +286,6 @@ namespace CinemaData.DatabaseLayer
             int tempPhoneNumber;
             int tempShowingId;
             decimal tempPrice;
-            int tempSeatBookingId;
 
 
             tempId = productReader.GetInt32(productReader.GetOrdinal("BookingID"));
@@ -296,10 +293,9 @@ namespace CinemaData.DatabaseLayer
             tempShowingId = productReader.GetInt32(productReader.GetOrdinal("ShowingID"));
             tempPrice = productReader.GetDecimal(productReader.GetOrdinal("Price"));
 
-            tempSeatBookingId = productReader.GetInt32(productReader.GetOrdinal("SeatBookingID"));
 
             //Build the booking with the values from the database
-            foundBooking = new Booking(tempId, tempPhoneNumber, tempShowingId, tempPrice, tempSeatBookingId);
+            foundBooking = new Booking(tempId, tempPhoneNumber, tempShowingId, tempPrice);
             return foundBooking;
         }
 

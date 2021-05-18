@@ -1,7 +1,6 @@
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\APIAccess\bin\Debug\netcoreapp3.1\APIAccess.deps.json
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\APIAccess\bin\Debug\netcoreapp3.1\APIAccess.dll
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\APIAccess\bin\Debug\netcoreapp3.1\APIAccess.pdb
-C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\APIAccess\obj\Debug\netcoreapp3.1\APIAccess.csprojAssemblyReference.cache
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\APIAccess\obj\Debug\netcoreapp3.1\APIAccess.AssemblyInfoInputs.cache
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\APIAccess\obj\Debug\netcoreapp3.1\APIAccess.AssemblyInfo.cs
 C:\Users\PC\Documents\GitHub\3_semester_projekt\3_semester_projekt\APIAccess\obj\Debug\netcoreapp3.1\APIAccess.csproj.CoreCompileInputs.cache

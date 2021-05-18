@@ -92,6 +92,7 @@ namespace WebClientMVC.Controllers
 
             try
             {
+                //
                 //bool wasOk = await _bookingLogic.SaveBooking(aBooking);
 
                 
